@@ -8,3 +8,97 @@ body { @apply bg-brand-sand text-brand-ink font-body antialiased; }
 
 .slide { @apply min-h-[100dvh] flex flex-col justify-center py-16 lg:py-20 border-b border-brand-sandDark; }
 .nav-link.active { @apply bg-brand-teal text-white; }
+
+/* Apple-style Welcome Screen Animations */
+@keyframes applePulse {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.18) translate(20px, -20px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes applePulse2 {
+  0%, 100% {
+    transform: scale(1.1) translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(0.92) translate(-25px, 25px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes appleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes appleShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes appleGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(201, 184, 159, 0.25), 0 10px 40px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(201, 184, 159, 0.45), 0 15px 60px rgba(86, 97, 74, 0.5);
+  }
+}
+
+.animate-apple-pulse-1 {
+  animation: applePulse 14s ease-in-out infinite;
+}
+
+.animate-apple-pulse-2 {
+  animation: applePulse2 18s ease-in-out infinite;
+}
+
+.animate-apple-float {
+  animation: appleFloat 6s ease-in-out infinite;
+}
+
+.animate-apple-glow {
+  animation: appleGlow 4s ease-in-out infinite;
+}
+
+.apple-shimmer-btn {
+  background: linear-gradient(
+    110deg,
+    #56614A 0%,
+    #56614A 35%,
+    #7B8B6C 50%,
+    #56614A 65%,
+    #56614A 100%
+  );
+  background-size: 200% 100%;
+  animation: appleShimmer 5s ease-in-out infinite;
+}
+
+.apple-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.apple-glass-card {
+  background: rgba(30, 36, 32, 0.65);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(237, 230, 216, 0.14);
+}
+

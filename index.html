@@ -8,6 +8,111 @@
   <link rel="icon" href="/assets/logo.png" />
 </head>
 <body class="bg-brand-sand">
+  <!-- TELA DE BOAS-VINDAS ESTILO APPLE -->
+  <div id="welcomeScreen" class="fixed inset-0 z-[100] flex flex-col justify-between bg-[#111613] text-white p-6 sm:p-10 lg:p-12 overflow-hidden transition-all duration-700 ease-out select-none">
+    
+    <!-- Background Ambient Orbs (Apple Ambient Lighting) -->
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#3D5346]/50 blur-[130px] pointer-events-none animate-apple-pulse-1"></div>
+    <div class="absolute -bottom-40 -right-40 w-[650px] h-[650px] rounded-full bg-[#8C775D]/40 blur-[140px] pointer-events-none animate-apple-pulse-2"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] rounded-full bg-[#202923]/60 blur-[100px] pointer-events-none"></div>
+
+    <!-- Grid / Starfield subtle texture -->
+    <div class="absolute inset-0 bg-[radial-gradient(#EDE6D8_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.04] pointer-events-none"></div>
+
+    <!-- TOP BAR -->
+    <header class="relative z-10 w-full max-w-6xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/15 p-2 flex items-center justify-center shadow-lg">
+          <img src="/assets/logo.png" alt="Instituto Longânima" class="w-full h-full object-contain brightness-0 invert" />
+        </div>
+        <div>
+          <span class="text-sm font-display font-semibold tracking-wide text-white">Instituto Longânima</span>
+          <span class="block text-[10px] tracking-widest uppercase text-white/50">Dra. Kelly Bruzeguini Eira</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/80">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Apresentação Executiva • 2026</span>
+        </span>
+        <button onclick="dismissWelcomeScreen()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition backdrop-blur-md border border-white/15">
+          Pular ✕
+        </button>
+      </div>
+    </header>
+
+    <!-- CENTER HERO (Apple Keynote Style) -->
+    <main class="relative z-10 w-full max-w-4xl mx-auto text-center my-auto py-6 flex flex-col items-center">
+      
+      <!-- Glowing Eyebrow Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/20 shadow-xl mb-6 hover:border-white/40 transition">
+        <span class="text-xs text-amber-300">✦</span>
+        <span class="text-[11px] font-semibold tracking-[0.2em] uppercase bg-gradient-to-r from-amber-200 via-white to-amber-100 bg-clip-text text-transparent">
+          ESTRATÉGIA DE CONTEÚDOS & POSICIONAMENTO
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.05]">
+        Um novo olhar<br />
+        <span class="italic font-normal bg-gradient-to-r from-[#EDE6D8] via-[#FFFFFF] to-[#C9B89F] bg-clip-text text-transparent">
+          sobre o envelhecer.
+        </span>
+      </h1>
+
+      <!-- Supporting Subtitle -->
+      <p class="mt-6 text-sm sm:text-base lg:text-lg text-white/75 max-w-2xl font-light leading-relaxed">
+        Bem-vindo ao plano estratégico do <strong class="text-white font-medium">Instituto Longânima</strong>. Uma imersão em autoridade clínica, desmistificação da maturidade e o funil de aquisição para 20 novos pacientes/mês.
+      </p>
+
+      <!-- THE CENTRAL HERO BUTTON (Apple Style Action) -->
+      <div class="mt-10 flex flex-col items-center">
+        <button id="enterStrategyBtn" onclick="dismissWelcomeScreen()" class="group relative inline-flex items-center gap-3.5 px-9 sm:px-12 py-4 sm:py-5 rounded-full text-white text-base sm:text-lg font-medium tracking-wide apple-shimmer-btn animate-apple-glow shadow-2xl transition-all duration-300 hover:scale-[1.05] active:scale-[0.98] cursor-pointer">
+          <span>Acessar Estratégia</span>
+          <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1.5">
+            <span class="text-sm font-bold">→</span>
+          </div>
+        </button>
+
+        <p class="mt-4 text-[11px] text-white/45 tracking-wider flex items-center gap-1.5">
+          <span>Pressione</span>
+          <kbd class="px-2 py-0.5 rounded bg-white/10 border border-white/20 text-[10px] font-mono text-white/80">Enter</kbd>
+          <span>ou clique para explorar</span>
+        </p>
+      </div>
+
+    </main>
+
+    <!-- BOTTOM CAPSULES / METRICS -->
+    <footer class="relative z-10 w-full max-w-5xl mx-auto pt-4 border-t border-white/10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        
+        <div class="apple-glass rounded-2xl p-3 sm:p-3.5 transition hover:bg-white/10">
+          <p class="text-[10px] tracking-wider uppercase text-white/50">Meta Principal</p>
+          <p class="text-xs sm:text-sm font-semibold text-amber-200 mt-0.5">20 Pacientes / mês</p>
+        </div>
+
+        <div class="apple-glass rounded-2xl p-3 sm:p-3.5 transition hover:bg-white/10">
+          <p class="text-[10px] tracking-wider uppercase text-white/50">Território</p>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">Maturidade & Sexo 50+</p>
+        </div>
+
+        <div class="apple-glass rounded-2xl p-3 sm:p-3.5 transition hover:bg-white/10">
+          <p class="text-[10px] tracking-wider uppercase text-white/50">Ativo Digital</p>
+          <p class="text-xs sm:text-sm font-semibold text-emerald-300 mt-0.5">Protótipo Stitch 5 Telas</p>
+        </div>
+
+        <div class="apple-glass rounded-2xl p-3 sm:p-3.5 transition hover:bg-white/10">
+          <p class="text-[10px] tracking-wider uppercase text-white/50">Escopo</p>
+          <p class="text-xs sm:text-sm font-semibold text-white mt-0.5">26 Seções Estratégicas</p>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
   <!-- Progress -->
   <div id="progress" class="fixed top-0 left-0 h-1 bg-brand-amber z-[60] transition-all" style="width:0%"></div>
 
@@ -20,6 +125,10 @@
         <span class="sm:hidden text-sm font-display font-semibold text-brand-teal">Longânima</span>
       </div>
       <div class="flex items-center gap-2">
+        <button onclick="showWelcomeScreen()" class="text-xs font-medium px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom hover:bg-brand-sandDark transition flex items-center gap-1.5">
+          <span class="text-amber-600">✦</span>
+          <span>Boas-vindas</span>
+        </button>
         <span class="hidden lg:inline text-xs text-brand-teal/60">Estratégia de Conteúdos • Atualizado 23 set 2026</span>
         <span class="text-xs px-2 py-1 rounded-full bg-brand-teal text-white">Vercel • Slide-doc</span>
         <button id="presentBtn" class="hidden sm:inline-flex text-xs font-medium px-3 py-1.5 rounded-full border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition">Apresentar ⛶</button>

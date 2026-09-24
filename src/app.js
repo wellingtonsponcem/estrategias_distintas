@@ -23,6 +23,17 @@ onScroll();
 // keyboard nav
 const order = ids;
 window.addEventListener("keydown", (e) => {
+  const welcome = document.getElementById("welcomeScreen");
+  const isWelcomeOpen = welcome && welcome.style.display !== "none" && welcome.getAttribute("data-dismissed") !== "true";
+
+  if (isWelcomeOpen) {
+    if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      window.dismissWelcomeScreen();
+      return;
+    }
+  }
+
   if (e.key === "ArrowDown" || e.key === "ArrowRight") {
     e.preventDefault();
     const cur = order.findIndex(h => {
@@ -144,4 +155,32 @@ window.reloadPrototypeFrame = function() {
     setTimeout(() => { frame.src = src; }, 50);
   }
 };
+
+// Welcome Screen Controller
+window.dismissWelcomeScreen = function() {
+  const welcome = document.getElementById("welcomeScreen");
+  if (!welcome) return;
+  welcome.setAttribute("data-dismissed", "true");
+  welcome.style.opacity = "0";
+  welcome.style.transform = "scale(1.05)";
+  welcome.style.filter = "blur(14px)";
+  welcome.style.pointerEvents = "none";
+  setTimeout(() => {
+    welcome.style.display = "none";
+  }, 700);
+};
+
+window.showWelcomeScreen = function() {
+  const welcome = document.getElementById("welcomeScreen");
+  if (!welcome) return;
+  welcome.removeAttribute("data-dismissed");
+  welcome.style.display = "flex";
+  welcome.style.pointerEvents = "auto";
+  void welcome.offsetHeight; // trigger reflow
+  welcome.style.opacity = "1";
+  welcome.style.transform = "scale(1)";
+  welcome.style.filter = "blur(0)";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 
