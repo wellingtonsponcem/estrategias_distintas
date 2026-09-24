@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "primary-fixed-dim": "#bfcbaf", "on-secondary-fixed": "#26190f", "tertiary-fixed-dim": "#ffb59f", "outline": "#76786f", "surface-container-high": "#eee7d9", "on-tertiary-fixed": "#3a0a00", "moss-deep": "#3D5346", "surface-container": "#f4eddf", "on-tertiary-fixed-variant": "#7a2f17", "surface-variant": "#e9e2d4", "inverse-on-surface": "#f7f0e2", "secondary-fixed-dim": "#dbc2b2", "on-primary": "#ffffff", "surface": "#fff9ee", "primary-container": "#56614a", "surface-container-low": "#faf3e5", "on-primary-container": "#cfdbbf", "on-tertiary-container": "#ffcbbd", "primary-fixed": "#dbe7ca", "secondary-container": "#f5dbcb", "background": "#fff9ee", "surface-dim": "#e0d9cc", "tertiary-fixed": "#ffdbd0", "surface-tint": "#57624b", "on-background": "#1e1b13", "surface-container-highest": "#e9e2d4", "on-error": "#ffffff", "secondary": "#6e5a4e", "tertiary-container": "#97452b", "on-surface": "#1e1b13", "primary": "#3f4934", "on-tertiary": "#ffffff", "white-broken": "#F8F5EE", "on-primary-fixed": "#151e0c", "blush-care": "#F0DDD3", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#404a35", "forest-night": "#415A4E", "surface-bright": "#fff9ee", "outline-variant": "#c6c7bd", "tertiary": "#792e16", "cream-timeline": "#F9F5EF", "secondary-fixed": "#f8ddce", "error": "#ba1a1a", "inverse-primary": "#bfcbaf", "on-secondary": "#ffffff", "on-secondary-container": "#725f52", "sand-soft": "#C9B89F", "on-surface-variant": "#454840", "on-error-container": "#93000a", "inverse-surface": "#333027", "on-secondary-fixed-variant": "#554338" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-desktop": "3rem", "margin": "1.25rem", "space-sm": "0.75rem", "space-xs": "0.5rem", "space-2xl": "5rem", "gutter-desktop": "2.5rem", "space-xl": "3rem", "space-lg": "2rem", "space-md": "1.25rem", "gutter": "1.5rem" }, "fontFamily": { "body-md": [ "Noto Sans" ], "headline-xl-mobile": [ "Noto Serif" ], "headline-md": [ "Noto Serif" ], "caption": [ "Noto Sans" ], "headline-xl": [ "Noto Serif" ], "headline-lg": [ "Noto Serif" ], "body-lg": [ "Noto Sans" ], "headline-lg-mobile": [ "Noto Serif" ], "label-eyebrow": [ "Noto Sans" ], "body-quote": [ "Noto Serif" ], "label-action": [ "Noto Sans" ] }, "fontSize": { "body-md": [ "0.9375rem", { "lineHeight": "1.65", "fontWeight": "400" } ], "headline-xl-mobile": [ "2.25rem", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-md": [ "1.5rem", { "lineHeight": "1.35", "fontWeight": "500" } ], "caption": [ "0.8125rem", { "lineHeight": "1.5", "fontWeight": "400" } ], "headline-xl": [ "3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "headline-lg": [ "2.25rem", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-lg": [ "1.0625rem", { "lineHeight": "1.7", "fontWeight": "400" } ], "headline-lg-mobile": [ "1.75rem", { "lineHeight": "1.3", "fontWeight": "400" } ], "label-eyebrow": [ "0.75rem", { "lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "600" } ], "body-quote": [ "1.25rem", { "lineHeight": "1.6", "fontWeight": "400" } ], "label-action": [ "0.8125rem", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-white-broken/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(75,58,47,0.05)]"><div class="h-20 max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop flex items-center justify-between gap-space-sm"><a class="flex items-center gap-space-sm group text-left" data-path="home" href="home.html"><img class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtiPaOIJUDD4lY8zp3mxe7ZRmRu5ePuOEcbExJR4skHY_fC4lfoI-F51LWCYJLbtvr0nKcYTWTF6sXYkzPRl5KvVU3YzsDSTpCd0yC3pZYdztEdQT5cYG-Y6C2b-C7PFHhD-_q5g1k5UU1CIr2BxF2DaP0MRRqFylxtT4uZDHyIH25M9RB8pPDj_-Ne2KetuhxvGsiobGjRLuHsZqrxnUC8lPzyJcioAV4ZJc7trGfon_qa4SYwVlHMtggoyRk66r69oQ" alt="Logo Instituto Longânima"><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface leading-none tracking-tight">Instituto Longânima</span><span class="font-caption text-caption text-secondary tracking-wider mt-0.5">Dra. Kelly Bruzeguini Eira</span></div></a><nav class="hidden lg:flex items-center gap-gutter" data-active-classes="text-primary font-medium"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="home.html">Início</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="quem-sou-eu" href="quem-sou-eu.html">Quem sou eu</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="especialidades" href="especialidades.html">Especialidades</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="reflexoes" href="artigos.html">Reflexões</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contato" href="contato.html">Contato</a></nav><div class="flex items-center gap-space-sm sm:gap-space-md"><a class="inline-flex items-center justify-center px-space-md py-space-xs sm:px-space-lg sm:py-space-sm rounded-full bg-tertiary-container text-on-tertiary font-label-action text-label-action transition-all duration-300 hover:bg-tertiary shadow-[0_4px_16px_-2px_rgba(151,69,43,0.25)] hover:shadow-[0_8px_20px_-4px_rgba(151,69,43,0.35)]" data-path="contato" href="contato.html">Agendar Acolhimento</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Subtle Texture Glow -->
+<div class="relative w-full bg-surface overflow-hidden">
+<div class="absolute -top-40 right-10 w-96 h-96 rounded-full bg-secondary-container/40 blur-3xl pointer-events-none"></div>
+<div class="absolute top-64 -left-20 w-80 h-80 rounded-full bg-blush-care/50 blur-3xl pointer-events-none"></div>
+<!-- 1. Hero Editorial Section -->
+<section class="relative max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop pt-space-xl md:pt-space-2xl pb-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<div class="lg:col-span-8 flex flex-col items-start">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-high text-primary mb-space-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="font-label-eyebrow text-label-eyebrow tracking-widest uppercase">Palavras que Acolhem • Reflexões Clínicas</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight max-w-2xl mb-space-md">
+            Pensamentos sobre o tempo, a finitude e a beleza de viver com presença.
+          </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl mb-space-lg">
+            Artigos, ensaios e diálogos conduzidos por Dra. Kelly Bruzeguini Eira sobre saúde mental, maturidade e a arte de reconstruir sentidos na travessia da existência.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md">
+<a class="inline-flex items-center gap-2 px-space-lg py-space-sm rounded-full bg-tertiary-container text-on-tertiary font-label-action text-label-action transition-all duration-300 hover:bg-tertiary shadow-[0_8px_20px_-4px_rgba(151,69,43,0.3)] hover:-translate-y-0.5" href="#destaque">
+<span class="">Ler Ensaio em Destaque</span>
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+</a>
+<div class="flex items-center gap-3 text-secondary font-caption text-caption pl-1">
+<span class="w-1.5 h-1.5 rounded-full bg-sand-soft"></span>
+<span class="">Edição Quinzenal</span>
+<span class="w-1.5 h-1.5 rounded-full bg-sand-soft"></span>
+<span class="">Tempo desacelerado</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 relative mt-space-lg lg:mt-0">
+<div class="relative mx-auto max-w-sm lg:max-w-none">
+<div class="rounded-[2.5rem] p-1 bg-gradient-to-b from-sand-soft/40 to-transparent shadow-[0_20px_40px_-15px_rgba(75,58,47,0.1)]">
+<div class="relative rounded-[2.3rem] overflow-hidden bg-surface-container aspect-[4/5]">
+<img class="w-full h-full object-cover" data-alt="Close-up artistic photograph of an open notebook, ceramic mug with steaming herbal tea, and reading glasses bathed in gentle warm morning window sunlight. Organic minimal aesthetic with earth tones, soft shadows, and warm cream and forest green undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhQ3RRhFzJYMiEDFraBS1lhjcpVc-8qvOoDeCxpKmKs3pl8c4RhcJb464HhztQYVITqTYcauhRCDexbkfqCvxjEUn1vUgAK8E3go9M6X3xL4or__lBNlppDgSe624a_cv1W7X-_-UclB_SMGac-6mdYlvudV8x_v06M875I-PaTq9Uc_6rqpS5pI4PH8AFBilN62X7z0hMLwYUpMGB3UYXmO_xqv6bbJie6yEWhVuXKu3eAa84bk0KGg">
+<div class="absolute inset-0 bg-gradient-to-t from-forest-night/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 text-on-primary">
+<span class="font-label-eyebrow text-label-eyebrow uppercase text-blush-care tracking-wider">Caderno de Notas</span>
+<p class="font-body-quote text-body-quote italic mt-1 leading-snug">"O tempo vivido não se perde: acumula-se em sabedoria."</p>
+</div>
+</div>
+</div>
+<!-- Decorative Accent Diamond Card -->
+<div class="absolute -bottom-6 -left-6 bg-blush-care text-secondary rounded-2xl p-4 shadow-[0_16px_36px_-12px_rgba(75,58,47,0.12)] hidden sm:flex items-center gap-3 max-w-[200px]">
+<span class="material-symbols-outlined text-tertiary-container text-2xl">spa</span>
+<span class="font-caption text-caption leading-tight text-on-surface">Escuta atenta &amp; humanizada</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- 2. Artigo em Destaque (Revista Editorial Imersiva) -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="destaque">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-space-sm">
+<div>
+<span class="font-label-eyebrow text-label-eyebrow text-tertiary uppercase tracking-widest">Leitura Principal</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">Destaque da Edição</h2>
+</div>
+<span class="font-caption text-caption text-secondary">Tempo estimado de leitura: 5 minutos</span>
+</div>
+<article class="bg-white-broken rounded-[2rem] overflow-hidden shadow-[0_24px_48px_-16px_rgba(75,58,47,0.08)]">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<!-- Coluna Imagem com Selo -->
+<div class="lg:col-span-6 relative min-h-[380px] lg:min-h-[500px]">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A tranquil window view on a rainy day with an elegant ceramic coffee cup resting on a wooden windowsill. Soft condensation droplets on the glass pane, warm ambient indoor lighting, gentle mood of contemplation, captured in rich editorial earth tones of sage green, warm cream, and deep terracotta." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC07wbC4cR933WCzLgdJERnkfeSxYJVjj9SrHuU7q-f4Raoti_G-xffYXfhN1xi49UUW-XRpXU0MGnm5vcHPuEaPsEApDASZJ2L6LJ1hEKQ3KbG7hJC4JQ5ml7DEjCWkLgXXmQ9BGeJMLlo-PEyPmJvGeV-3yjHmj4Q0IIrVqC-bwa1XchrlmKrj9rNETl53gbNwZ_f-6SiNuv_50uKni1k0p74XXdoDel8ZULS_xzRpjwCPGiKMrDRGA">
+<div class="absolute top-6 left-6 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white-broken/90 backdrop-blur-md text-on-surface font-caption text-caption">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">schedule</span>
+<span class="">5 min de leitura</span>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="bg-forest-night/95 backdrop-blur-md p-space-md rounded-2xl text-on-primary">
+<span class="font-label-eyebrow text-label-eyebrow uppercase text-primary-fixed tracking-wider">Passagem Central</span>
+<p class="font-body-quote text-body-quote italic mt-1 text-white-broken">
+                  "Envelhecer com serenidade não é renunciar ao amanhã, mas tomar posse definitiva da própria história."
+                </p>
+</div>
+</div>
+</div>
+<!-- Coluna Conteúdo Editorial -->
+<div class="lg:col-span-6 p-space-lg sm:p-space-xl flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-tertiary font-label-eyebrow text-label-eyebrow tracking-wider uppercase">
+                  Envelhecimento Ativo
+                </span>
+<span class="text-sand-soft text-xs">•</span>
+<span class="font-caption text-caption text-secondary">14 de Março, 2025</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface leading-tight">
+                O tempo que nos resta: como transformar a maturidade no melhor capítulo da vida.
+              </h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Frequentemente a sociedade nos ensina a olhar para o avanço dos anos sob a ótica da perda: da juventude, do vigor ou das certezas. No entanto, na clínica da alma, testemunhamos diariamente o despertar de uma liberdade antes desconhecida.
+              </p>
+<p class="font-body-md text-body-md text-secondary leading-relaxed hidden sm:block">
+                Compreender a finitude não paralisa; pelo contrário, desvela o essencial. Discutimos ferramentas de presença, ressignificação do cotidiano e a celebração dos laços verdadeiros.
+              </p>
+<div class="p-4 rounded-xl bg-blush-care/60 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary-container">stylus_note</span>
+</div>
+<div>
+<p class="font-caption text-caption font-semibold text-on-surface">Escrito por Dra. Kelly Bruzeguini Eira</p>
+<p class="font-caption text-caption text-secondary">Psicóloga Clínica &amp; Especialista em Luto e Finitude</p>
+</div>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<button class="inline-flex items-center gap-2 px-space-md py-space-xs rounded-full bg-tertiary-container text-on-tertiary font-label-action text-label-action transition-all duration-300 hover:bg-tertiary shadow-[0_4px_16px_-2px_rgba(151,69,43,0.25)] hover:gap-3" type="button">
+<span class="">Continuar Lendo</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<div class="flex items-center gap-2 text-secondary">
+<button aria-label="Guardar reflexão" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+<button aria-label="Compartilhar artigo" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- 3. Filtros por Temas (Categorias Elegantes) -->
+<section class="w-full bg-surface py-space-lg">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">filter_list</span>
+<span class="font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-wider">Explorar por Temáticas</span>
+</div>
+<span class="font-caption text-caption text-secondary">Mostrando 6 reflexões clínicas</span>
+</div>
+<!-- Theme Pills -->
+<div class="flex flex-wrap gap-2.5 pt-2" id="filter-container">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label-action text-label-action shadow-[0_4px_12px_rgba(63,73,52,0.15)] transition-all" data-theme="all" type="button">
+          Todos os Textos
+        </button>
+<button class="px-5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-action text-label-action transition-all" data-theme="envelhecimento" type="button">
+          Envelhecimento Ativo
+        </button>
+<button class="px-5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-action text-label-action transition-all" data-theme="luto" type="button">
+          Luto &amp; Travessias
+        </button>
+<button class="px-5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-action text-label-action transition-all" data-theme="sexualidade" type="button">
+          Sexualidade 50+
+        </button>
+<button class="px-5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-action text-label-action transition-all" data-theme="saude" type="button">
+          Saúde Emocional
+        </button>
+</div>
+</div>
+</section>
+<!-- 4. Grade Editorial de Artigos (Grid 3 Colunas) -->
+<section class="w-full bg-surface pb-space-2xl">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop" id="articles-grid">
+<!-- Artigo 1 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="envelhecimento">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Two senior women smiling warmly at a rustic wooden cafe table, holding hands with tea cups in foreground, illuminated by soft golden morning sun. Authentic representation of friendship and mutual support in mature life, gentle green and terracotta palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxJk-mUPcfjEXMlRsldCfSHrYRqfs7574Z-1-oUxAU0S8sH8xo7nqawosH0KZWkSNDbdYmCY4Wzx0Kgj4VuWhIhDzIfYQKB-ZOdQAWv-dnR5adficXOWGw6RUtPLpVT-gpW8exyZzy--RtybOjBoSMnzusmVJA3oX-zFpwaEq66SmaVH2f4Y-YpM161kq-EstJmi1CxYIm5ZEzKo8GD_1yFduI3VGrLr4xU0-LB3ZzBx8CFPwRN1kNDA">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-primary font-caption text-caption font-medium">Envelhecimento Ativo</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">02 de Março, 2025</span>
+<span class="">•</span>
+<span class="">4 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                A solidão não precisa ser silêncio: criando redes de afeto após os 60.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                O isolamento social na maturidade muitas vezes chega disfarçado de rotina. Descubra práticas para reabrir janelas de acolhimento e cultivar laços autênticos.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+<!-- Artigo 2 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="luto">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Delicate dried eucalyptus leaves and botanical pressed flowers placed inside a vintage linen journal beside a warm stone paperweight. Muted sage green, soft terracotta and parchment colors, conveying tenderness and quiet remembrance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAda8SjzpRqsvIh0SQ45wF8hRfLRv3ySrSIYuIV4cur041CwSj3ok_8o3aMcd7sDDNOZOegEMH1bKpKHhA5CwtM-BNFeE8MlwTSK_tUC-9npNcsOkdviXJSONN8d5-pJH11SVqnMWwRPKdd_o710OB8PZFnz6woTjsA2bWTIlYxkD2tKSVHCJul-jyrHdyIiH5_eo8Pf8sleNlKDqsvCjLsCHyHzlDqJDDj__gtLTSkW4FL_mLguBW5iA">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-tertiary font-caption text-caption font-medium">Luto &amp; Travessias</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">24 de Fevereiro, 2025</span>
+<span class="">•</span>
+<span class="">6 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                O luto que ninguém nomeia: despedindo-se de quem éramos ontem.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                Nem todo luto decorre da perda física de um ente querido. O fechamento de ciclos de trabalho, a partida dos filhos e a alteração dos ritmos corporais pedem cerimônias de escuta.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+<!-- Artigo 3 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="sexualidade">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="A mature couple sharing an intimate and tender gaze in a sun-drenched living room with sheer linen curtains, genuine smiles, soft warm tones of cream, sand, and blush, emphasizing emotional intimacy and respect." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTvhZiGpwyoH5iMJVumVpbCciKjrW6GyY34KbPkjqoDJlf1w6A0Pfboihn_ccmrlTSpifQiwlKW--d5yfh8ZYTL7hXVRXaKc8DsTd8L_7GMss3d9ZwY-ai-4PyIK2OYWv2HKmc6hrnJ7rk0-joahZDLGfVyYM8YhwnM9-axn-fH2fJbR0APc1X7-x1IFRPHAkVMWpxWbw_0PX4wTrpwetwDeW_1xxwcg6dw_SyHuiOTFpcI3lw-B4zpQ">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-secondary font-caption text-caption font-medium">Sexualidade 50+</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">15 de Fevereiro, 2025</span>
+<span class="">•</span>
+<span class="">5 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                Desejo e intimidade não envelhecem: quebrando os mitos da sexualidade madura.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                Como desvencilhar o afeto e o prazer dos padrões normativos e abraçar um erotismo mais livre, seguro, comunicativo e centrado na vulnerabilidade partilhada.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+<!-- Artigo 4 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="saude">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Quiet interior corner with an empty comfortable armchair beside an olive tree plant in a terracotta pot, serene morning shadows across natural wood floor, tranquil sanctuary aesthetic with earthy colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOL8eBAvPJKXPvXYP83cFBUOHbdSxNs7scoPhIg5wUsBzFyGRbFYDOC2pBGXN0I3Fi5xM_Ycm7xT-LV5aLQ2eiWlK8DV8RET2jpCTt-yPK1dgBebfSis3GF1zOgCyxzvW2KDG1tuUM1vFHiROnLsbnNDaqM8M1kwO1y0T24-JW5Q4-PpDummTJFlHHTENY0aoRO2p-EEYMWO3tfpkrLrFqwawoz-_uf39qwxhLUbVjFrigM5sv6gl9xQ">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-primary font-caption text-caption font-medium">Saúde Emocional</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">08 de Fevereiro, 2025</span>
+<span class="">•</span>
+<span class="">3 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                A arte da pausa: por que a pressa nos adoece na rotina moderna.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                A tirania da produtividade consome nossa capacidade de saborear o presente. Resgatar intervalos conscientes é um ato de preservação psíquica fundamental.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+<!-- Artigo 5 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="envelhecimento">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="An adult daughter gently walking side-by-side with her elderly father along a peaceful gravel park path surrounded by ancient trees. Soft sunlight filtering through leaves, heartwarming emotional bond and respectful companionship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZTE1XTqV3lPOSsNJ4aajFCxbfmTWt3-WHysYR_8UeHsyj0C97y3zLmQNAYRKI8BWSYi5K1lH7Wtd63xx9S4uktl_natrzNvgyi-5tSqSVGfEU23ArOcAn8jlnYYs3mn2GBcavB5AhI4JPD8MKEY_li4m25EOmKrMAOiZIb8lw4eNbEUzLppfmtfdzCau7lZ8XpHAn6NpHuVWQx2YFgOJkSToKHKngZLimLKUc3WPUotHgQfXNjpXlAA">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-primary font-caption text-caption font-medium">Envelhecimento Ativo</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">29 de Janeiro, 2025</span>
+<span class="">•</span>
+<span class="">7 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                Cuidar de quem cuidou de nós: a delicada inversão de papéis com pais idosos.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                Acompanhar a fragilização de nossos pais requer equilíbrio entre auxílio prático e preservação de sua dignidade e autonomia decisória.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+<!-- Artigo 6 -->
+<article class="article-card flex flex-col bg-white-broken rounded-[1.75rem] overflow-hidden shadow-[0_12px_30px_-10px_rgba(75,58,47,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(75,58,47,0.12)] transition-all duration-300 hover:-translate-y-1" data-theme="saude">
+<div class="relative h-56 w-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" data-alt="Inviting psychotherapy room corner with two comfortable natural fabric armchairs facing each other, a low oak table with a glass carafe of water, and warm ambient floor lamp glow. Safe sanctuary atmosphere, professional and warm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBw7mkwXOyJKOCY_Fek3HEBZPhuO41PXOsA0heN1hvwv84wF5Hjbo_k0Qt_ICkVEuwOIUB1rglxP8nlMM5HhWcg-oO98U-4fV9sosOfSwZh1LB1gAvdIlQCakngQUNeRS4koc4bc988URXHdW_3Ccvpf6UGvAitVwr3GDvGJhZ4YgBCw-dWKIF_WTdtNdgtyiss4LwzhOvyoe9xDR0Pa28tDrBgj9-7uWhu-WcqEN7sS8tJ1a4HdbRRw">
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-surface/90 backdrop-blur-sm text-primary font-caption text-caption font-medium">Saúde Emocional</span>
+</div>
+</div>
+<div class="p-space-md flex flex-col flex-1 justify-between">
+<div>
+<div class="flex items-center gap-2 font-caption text-caption text-secondary mb-2">
+<span class="">18 de Janeiro, 2025</span>
+<span class="">•</span>
+<span class="">5 min leitura</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface leading-snug mb-3">
+                Vencer o preconceito da poltrona: a psicologia como aliada contínua.
+              </h3>
+<p class="font-body-md text-body-md text-secondary line-clamp-3 mb-4">
+                Por muitos anos fomos levados a crer que terapia é sinal de fraqueza ou insanidade. Hoje, sentar-se para ser escutado é a mais lúcida demonstração de coragem.
+              </p>
+</div>
+<div class="pt-3 flex items-center justify-between">
+<a class="inline-flex items-center gap-1.5 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#">
+<span class="">Ler reflexão</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+<span class="material-symbols-outlined text-secondary hover:text-on-surface cursor-pointer text-[18px]">favorite_border</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Trajectory Vignette Callout -->
+<div class="mt-space-xl p-space-lg rounded-[2rem] bg-cream-timeline shadow-[0_16px_36px_-12px_rgba(75,58,47,0.06)] flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-14 h-14 rounded-2xl bg-forest-night text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Deseja aprofundar um tema específico?</h4>
+<p class="font-body-md text-body-md text-secondary">Sugira assuntos para os próximos ensaios ou compartilhe sua dúvida clínica anonimamente.</p>
+</div>
+</div>
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-full bg-forest-night text-on-primary font-label-action text-label-action hover:bg-moss-deep transition-all shrink-0" href="#">
+          Sugerir Tema à Dra. Kelly
+        </a>
+</div>
+</div>
+</section>
+<!-- 5. Newsletter / Caderno de Notas Longânima -->
+<section class="w-full bg-surface-container py-space-2xl">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="relative bg-surface-container-high rounded-[2.5rem] p-space-lg sm:p-space-xl lg:p-space-2xl overflow-hidden shadow-[0_20px_40px_-16px_rgba(75,58,47,0.08)]">
+<!-- Decorative subtle background branch icon -->
+<div class="absolute -bottom-10 -right-10 w-64 h-64 opacity-5 pointer-events-none text-primary">
+<svg fill="currentColor" viewBox="0 0 100 100">
+<path d="M50 0 C60 25 75 40 100 50 C75 60 60 75 50 100 C40 75 25 60 0 50 C25 40 40 25 50 0 Z"></path>
+</svg>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center relative z-10">
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-primary">Caderno de Notas Quinzenal</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">
+              Receba pausas poéticas e reflexões de consultório na sua caixa de entrada.
+            </h2>
+<p class="font-body-md text-body-md text-secondary max-w-xl">
+              Uma carta quinzenal escrita com calma, sem fórmulas mágicas ou pressa. Textos sobre aceitação, acolhimento do tempo, cuidados com a mente e resgates do afeto.
+            </p>
+<div class="flex items-center gap-4 text-secondary font-caption text-caption pt-2">
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+                Sigilo e respeito à privacidade
+              </span>
+<span class="">•</span>
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">mail</span>
+                Sem excessos de e-mails
+              </span>
+</div>
+</div>
+<div class="lg:col-span-5 bg-white-broken p-space-md sm:p-space-lg rounded-[1.75rem] shadow-[0_16px_36px_-12px_rgba(75,58,47,0.08)]">
+<form class="flex flex-col gap-space-sm" id="newsletter-form" onsubmit="event.preventDefault(); document.getElementById('newsletter-success').classList.remove('hidden'); this.classList.add('hidden');">
+<div class="flex flex-col gap-1">
+<label class="font-label-action text-label-action text-on-surface" for="subscriber-name">Como você prefere ser chamado(a)?</label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-secondary/60" id="subscriber-name" placeholder="Seu nome ou primeiro nome" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-action text-label-action text-on-surface" for="subscriber-email">Seu melhor e-mail</label>
+<input class="w-full h-12 px-4 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-secondary/60" id="subscriber-email" placeholder="exemplo@seuemail.com" required="" type="email">
+</div>
+<div class="flex items-start gap-2 pt-1">
+<input class="mt-1 accent-tertiary-container w-4 h-4 rounded cursor-pointer" id="consent" required="" type="checkbox">
+<label class="font-caption text-caption text-secondary cursor-pointer leading-tight" for="consent">
+                  Concordo em receber reflexões e comunicados institucionais do Instituto Longânima. Posso cancelar a qualquer momento com um único clique.
+                </label>
+</div>
+<button class="w-full mt-2 h-12 inline-flex items-center justify-center gap-2 rounded-full bg-tertiary-container hover:bg-tertiary text-on-tertiary font-label-action text-label-action transition-all duration-300 shadow-[0_6px_20px_rgba(151,69,43,0.3)] hover:-translate-y-0.5" type="submit">
+<span class="">Inscrever-se no Caderno</span>
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</form>
+<div class="hidden flex flex-col items-center text-center p-space-md gap-space-sm animate-fade-in" id="newsletter-success">
+<div class="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">check</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Bem-vindo(a) ao nosso espaço de leitura.</h4>
+<p class="font-body-md text-body-md text-secondary">
+                Enviamos um bilhete de boas-vindas para o seu endereço. Cuide bem de si até nossa próxima edição.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Conversational Anchor / Convite Final (Dark Forest Grounded Block) -->
+<section class="w-full bg-forest-night text-white-broken py-space-2xl relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-tr from-moss-deep to-transparent opacity-60"></div>
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop relative z-10 text-center flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface/10 flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-sand-soft text-2xl">self_improvement</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-white-broken max-w-3xl mb-space-md">
+        Talvez este seja o seu momento de cuidar de si.
+      </h2>
+<p class="font-body-lg text-body-lg text-sand-soft max-w-xl mb-space-lg">
+        Um convite para dar o próximo passo com acolhimento, presença e profundo respeito à sua história individual.
+      </p>
+<div class="flex flex-col sm:flex-row items-center gap-space-md">
+<a class="inline-flex items-center justify-center px-space-xl py-space-sm rounded-full bg-tertiary-container text-on-tertiary font-label-action text-label-action transition-all duration-300 hover:bg-tertiary shadow-[0_8px_24px_rgba(151,69,43,0.4)] hover:-translate-y-0.5" href="#">
+          Agendar Acolhimento Inicial
+        </a>
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-full border border-sand-soft/50 text-sand-soft font-label-action text-label-action hover:bg-white-broken/10 transition-colors" href="#">
+          Conhecer a Abordagem Clínica
+        </a>
+</div>
+<p class="font-caption text-caption text-sand-soft/70 mt-space-lg">
+        Atendimentos presenciais em consultório privativo e sessões online seguras com sigilo ético absoluto.
+      </p>
+</div>
+</section>
+</div>
+<script>
+  // Filter Micro-interaction
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('#filter-container button');
+    const articles = document.querySelectorAll('#articles-grid .article-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+
+        // Toggle button styles
+        filterButtons.forEach(btn => {
+          btn.className = 'px-5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-action text-label-action transition-all';
+        });
+        button.className = 'px-5 py-2 rounded-full bg-primary text-on-primary font-label-action text-label-action shadow-[0_4px_12px_rgba(63,73,52,0.15)] transition-all';
+
+        // Filter cards
+        articles.forEach(article => {
+          if (theme === 'all' || article.getAttribute('data-theme') === theme) {
+            article.style.display = 'flex';
+            article.classList.add('animate-fade-in');
+          } else {
+            article.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-2xl pb-space-xl"><div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop pb-space-xl"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs"><img class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLkG-hfw4ykRygRg0cFQ69ldJ7-M_Kgdv34oT8Ga9hlFJbZ4ZBk2tx83iy8cxW_337m0dRN70Cc0r0lVjDgY4M0PMYfd_l5ZarPs5ep2peFkOIrrzesvQtlHgofCaCTYSBKbf3Xltzeq5XvIYgIHGzoxFBf5t7Sj9sVp-onx9NC5JMWWONoQKWUDEdgzsX7MghzJgZDhl-Ouj_INbsZSJNzr6psewQGBrfX7DpEqn3KSy5BhtRAlHWOc24ZZ5YwRzQ3uQ" alt="Logo Instituto Longânima"><span class="font-headline-md text-headline-md text-on-surface">Instituto Longânima</span></div><p class="font-body-md text-body-md text-secondary max-w-sm">Espaço terapêutico dedicado à escuta qualificada, psicoterapia de orientação humanista e acolhimento dos processos vitais de envelhecimento, luto e sexualidade madura.</p><p class="font-caption text-caption text-secondary mt-space-xs">CRP 16/XXXX • Atendimento Presencial &amp; Online Seguro</p></div><div class="md:col-span-3 flex flex-col gap-space-xs"><h4 class="font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-widest">Navegação</h4><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="home.html">Início Institucional</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="quem-sou-eu" href="quem-sou-eu.html">Dra. Kelly Bruzeguini</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="especialidades" href="especialidades.html">Áreas Clínicas</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="reflexoes" href="artigos.html">Caderno de Reflexões</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contato" href="contato.html">Atendimento &amp; Contato</a></div><div class="md:col-span-4 flex flex-col gap-space-xs"><h4 class="font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-widest">Acolhimento &amp; Ética</h4><p class="font-body-quote text-body-quote text-on-surface-variant italic">"Cuidar do tempo vivido com presença, respeito à história singular e reverência à própria trajetória."</p><p class="font-caption text-caption text-secondary mt-space-xs">Serviço psicológico regulamentado pelo Código de Ética Profissional do Psicólogo (CFP). Sigilo absoluto e escuta atenta às singularidades.</p></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><span class="font-caption text-caption text-secondary">Kelly Bruzeguini Eira • Psicóloga Clínica • Cofundadora do Instituto Longânima</span><span class="font-caption text-caption text-secondary">© 2024 Instituto Longânima. Todos os direitos reservados.</span></div></div></footer>
+
+</body></html>

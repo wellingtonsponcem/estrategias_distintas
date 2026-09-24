@@ -1,0 +1,485 @@
+﻿<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "primary-fixed-dim": "#bfcbaf", "on-secondary-fixed": "#26190f", "tertiary-fixed-dim": "#ffb59f", "outline": "#76786f", "surface-container-high": "#eee7d9", "on-tertiary-fixed": "#3a0a00", "moss-deep": "#3D5346", "surface-container": "#f4eddf", "on-tertiary-fixed-variant": "#7a2f17", "surface-variant": "#e9e2d4", "inverse-on-surface": "#f7f0e2", "secondary-fixed-dim": "#dbc2b2", "on-primary": "#ffffff", "surface": "#fff9ee", "primary-container": "#56614a", "surface-container-low": "#faf3e5", "on-primary-container": "#cfdbbf", "on-tertiary-container": "#ffcbbd", "primary-fixed": "#dbe7ca", "secondary-container": "#f5dbcb", "background": "#fff9ee", "surface-dim": "#e0d9cc", "tertiary-fixed": "#ffdbd0", "surface-tint": "#57624b", "on-background": "#1e1b13", "surface-container-highest": "#e9e2d4", "on-error": "#ffffff", "secondary": "#6e5a4e", "tertiary-container": "#97452b", "on-surface": "#1e1b13", "primary": "#3f4934", "on-tertiary": "#ffffff", "white-broken": "#F8F5EE", "on-primary-fixed": "#151e0c", "blush-care": "#F0DDD3", "surface-container-lowest": "#ffffff", "on-primary-fixed-variant": "#404a35", "forest-night": "#415A4E", "surface-bright": "#fff9ee", "outline-variant": "#c6c7bd", "tertiary": "#792e16", "cream-timeline": "#F9F5EF", "secondary-fixed": "#f8ddce", "error": "#ba1a1a", "inverse-primary": "#bfcbaf", "on-secondary": "#ffffff", "on-secondary-container": "#725f52", "sand-soft": "#C9B89F", "on-surface-variant": "#454840", "on-error-container": "#93000a", "inverse-surface": "#333027", "on-secondary-fixed-variant": "#554338" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "margin-desktop": "3rem", "margin": "1.25rem", "space-sm": "0.75rem", "space-xs": "0.5rem", "space-2xl": "5rem", "gutter-desktop": "2.5rem", "space-xl": "3rem", "space-lg": "2rem", "space-md": "1.25rem", "gutter": "1.5rem" }, "fontFamily": { "body-md": [ "Noto Sans" ], "headline-xl-mobile": [ "Noto Serif" ], "headline-md": [ "Noto Serif" ], "caption": [ "Noto Sans" ], "headline-xl": [ "Noto Serif" ], "headline-lg": [ "Noto Serif" ], "body-lg": [ "Noto Sans" ], "headline-lg-mobile": [ "Noto Serif" ], "label-eyebrow": [ "Noto Sans" ], "body-quote": [ "Noto Serif" ], "label-action": [ "Noto Sans" ] }, "fontSize": { "body-md": [ "0.9375rem", { "lineHeight": "1.65", "fontWeight": "400" } ], "headline-xl-mobile": [ "2.25rem", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "headline-md": [ "1.5rem", { "lineHeight": "1.35", "fontWeight": "500" } ], "caption": [ "0.8125rem", { "lineHeight": "1.5", "fontWeight": "400" } ], "headline-xl": [ "3.5rem", { "lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "headline-lg": [ "2.25rem", { "lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-lg": [ "1.0625rem", { "lineHeight": "1.7", "fontWeight": "400" } ], "headline-lg-mobile": [ "1.75rem", { "lineHeight": "1.3", "fontWeight": "400" } ], "label-eyebrow": [ "0.75rem", { "lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "600" } ], "body-quote": [ "1.25rem", { "lineHeight": "1.6", "fontWeight": "400" } ], "label-action": [ "0.8125rem", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-white-broken/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(75,58,47,0.05)]"><div class="h-20 max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop flex items-center justify-between gap-space-sm"><a class="flex items-center gap-space-sm group text-left" data-path="home" href="home.html"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuASLXxNXVQhHmtEaIdEn_krg8KGEpyBM7TvWAg-jv-YTJ6jqpTQyrHSa94H5pg7pLBXyHotJkBNQMAcdZv1Qy1VrqbX-lsMK76TxlsC4k2O5PFrOUfSI9PVSMi0HuhQnfe9nbXA4-QIqQHpBmYo8yvU_8vrJDuILeIBq2pUYByX0vBKwzn1ZLvTrYx-RKzxmnn1rh8NUY_gwGA2Dw8B598bJyBjlRDIPnxioDf-4R9fY4qwWxPfRfEqekl1DJJ5CNDwklM" alt="Logo Instituto Longânima" class="h-9 w-auto object-contain transition-transform group-hover:scale-105"><div class="flex flex-col"><span class="font-headline-md text-headline-md text-on-surface leading-none tracking-tight">Instituto Longânima</span><span class="font-caption text-caption text-secondary tracking-wider mt-0.5">Dra. Kelly Bruzeguini Eira</span></div></a><nav class="hidden lg:flex items-center gap-gutter" data-active-classes="text-primary font-medium"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="home.html">Início</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="quem-sou-eu" href="quem-sou-eu.html">Quem sou eu</a><a aria-current="page" class="transition-colors text-primary font-medium" data-path="especialidades" href="especialidades.html">Especialidades</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="reflexoes" href="artigos.html">Reflexões</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contato" href="contato.html">Contato</a></nav><div class="flex items-center gap-space-sm sm:gap-space-md"><a class="inline-flex items-center justify-center px-space-md py-space-xs sm:px-space-lg sm:py-space-sm rounded-full bg-tertiary-container text-on-tertiary font-label-action text-label-action transition-all duration-300 hover:bg-tertiary shadow-[0_4px_16px_-2px_rgba(151,69,43,0.25)] hover:shadow-[0_8px_20px_-4px_rgba(151,69,43,0.35)]" data-path="contato" href="contato.html">Agendar Acolhimento</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- HERO DA PÁGINA: Especialidades & Atendimento Clínico -->
+<section class="relative w-full bg-forest-night text-white-broken overflow-hidden">
+<!-- Fundo Orgânico com Iluminação Suave -->
+<div class="absolute inset-0 bg-gradient-to-b from-moss-deep/30 to-forest-night pointer-events-none"></div>
+<div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
+<div class="relative max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop pt-space-xl pb-space-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Coluna de Texto & Contexto -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs text-primary-fixed-dim">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-primary-fixed">Cuidado Especializado • Adulto &amp; Maturidade</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-white-broken tracking-tight max-w-2xl">
+            Espaços de escuta desenhados para cada fase da sua vida.
+          </h1>
+<p class="font-body-lg text-body-lg text-white-broken/85 max-w-xl">
+            Atendimentos clínicos estruturados para acolher dilemas emocionais, lutos, transições de carreira, sexualidade e a beleza complexa de envelhecer com consciência e segurança interior.
+          </p>
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-tertiary-container text-white-broken font-label-action text-label-action shadow-[0_8px_20px_-4px_rgba(151,69,43,0.35)] hover:bg-tertiary transition-all duration-300 hover:-translate-y-0.5" href="#areas-clinicas">
+<span class="">Conheça as áreas clínicas</span>
+<span class="material-symbols-outlined text-[18px]">south</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-white-broken/10 text-white-broken hover:bg-white-broken/20 font-label-action text-label-action transition-all duration-300 backdrop-blur-sm" href="#modalidades">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span class="">Modalidades de atendimento</span>
+</a>
+</div>
+<!-- Micro-badges informativos com garantia ética -->
+<div class="pt-space-md flex items-center gap-gutter text-white-broken/70">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sand-soft text-[20px]">verified_user</span>
+<span class="font-caption text-caption">Sigilo ético profissional CFP</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sand-soft text-[20px]">spa</span>
+<span class="font-caption text-caption">Atendimento humanizado</span>
+</div>
+</div>
+</div>
+<!-- Coluna Visual / Composição Asimétrica Orgânica -->
+<div class="lg:col-span-5 relative mt-space-md lg:mt-0">
+<div class="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
+<!-- Moldura arqueada suave -->
+<div class="overflow-hidden rounded-t-[140px] rounded-b-[32px] shadow-2xl bg-surface-container aspect-[4/5] relative">
+<img class="w-full h-full object-cover" data-alt="Ambiente acolhedor de clínica de psicologia, poltrona de linho cru com almofada cor terracota, iluminação natural suave entrando por janela com vista para plantas tropicais serenas, xícara de cerâmica artesanal sobre mesinha de apoio de madeira de demolição, estética editorial serena e segura." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7C50QwfuZNKU6Mc-eqmBColr1g-AtVsgobskC6l3pxI5-FpgOWiJTCy0Qn2OpXknv_XPYTWRUgtNnOoiFMnXINSPqJqw3F54gymA5XHcOUzrhI5Lh8sKCpMjDvnYwnmcWYxp7NqIwYvNtWuB3FfQuTXfp5H8IfriPCiiDCbCUx0bPUFACSuCq9bqfqyG0RVfvpMtZZIosnpnWOCi_HJI-ZUKhDfphgF4RSNztojgb1TT89zV9WXuFXg">
+<div class="absolute inset-0 bg-gradient-to-t from-forest-night/60 via-transparent to-transparent"></div>
+</div>
+<!-- Card Sobreposto de Acolhimento (Assinatura do Design System) -->
+<div class="absolute -bottom-6 -right-2 sm:-right-6 bg-blush-care text-secondary p-space-md rounded-[20px] shadow-[0_16px_36px_-12px_rgba(75,58,47,0.18)] max-w-[260px] flex flex-col gap-space-xs">
+<div class="w-5 h-5 text-tertiary-container">
+<svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"></path></svg>
+</div>
+<p class="font-body-md text-caption text-secondary font-medium leading-relaxed">
+                "Não apressamos o tempo da alma. Cada encontro é um território de pausa e verdade."
+              </p>
+<span class="font-caption text-[11px] text-tertiary-container uppercase tracking-wider font-semibold">Dra. Kelly Bruzeguini</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 2: As Quatro Grandes Áreas Clínicas -->
+<section class="w-full py-space-2xl bg-surface" id="areas-clinicas">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<!-- Cabeçalho da Seção -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-xl">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-primary">Direcionamento Terapêutico</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+            Cuidado integral e especializado para a sua história.
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-secondary max-w-md">
+          A clínica não impõe respostas prontas. Oferecemos métodos fundamentados em ciência com a flexibilidade sensível que sua jornada exige.
+        </p>
+</div>
+<!-- Grid com 4 Grandes Especialidades -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<!-- 01. Envelhecimento Ativo & Maturidade -->
+<article class="group bg-surface-container-low hover:bg-white-broken p-space-lg md:p-space-xl rounded-[24px] shadow-sm hover:shadow-[0_16px_36px_-12px_rgba(75,58,47,0.1)] transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-sand-soft">01</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">vital_signs</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+                Maturidade &amp; Envelhecimento Ativo
+              </h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Redescoberta de propósito, ressignificação do tempo, autonomia e saúde emocional após os 50 anos. Um convite a viver a maturidade não como perda, mas como colheita viva e ativa de si.
+              </p>
+</div>
+<!-- Tópicos Aprofundados -->
+<ul class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant font-caption text-caption">
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Transição para a aposentadoria e novo projeto de vida</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Prevenção e manejo do isolamento na maturidade</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Autonomia física, cognitiva e dignidade existencial</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg mt-space-md flex items-center justify-between">
+<span class="font-caption text-caption text-secondary">Sessões semanais • 50 minutos</span>
+<a class="inline-flex items-center gap-1 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#contato">
+<span class="">Saber mais</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- 02. Apoio e Elaboração do Luto -->
+<article class="group bg-surface-container-low hover:bg-white-broken p-space-lg md:p-space-xl rounded-[24px] shadow-sm hover:shadow-[0_16px_36px_-12px_rgba(75,58,47,0.1)] transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-sand-soft">02</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">favorite</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+                Apoio &amp; Elaboração de Luto
+              </h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Espaço qualificado para atravessar perdas de entes queridos, rompimentos, diagnósticos difíceis ou mudanças bruscas de vida. O luto não é doença: é o tributo do afeto que precisa de continência.
+              </p>
+</div>
+<!-- Tópicos Aprofundados -->
+<ul class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant font-caption text-caption">
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Luto por falecimento e elaboração de despedidas</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Lutos simbólicos: perdas de papéis sociais ou saúde</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Suporte psicológico ao cuidador familiar</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg mt-space-md flex items-center justify-between">
+<span class="font-caption text-caption text-secondary">Acolhimento contínuo ou emergencial</span>
+<a class="inline-flex items-center gap-1 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#contato">
+<span class="">Saber mais</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- 03. Sexualidade & Afetividade -->
+<article class="group bg-surface-container-low hover:bg-white-broken p-space-lg md:p-space-xl rounded-[24px] shadow-sm hover:shadow-[0_16px_36px_-12px_rgba(75,58,47,0.1)] transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-sand-soft">03</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">diversity_1</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+                Sexualidade &amp; Afetividade Madura
+              </h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Desmistificação de tabus, intimidade no amadurecimento, diálogo desprovido de constrangimento e reconexão com o próprio corpo em suas novas e belas configurações.
+              </p>
+</div>
+<!-- Tópicos Aprofundados -->
+<ul class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant font-caption text-caption">
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Transformações hormonais, climatério e libido</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Comunicação e afetividade no relacionamento conjugal</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Superação de preconceitos sobre o prazer após os 50</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg mt-space-md flex items-center justify-between">
+<span class="font-caption text-caption text-secondary">Atendimento sigiloso e acolhedor</span>
+<a class="inline-flex items-center gap-1 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#contato">
+<span class="">Saber mais</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- 04. Psicoterapia Individual Adulta -->
+<article class="group bg-surface-container-low hover:bg-white-broken p-space-lg md:p-space-xl rounded-[24px] shadow-sm hover:shadow-[0_16px_36px_-12px_rgba(75,58,47,0.1)] transition-all duration-300 flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-sand-soft">04</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">psychology</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">
+                Psicoterapia Individual Adulta
+              </h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Tratamento e acompanhamento para quadros de ansiedade, depressão, sobrecarga emocional, esgotamento e busca genuína de autoconhecimento e alinhamento de valores existenciais.
+              </p>
+</div>
+<!-- Tópicos Aprofundados -->
+<ul class="flex flex-col gap-space-xs pt-space-xs text-on-surface-variant font-caption text-caption">
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Regulação de estados ansiosos crônicos e estresse</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Recuperação de sentido frente a crises depressivas</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="">Fortalecimento da autoestima e limites interpessoais</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg mt-space-md flex items-center justify-between">
+<span class="font-caption text-caption text-secondary">Orientação Humanista &amp; Existencial</span>
+<a class="inline-flex items-center gap-1 font-label-action text-label-action text-tertiary-container hover:text-tertiary transition-colors" href="#contato">
+<span class="">Saber mais</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 3: Modalidades de Atendimento (Split Cards Contrastantes) -->
+<section class="w-full py-space-2xl bg-surface-container" id="modalidades">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto pb-space-xl flex flex-col gap-space-xs">
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-primary">Formatos Flexíveis</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+          Como você prefere ser acolhido?
+        </h2>
+<p class="font-body-md text-body-md text-secondary">
+          Escolha o formato que melhor se adequa à sua rotina, mobilidade e necessidade de conforto geográfico.
+        </p>
+</div>
+<!-- Grid de 2 Cartões Contrastantes (Conforme o Guia de Estilo: Rooted/Forest vs Blush/Tender) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop items-stretch">
+<!-- Cartão 01: Atendimento Online (Verde Profundo / Forest Night) -->
+<div class="bg-forest-night text-white-broken p-space-xl rounded-[24px] shadow-[0_16px_36px_-12px_rgba(65,90,78,0.25)] flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-primary/20 blur-2xl pointer-events-none"></div>
+<div class="flex flex-col gap-space-md relative z-10">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-sand-soft">01</span>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-white-broken/10 text-white-broken font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="">Em qualquer lugar</span>
+</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-lg text-headline-lg text-white-broken">
+                Atendimento Online
+              </h3>
+<p class="font-body-lg text-body-lg text-white-broken/85">
+                Acolhimento sem fronteiras geográficas, no conforto e segurança do seu lar, com plataforma encriptada e sigilo profissional absoluto.
+              </p>
+</div>
+<div class="pt-space-xs flex flex-col gap-space-sm text-white-broken/80 font-body-md text-body-md">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary-fixed shrink-0 mt-0.5">check_circle</span>
+<span class="">Ideal para quem tem limitações de deslocamento ou reside fora do estado/país.</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary-fixed shrink-0 mt-0.5">check_circle</span>
+<span class="">Link seguro de videochamada de alta estabilidade, simples de acessar pelo celular ou computador.</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-primary-fixed shrink-0 mt-0.5">check_circle</span>
+<span class="">Flexibilidade de horários desenhada para o seu dia a dia.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xl relative z-10">
+<a class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-tertiary-container hover:bg-tertiary text-white-broken font-label-action text-label-action transition-all shadow-[0_4px_16px_-2px_rgba(151,69,43,0.3)]" href="#contato">
+<span class="">Optar por Sessão Online</span>
+<span class="material-symbols-outlined text-[18px]">videocam</span>
+</a>
+</div>
+</div>
+<!-- Cartão 02: Atendimento Presencial (Blush / Tender Care) -->
+<div class="bg-blush-care text-secondary p-space-xl rounded-[24px] shadow-[0_16px_36px_-12px_rgba(75,58,47,0.08)] flex flex-col justify-between relative overflow-hidden">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-tertiary-container">02</span>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-full bg-white-broken text-secondary font-caption text-caption shadow-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="">Vitória / ES</span>
+</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-lg text-headline-lg text-secondary">
+                Atendimento Presencial
+              </h3>
+<p class="font-body-lg text-body-lg text-secondary/90">
+                Consultório aconchegante, café quentinho, ambiente tranquilo e intimista projetado com carinho para desacelerar o ritmo cotidiano.
+              </p>
+</div>
+<div class="pt-space-xs flex flex-col gap-space-sm text-secondary font-body-md text-body-md">
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-container shrink-0 mt-0.5">check_circle</span>
+<span class="">Espaço físico acessível, silencioso e acolhedor, pensado em cada detalhe sensorial.</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-container shrink-0 mt-0.5">check_circle</span>
+<span class="">Ritual de pausa: um café ou chá suave antes e após cada sessão.</span>
+</div>
+<div class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-tertiary-container shrink-0 mt-0.5">check_circle</span>
+<span class="">Privacidade total para desabafar, chorar, sorrir e se reencontrar.</span>
+</div>
+</div>
+</div>
+<div class="pt-space-xl">
+<a class="w-full inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-full bg-secondary hover:bg-on-secondary-fixed text-white-broken font-label-action text-label-action transition-all shadow-[0_4px_16px_-2px_rgba(110,90,78,0.25)]" href="#contato">
+<span class="">Optar por Sessão Presencial</span>
+<span class="material-symbols-outlined text-[18px]">apartment</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 4: Como Funciona o Primeiro Contato (Passo a Passo Humanizado) -->
+<section class="w-full py-space-2xl bg-surface">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Coluna de Introdução e Visual -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-primary">Jornada sem Pressão</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">
+              Como funciona o primeiro contato?
+            </h2>
+<p class="font-body-md text-body-md text-secondary">
+              Sabemos que buscar apoio psicológico pode gerar dúvidas ou ansiedade. Por isso, tornamos todo o processo claro, descomplicado e profundamente respeitoso com você.
+            </p>
+</div>
+<!-- Imagem detalhada em tom quente -->
+<div class="relative rounded-[24px] overflow-hidden shadow-md aspect-video bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up suave de duas mãos segurando delicadamente uma xícara rústica de café com vapor sutil, tons terrosos, mesa de carvalho clara e um caderno aberto com anotações afetuosas ao lado, atmosfera de calma e confidencialidade humana." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxbAXuqopPOIaDdY78SfE3CMVzun9ii136t8O4piXtPpfbUuURQ2O8WR21Npl_uWxTK5Lu7gI21yJugpijkK9uRuX89Fmyqdry9B2U6NiceS0uGVh3meaZiBvzKGp2Qb53P7Pszk0R3pbayn9BxBATuPG7gJo0dV8RRH-lcJNW4BCUzWjHnDHkzZFbOtiQYrM-O78IYq6fIcsER1NY5BFRrYAseI4VBKSQTA8udL5_wGUGUGvRnRLaqg">
+</div>
+</div>
+<!-- Coluna dos Passos (Percurso / Timeline Humanizada) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Passo 1 -->
+<div class="bg-cream-timeline p-space-lg rounded-[20px] shadow-sm flex items-start gap-space-md group hover:bg-white-broken transition-all">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center shrink-0 font-headline-md text-headline-md">
+              1
+            </div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[1.25rem] text-on-surface font-medium">Conversa inicial de acolhimento</h3>
+<p class="font-body-md text-body-md text-secondary">
+                Você envia uma mensagem via WhatsApp ou formulário. Uma conversa breve e cordial para entender sua demanda, explicar valores e tirar suas dúvidas sem compromisso formal imediato.
+              </p>
+</div>
+</div>
+<!-- Passo 2 -->
+<div class="bg-cream-timeline p-space-lg rounded-[20px] shadow-sm flex items-start gap-space-md group hover:bg-white-broken transition-all">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center shrink-0 font-headline-md text-headline-md">
+              2
+            </div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[1.25rem] text-on-surface font-medium">Alinhamento de formato &amp; agenda</h3>
+<p class="font-body-md text-body-md text-secondary">
+                Definimos juntos se o formato ideal será online ou presencial em nosso espaço. Encontramos um dia e horário regular que se acomode confortavelmente à sua semana.
+              </p>
+</div>
+</div>
+<!-- Passo 3 -->
+<div class="bg-cream-timeline p-space-lg rounded-[20px] shadow-sm flex items-start gap-space-md group hover:bg-white-broken transition-all">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-tertiary-container flex items-center justify-center shrink-0 font-headline-md text-headline-md">
+              3
+            </div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-md text-[1.25rem] text-on-surface font-medium">A primeira sessão clínica</h3>
+<p class="font-body-md text-body-md text-secondary">
+                Um encontro sem julgamentos. Você traz o que deseja compartilhar, no seu ritmo. É o momento de sentir a conexão, esclarecer o contrato terapêutico e iniciar o cuidado contínuo.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 5: Depoimentos & Acolhimento Sutil (Taxa de Confiança) -->
+<section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<div class="flex flex-col gap-space-xs p-space-md bg-white-broken rounded-[20px] shadow-sm">
+<div class="flex text-tertiary-container gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-quote text-body-md text-on-surface italic mt-2">
+            "A Kelly me ajudou a encarar os 60 anos não como um fim de ciclo, mas como um reencontro profundo com as minhas vontades reais."
+          </p>
+<span class="font-caption text-caption text-secondary mt-2">M. L., 63 anos • Atendimento Presencial</span>
+</div>
+<div class="flex flex-col gap-space-xs p-space-md bg-white-broken rounded-[20px] shadow-sm">
+<div class="flex text-tertiary-container gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-quote text-body-md text-on-surface italic mt-2">
+            "No luto pela minha mãe, encontrei na terapia o único lugar onde não precisei fingir que estava forte o tempo todo."
+          </p>
+<span class="font-caption text-caption text-secondary mt-2">C. R., 52 anos • Atendimento Online</span>
+</div>
+<div class="flex flex-col gap-space-xs p-space-md bg-white-broken rounded-[20px] shadow-sm">
+<div class="flex text-tertiary-container gap-1">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-quote text-body-md text-on-surface italic mt-2">
+            "A escuta qualificada sobre sexualidade na maturidade quebrou medos que carreguei por décadas. Um alívio imenso."
+          </p>
+<span class="font-caption text-caption text-secondary mt-2">J. P., 58 anos • Atendimento Presencial</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 6: CTA de Agendamento & Convite Final (Dark Forest Grounded) -->
+<section class="relative w-full py-space-2xl bg-forest-night text-white-broken overflow-hidden" id="contato">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-moss-deep/50 via-forest-night to-forest-night pointer-events-none"></div>
+<div class="relative max-w-[800px] mx-auto px-margin md:px-space-lg text-center flex flex-col items-center gap-space-md">
+<!-- Ícone Folha / Broto Orgânico -->
+<div class="w-12 h-12 rounded-full border border-white-broken/20 flex items-center justify-center mb-space-xs">
+<span class="material-symbols-outlined text-sand-soft text-[24px]">local_florist</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-white-broken tracking-tight">
+        Talvez este seja o seu momento de cuidar de si.
+      </h2>
+<p class="font-body-lg text-body-lg text-white-broken/85 max-w-xl">
+        Um convite sereno para dar o próximo passo com acolhimento, presença e profundo respeito à sua história. Estamos prontos para te ouvir.
+      </p>
+<div class="flex flex-col sm:flex-row items-center gap-space-sm pt-space-sm w-full justify-center">
+<!-- Botão Pill Terracota -->
+<a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-sm rounded-full bg-tertiary-container hover:bg-tertiary text-white-broken font-label-action text-label-action transition-all duration-300 shadow-[0_8px_20px_-4px_rgba(151,69,43,0.35)] hover:scale-[1.02] w-full sm:w-auto" href="https://wa.me/5527999999999" rel="noopener noreferrer" target="_blank">
+<span class="">Agende uma conversa de acolhimento</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<p class="font-caption text-caption text-white-broken/60 pt-space-xs">
+        Atendimentos particulares com emissão de recibo para reembolso em convênios de saúde.
+      </p>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface pt-space-2xl pb-space-xl"><div class="max-w-[1160px] mx-auto px-margin md:px-space-lg lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop pb-space-xl"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRn62sR166T14xhLz20WHCELhIt1njoPg0CMpBizdIgRBsthhrm9swmLpiMwUOCHerCNR3NM7_nP40f5FZrKMxyF2Xzf8rczwTloEbvGlcO4zsWLqTBx9tPv6ilEG19dXi3vmooZgvUgzz-xBgf9sVr3m1KnQ0fYI2_tfmoAZn-kTsYpOkjlUQ1TEybTq-gKi4qBuUDgVZtC_tOwdAWYYSiRnfCH7BfvcxoyWYJQJoD9eLBbd8gSzSvGhEyCBld5HeDT0" alt="Logo Instituto Longânima" class="h-8 w-auto object-contain"><span class="font-headline-md text-headline-md text-on-surface">Instituto Longânima</span></div><p class="font-body-md text-body-md text-secondary max-w-sm">Espaço terapêutico dedicado à escuta qualificada, psicoterapia de orientação humanista e acolhimento dos processos vitais de envelhecimento, luto e sexualidade madura.</p><p class="font-caption text-caption text-secondary mt-space-xs">CRP 16/XXXX • Atendimento Presencial &amp; Online Seguro</p></div><div class="md:col-span-3 flex flex-col gap-space-xs"><h4 class="font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-widest">Navegação</h4><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="home.html">Início Institucional</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="quem-sou-eu" href="quem-sou-eu.html">Dra. Kelly Bruzeguini</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="especialidades" href="especialidades.html">Áreas Clínicas</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="reflexoes" href="artigos.html">Caderno de Reflexões</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contato" href="contato.html">Atendimento &amp; Contato</a></div><div class="md:col-span-4 flex flex-col gap-space-xs"><h4 class="font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-widest">Acolhimento &amp; Ética</h4><p class="font-body-quote text-body-quote text-on-surface-variant italic">"Cuidar do tempo vivido com presença, respeito à história singular e reverência à própria trajetória."</p><p class="font-caption text-caption text-secondary mt-space-xs">Serviço psicológico regulamentado pelo Código de Ética Profissional do Psicólogo (CFP). Sigilo absoluto e escuta atenta às singularidades.</p></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><span class="font-caption text-caption text-secondary">Kelly Bruzeguini Eira • Psicóloga Clínica • Cofundadora do Instituto Longânima</span><span class="font-caption text-caption text-secondary">© 2024 Instituto Longânima. Todos os direitos reservados.</span></div></div></footer>
+
+</body></html>

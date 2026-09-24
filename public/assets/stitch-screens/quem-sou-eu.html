@@ -1,0 +1,400 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Quem Sou Eu | Kelly Bruzeguini Eira — Instituto LongÂnima</title>
+<!-- Google Fonts: Noto Serif Display & Noto Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&amp;display=swap" rel="stylesheet">
+<!-- Google Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration matching Visual Identity Guidelines & Design System -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-brown': '#4B3A2F',
+            'moss-green': '#56614A',
+            'dark-green': '#3D5346',
+            'forest-card': '#415A4E',
+            'warm-beige': '#EDE6D8',
+            'soft-sand': '#C9B89F',
+            'broken-white': '#F8F5EE',
+            'card-light': '#F9F5EF',
+            'terracotta': '#C86A4D',
+            'terracotta-hover': '#b55b3f',
+            'blush-card': '#F0DDD3',
+            'divider-beige': '#E8DDD3'
+          },
+          fontFamily: {
+            serif: ['"Noto Serif Display"', 'Georgia', 'serif'],
+            sans: ['"Noto Sans"', 'system-ui', 'sans-serif']
+          },
+          borderRadius: {
+            '2xl': '20px',
+            '3xl': '24px',
+            'arch': '200px 200px 24px 24px'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom CSS for specialized decorations and micro-interactions -->
+<style data-purpose="custom-decorations">
+    .font-serif-display {
+      font-family: 'Noto Serif Display', Georgia, serif;
+    }
+    .font-sans-body {
+      font-family: 'Noto Sans', system-ui, sans-serif;
+    }
+    .hero-organic-curve {
+      position: absolute;
+      width: 140%;
+      height: 140%;
+      top: -20%;
+      left: -20%;
+      pointer-events: none;
+      border: 1px solid rgba(237, 230, 216, 0.08);
+      border-radius: 46% 54% 60% 40% / 50% 45% 55% 50%;
+    }
+    .cta-organic-curve {
+      position: absolute;
+      width: 120%;
+      height: 200%;
+      top: -50%;
+      left: -10%;
+      pointer-events: none;
+      border: 1px solid rgba(237, 230, 216, 0.07);
+      border-radius: 50% 50% 48% 52% / 60% 60% 40% 40%;
+    }
+  </style>
+</head>
+<body class="font-sans-body text-deep-brown bg-broken-white antialiased selection:bg-terracotta selection:text-white">
+<!-- BEGIN: MainHeader (Consistent Design System Header) -->
+<header class="sticky top-0 z-50 w-full bg-broken-white/90 backdrop-blur-md border-b border-divider-beige/60 transition-all duration-300">
+<div class="max-w-[1140px] mx-auto px-6 py-4 flex items-center justify-between">
+<!-- Logo à esquerda: monograma de anéis/círculos + marca Instituto LongÂnima -->
+<a class="flex items-center gap-3.5 group" href="#" title="Instituto LongÂnima">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw4x3OiTMRT1DWTzSbLz5g8uadRnvqJ-DHiAUC_LaM_iU4HS5q9qDnT-_LxpVvpHWepSHQl0oJpGHkFUl28qwtLSMVVZm86uLkKdg3F0Krp75SEKX1cbQAJgc1Dl_S_ZHfy7rrXOeZyh62GwWByryHYibIfbURaIwsm15b9TDGUy7G1Kb9F32JrTTvdnToPRQPIvCJEI4wWARcVZqmZp4s0X91MUz_Fz8JKdVJhjU_ctjwC-pdlqadqcagAsqzmXQUsww" alt="Logo Instituto Longânima" class="h-9 w-auto object-contain">
+<div class="flex flex-col">
+<span class="font-serif-display text-[17px] font-normal tracking-wide text-deep-brown leading-tight group-hover:text-terracotta transition-colors">
+          Instituto LongÂnima
+        </span>
+<span class="text-[11px] font-sans text-deep-brown/60 tracking-wider">
+          Dra. Kelly Bruzeguini Eira
+        </span>
+</div>
+</a>
+<!-- Menu centralizado -->
+<nav class="hidden md:flex items-center space-x-8 text-[13px] tracking-wide text-deep-brown/75 font-medium">
+<a class="hover:text-deep-brown transition-colors" href="#">Início</a>
+<a class="text-deep-brown font-semibold relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-terracotta after:rounded-full" href="#quem-sou">Quem sou eu</a>
+<a class="hover:text-deep-brown transition-colors" href="#">Especialidades</a>
+<a class="hover:text-deep-brown transition-colors" href="#">Reflexões</a>
+<a class="hover:text-deep-brown transition-colors" href="#contato">Contato</a>
+</nav>
+<!-- Ação à direita: botão pill em terracota + perfil -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[13px] font-medium transition-all duration-300 shadow-sm shadow-terracotta/20 hover:-translate-y-0.5" href="#contato">
+<span class="">Agendar Acolhimento</span>
+</a>
+<a aria-label="Área do Paciente" class="w-9 h-9 rounded-full border border-soft-sand/60 flex items-center justify-center text-deep-brown/70 hover:text-deep-brown hover:border-deep-brown transition-all" href="#contato">
+<span class="material-symbols-outlined text-[19px]">account_circle</span>
+</a>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: HeroSection -->
+<section class="relative overflow-hidden bg-dark-green text-broken-white pt-12 pb-20 md:pt-16 md:pb-28" id="quem-sou">
+<!-- Linha orgânica decorativa ao fundo -->
+<div class="hero-organic-curve"></div>
+<div class="max-w-[1140px] mx-auto px-6 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Coluna Esquerda: Texto de Apresentação (55%) -->
+<div class="lg:col-span-7 flex flex-col justify-center pr-0 lg:pr-6">
+<!-- Eyebrow sutil com bullet point -->
+<p class="text-[11px] sm:text-[12px] uppercase tracking-[0.22em] text-soft-sand font-medium mb-6">
+          • PSICOLOGIA • ACOLHIMENTO • PROPÓSITO
+        </p>
+<!-- Título Principal H1 -->
+<h1 class="font-serif-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.12] tracking-tight font-normal text-broken-white mb-6">
+          Muito prazer, eu sou a Kelly.
+        </h1>
+<!-- Subtítulo / Descrição de Formação -->
+<p class="text-broken-white/85 text-[15px] sm:text-[17px] leading-[1.65] font-normal max-w-[520px] mb-10">
+          Psicóloga Clínica, Especialista em Envelhecimento Ativo, Sexualidade e Luto. Cofundadora do Instituto LongÂnima.
+        </p>
+<!-- Botão CTA Pill -->
+<div>
+<a class="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[13px] sm:text-[14px] font-medium transition-all duration-300 hover:-translate-y-0.5 shadow-md shadow-black/15" href="#acolhimento">
+<span class="">Conheça minha história</span>
+<span class="text-sm">↓</span>
+</a>
+</div>
+</div>
+<!-- Coluna Direita: Imagem de Arco com Retrato da Dra. Kelly (45%) -->
+<div class="lg:col-span-5 flex justify-center lg:justify-end relative">
+<!-- Círculo decorativo Sage ao fundo do arco -->
+<div class="absolute -top-6 -right-6 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-[#466052]/50 pointer-events-none blur-[1px]"></div>
+<div class="relative z-10 w-full max-w-[380px] sm:max-w-[410px]">
+<!-- Moldura em arco superior (border-radius: 200px 200px 24px 24px) -->
+<div class="overflow-hidden shadow-2xl border border-broken-white/10" style="border-radius: 200px 200px 24px 24px;">
+<img alt="Dra. Kelly Bruzeguini Eira sorrindo com blazer escuro e xícara floral nas mãos" class="w-full h-[470px] sm:h-[530px] object-cover object-top" src="kelly-xicara.jpg">
+</div>
+<!-- Ícone orgânico delicado de broto na ponta inferior direita -->
+<div class="absolute bottom-5 right-5 pointer-events-none opacity-80" title="Instituto LongÂnima">
+<svg fill="none" height="34" stroke="#EDE6D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewBox="0 0 34 34" width="34">
+<path d="M17 30V14"></path>
+<path d="M17 21C22 21 27 17 27 10C20 10 17 16 17 21Z"></path>
+<path d="M17 18C13 18 8 15 8 9C14 9 17 14 17 18Z"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: AcolhimentoSection -->
+<section class="bg-broken-white py-20 lg:py-28 relative" id="acolhimento">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+<!-- Coluna Esquerda: Foto temática com card sobreposto (Overlapping Card) -->
+<div class="lg:col-span-5 relative">
+<!-- Imagem da cafeteria / momento acolhedor -->
+<div class="rounded-3xl overflow-hidden shadow-md">
+<img alt="Momento de pausa com café quente junto à janela em dia chuvoso" class="w-full h-[430px] sm:h-[480px] object-cover object-[20%_33%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfttnSzF02Oo5DizuXnco4oMPmPNzMJ2Uz5p5oZ7tedFR2H_G9YL0Rt3bGnLVHruUbhcg9lSYZJ0wMUzk-fvH1s-Jzs-CRxFK3K-nhfNKKe_Lyr3rzcY47ShRPAheiuZ4SRWeY8OVTMLotB6Q0qMT5AzHEFgBpSim8jw_MyvIlMMBrwT8LxNz9kfoJP12YwXHOl3medghg_GgBFuDa2HztzJQTRm9kXsHqftgkvXSCrC1J-2BrirFhTITymfzwaI0T9EU">
+</div>
+<!-- Card Blush Sobreposto (Overlap) -->
+<div class="relative lg:absolute lg:-bottom-8 lg:-right-8 mt-6 lg:mt-0 bg-blush-card rounded-[20px] p-6 sm:p-7 shadow-lg max-w-xs sm:max-w-sm ml-auto z-10 border border-[#e8d2c6]">
+<!-- Ícone pequeno losango / estrela em terracota -->
+<div class="text-terracotta mb-3">
+<svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20">
+<path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z"></path>
+</svg>
+</div>
+<p class="font-serif-display text-[15px] sm:text-[16px] text-deep-brown leading-[1.55] font-normal">
+            Capixaba, apaixonada pelo frio, por cafeterias charmosas e por boas conversas.
+          </p>
+</div>
+</div>
+<!-- Coluna Direita: Manifesto do Acolhimento Humano -->
+<div class="lg:col-span-7 lg:pl-6">
+<p class="text-[11px] sm:text-[12px] uppercase tracking-[0.2em] text-terracotta font-semibold mb-4">
+          UM ESPAÇO SEGURO PARA CUIDAR DE SI
+        </p>
+<h2 class="font-serif-display text-3xl sm:text-4xl lg:text-[42px] leading-[1.2] text-deep-brown mb-8 font-normal">
+          Acolhimento atento, com verdade e humanidade.
+        </h2>
+<div class="space-y-6 text-deep-brown/85 text-[14px] sm:text-[15px] leading-[1.75] font-normal">
+<p class="">
+            Se você chegou até aqui, é provável que esteja buscando um espaço seguro para cuidar de si, reorganizar as emoções ou apoiar alguém que você ama a passar por um momento de transição. Quero que saiba que, antes de ser a psicóloga de “fala rasgada” e acolhimento atento que você encontrará no consultório, a minha própria história precisou ser moldada por processos profundos de superação e descobertas.
+          </p>
+<p class="">
+            Eu sou capixaba, apaixonada pelo frio, por cafeterias charmosas e por boas conversas. Mas, acima de tudo, sou alguém que descobriu na psicologia não apenas uma profissão, mas uma missão espiritual de vida.
+          </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AcolhimentoSection -->
+<!-- BEGIN: CuraEVocacaoSection -->
+<section class="bg-warm-beige py-20 lg:py-28 relative border-t border-soft-sand/20" id="trajetoria">
+<div class="max-w-[1140px] mx-auto px-6">
+<!-- Cabeçalho da Seção com elemento gráfico sutil de círculo -->
+<div class="flex items-start justify-between mb-12 sm:mb-16">
+<div>
+<p class="text-[11px] sm:text-[12px] uppercase tracking-[0.2em] text-terracotta font-semibold mb-3">
+          MINHA TRAJETÓRIA PESSOAL
+        </p>
+<h2 class="font-serif-display text-3xl sm:text-4xl lg:text-[42px] leading-[1.2] text-deep-brown font-normal">
+          A Cura que Virou Vocação
+        </h2>
+</div>
+<!-- Círculo vazado decorativo à direita conforme o design -->
+<div class="hidden sm:block w-20 h-20 rounded-full border border-soft-sand/60 opacity-60"></div>
+</div>
+<!-- Grid de Cards O1 e O2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+<!-- Card 01: Fundo Verde Escuro -->
+<div class="bg-forest-card text-broken-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-sm min-h-[380px]">
+<div>
+<span class="font-serif-display text-2xl sm:text-3xl text-soft-sand/90 font-light block mb-6">
+            01
+          </span>
+<h3 class="font-serif-display text-2xl sm:text-[26px] leading-snug font-normal text-broken-white mb-6">
+            Do outro lado da poltrona
+          </h3>
+<p class="text-broken-white/85 text-[14px] sm:text-[15px] leading-[1.75] font-light">
+            Minha história com a saúde mental começou do outro lado da poltrona: como paciente. Enfrentei um quadro grave de depressão. Na época, como mulher cristã, travei uma batalha interna dolorosa antes de aceitar que precisava de ajuda profissional. Venci o preconceito e iniciei o processo de terapia.
+          </p>
+</div>
+</div>
+<!-- Card 02: Fundo Blush Acolhedor -->
+<div class="bg-blush-card text-deep-brown rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-sm min-h-[380px] border border-[#e8d4c9]">
+<div>
+<span class="font-serif-display text-2xl sm:text-3xl text-terracotta font-normal block mb-6">
+            02
+          </span>
+<h3 class="font-serif-display text-2xl sm:text-[26px] leading-snug font-normal text-deep-brown mb-6">
+            Uma certeza inabalável
+          </h3>
+<p class="text-deep-brown/85 text-[14px] sm:text-[15px] leading-[1.75] font-normal mb-8">
+            Aquele encontro com a psicologia clínica mudou completamente a minha forma de enxergar o mundo e a mim mesma. Foi ali que nasceu uma certeza inabalável:
+          </p>
+</div>
+<!-- Citação em Itálico Marcante -->
+<blockquote class="font-serif-display text-[17px] sm:text-[19px] italic text-deep-brown/95 font-medium leading-[1.5] pt-2">
+          “Eu quero ajudar as pessoas da mesma forma que essa mulher está me ajudando”.
+        </blockquote>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CuraEVocacaoSection -->
+<!-- BEGIN: PercursoEFormacaoSection -->
+<section class="bg-broken-white py-20 lg:py-28">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+<!-- Coluna Esquerda: Texto de persistência (60%) -->
+<div class="lg:col-span-7">
+<p class="text-[11px] sm:text-[12px] uppercase tracking-[0.2em] text-soft-sand font-semibold mb-3">
+          PERSISTÊNCIA E FORMAÇÃO
+        </p>
+<h2 class="font-serif-display text-3xl sm:text-4xl lg:text-[40px] leading-[1.22] text-deep-brown font-normal mb-8">
+          Um percurso que encontrou seu propósito.
+        </h2>
+<div class="space-y-6 text-deep-brown/80 text-[14px] sm:text-[15px] leading-[1.75]">
+<p class="">
+            Minha caminhada acadêmica não foi linear. Antes de me encontrar na Psicologia, iniciei e desisti de seis ou sete faculdades diferentes. Eu sentia que faltava algo que fizesse meu coração vibrar.
+          </p>
+<p class="">
+            Quando finalmente comecei a cursar Psicologia, enfrentei barreiras geográficas e logísticas imensas, precisando pausar os estudos temporariamente. Mas a persistência venceu. Em 2020, no início da pandemia, colei grau e iniciei imediatamente meus atendimentos clínicos no formato online.
+          </p>
+</div>
+</div>
+<!-- Coluna Direita: Timeline Card Estruturado (40%) -->
+<div class="lg:col-span-5">
+<div class="bg-card-light rounded-3xl p-8 sm:p-9 shadow-sm border border-divider-beige">
+<h3 class="font-serif-display text-xl sm:text-[22px] text-deep-brown font-normal pb-6 border-b border-divider-beige">
+            Persistir também é parte da cura.
+          </h3>
+<!-- Linha 1: Antes -->
+<div class="py-6 border-b border-divider-beige flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8">
+<span class="font-serif-display text-terracotta text-lg sm:text-[19px] min-w-[70px] font-normal">
+              Antes
+            </span>
+<p class="text-deep-brown/80 text-[13px] sm:text-[14px] leading-relaxed">
+              Seis ou sete caminhos acadêmicos até reconhecer o que fazia o coração vibrar.
+            </p>
+</div>
+<!-- Linha 2: 2020 -->
+<div class="pt-6 flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8">
+<span class="font-serif-display text-soft-sand text-lg sm:text-[19px] min-w-[70px] font-normal">
+              2020
+            </span>
+<p class="text-deep-brown/80 text-[13px] sm:text-[14px] leading-relaxed">
+              Colação de grau no início da pandemia e início imediato dos atendimentos clínicos online.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: PercursoEFormacaoSection -->
+<!-- BEGIN: FinalCTASection -->
+<section class="relative overflow-hidden bg-dark-green text-broken-white py-24 lg:py-32 text-center" id="contato">
+<!-- Linha orgânica decorativa ao fundo -->
+<div class="cta-organic-curve"></div>
+<div class="max-w-[780px] mx-auto px-6 relative z-10 flex flex-col items-center">
+<!-- Ícone sutil de broto/ramo -->
+<div class="mb-6 opacity-75">
+<svg fill="none" height="40" stroke="#EDE6D8" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewBox="0 0 34 34" width="40">
+<path d="M17 30V14"></path>
+<path d="M17 21C22 21 27 17 27 10C20 10 17 16 17 21Z"></path>
+<path d="M17 18C13 18 8 15 8 9C14 9 17 14 17 18Z"></path>
+</svg>
+</div>
+<!-- Título de Chamada -->
+<h2 class="font-serif-display text-3xl sm:text-4xl lg:text-[46px] leading-[1.2] font-normal text-broken-white mb-6">
+      Talvez este seja o seu momento de cuidar de si.
+    </h2>
+<!-- Subtítulo Acolhedor -->
+<p class="text-broken-white/80 text-[14px] sm:text-[16px] leading-relaxed max-w-[580px] mb-10">
+      Um convite para dar o próximo passo com acolhimento, presença e respeito à sua história.
+    </p>
+<!-- Botão CTA Principal -->
+<a class="inline-flex items-center justify-center gap-2 px-9 py-3.5 rounded-full bg-terracotta hover:bg-terracotta-hover text-white text-[13px] sm:text-[14px] font-medium transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-black/15" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+<span class="">Entrar em contato</span>
+<span class="text-sm">→</span>
+</a>
+</div>
+</section>
+<!-- END: FinalCTASection -->
+<!-- BEGIN: MainFooter (Design System Standard 3-Column Footer) -->
+<footer class="bg-[#36493e] text-broken-white/80 pt-16 pb-8 border-t border-broken-white/10 text-xs">
+<div class="max-w-[1140px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-broken-white/10">
+<!-- Coluna 1: Institucional / Registro -->
+<div class="md:col-span-5 space-y-4">
+<div class="flex items-center gap-3">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzYHxijQlXzP2tP4GG-7qlxPijPmChcH-aQIJn5fLwIdBxjAtf73iOxg8l_-WbinjjPZuz_7XbK3PR5bKzACbF1e2xveI4bhfVCy4liTl6tX8xfY4uDeySvB2e5GlMZ86upBoRtSeRNFlUxJsi_EvLGtVgQQ3EyRTb8PEaJrTl8JNGXlHRWb0G-WTgLJtigQjnAqxOCcBnSM0LaVHFm0jL3rH9oU104SawVYUH_wFzHMOvbb72VqZo-soM7Fs0Q_PeN34" alt="Logo Instituto Longânima" class="h-8 w-auto object-contain">
+<span class="font-serif-display text-lg text-broken-white font-normal tracking-wide">
+            Instituto LongÂnima
+          </span>
+</div>
+<p class="text-broken-white/70 text-[13px] leading-relaxed max-w-sm">
+          Espaço clínico dedicado ao desenvolvimento humano, longevidade ativa, sexualidade e acolhimento nas transições de vida e luto.
+        </p>
+<p class="text-broken-white/50 text-[12px]">
+          Atendimentos presenciais e online autorizados pelo Conselho Federal de Psicologia.
+        </p>
+</div>
+<!-- Coluna 2: Navegação rápida -->
+<div class="md:col-span-3 space-y-3">
+<p class="text-[11px] uppercase tracking-[0.18em] text-soft-sand font-semibold mb-4">
+          NAVEGAÇÃO
+        </p>
+<ul class="space-y-2.5 text-[13px] text-broken-white/75">
+<li class=""><a class="hover:text-broken-white transition-colors" href="#">Início</a></li>
+<li class=""><a class="hover:text-broken-white transition-colors text-broken-white font-medium" href="#quem-sou">Quem sou eu</a></li>
+<li class=""><a class="hover:text-broken-white transition-colors" href="#">Especialidades</a></li>
+<li class=""><a class="hover:text-broken-white transition-colors" href="#">Reflexões &amp; Textos</a></li>
+<li class=""><a class="hover:text-broken-white transition-colors" href="#contato">Fale Conosco</a></li>
+</ul>
+</div>
+<!-- Coluna 3: Acolhimento & Ética -->
+<div class="md:col-span-4 space-y-3">
+<p class="text-[11px] uppercase tracking-[0.18em] text-soft-sand font-semibold mb-4">
+          ACOLHIMENTO &amp; ÉTICA
+        </p>
+<blockquote class="font-serif-display text-[14px] leading-relaxed text-broken-white/80 italic">
+          “Cuidar do tempo vivido com presença, respeito à história singular e reverência à própria trajetória.”
+        </blockquote>
+<div class="pt-2 text-broken-white/60 text-[12px] leading-relaxed">
+<p class="">Dra. Kelly Bruzeguini Eira</p>
+<p class="">Psicóloga Clínica • CRP 16/7036</p>
+</div>
+</div>
+</div>
+<!-- Barra Inferior do Rodapé -->
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-broken-white/60">
+<div class="font-serif-display text-broken-white/80 tracking-wide text-center sm:text-left">
+        Kelly Bruzeguini Eira • Psicóloga Clínica • Cofundadora do Instituto LongÂnima
+      </div>
+<div class="text-center sm:text-right">
+        © 2024 Instituto LongÂnima. Todos os direitos reservados.
+      </div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+
+
+</body></html>
