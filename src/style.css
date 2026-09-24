@@ -3,11 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+html { scroll-behavior: smooth; scroll-padding-top: 4rem; scroll-padding-bottom: 5.5rem; }
 body { @apply bg-brand-sand text-brand-ink font-body antialiased; }
 
-.slide { @apply min-h-[100dvh] flex flex-col justify-center py-16 lg:py-20 border-b border-brand-sandDark; }
+.slide { @apply min-h-[100dvh] flex flex-col justify-center py-8 sm:py-12 lg:py-20 border-b border-brand-sandDark; }
 .nav-link.active { @apply bg-brand-teal text-white; }
+.mobile-nav-link.active { @apply bg-brand-teal text-white font-semibold; }
+
+/* Mobile Drawer transitions */
+.mobile-drawer-open {
+  transform: translateX(0) !important;
+}
+
+.mobile-overlay-visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
 
 /* Apple-style Welcome Screen Animations */
 @keyframes applePulse {

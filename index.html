@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kelly Bruzeguini Eira — Instituto Longânima | Estratégia de Conteúdos</title>
-  <meta name="description" content="Estratégia de conteúdos do Instituto Longânima — posicionar Kelly como referência para o público 50+ e gerar 20 novos pacientes/mês até dez/2026." />
+  <title>Kelly Bruzeguini Eira, Instituto Longânima | Estratégia de Conteúdos</title>
+  <meta name="description" content="Estratégia de conteúdos do Instituto Longânima, posicionar Kelly como referência para o público 50+ e gerar 20 novos pacientes/mês até dez/2026." />
   <link rel="icon" href="/assets/logo.png" />
 </head>
 <body class="bg-brand-sand">
@@ -118,28 +118,145 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-brand-sandDark">
-    <div class="max-w-[1600px] mx-auto px-4 lg:px-8 h-14 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <img src="/assets/logo.png" alt="Longânima" class="h-8 w-auto" />
-        <span class="hidden sm:block text-sm font-display font-semibold text-brand-teal">Kelly Bruzeguini Eira — Instituto Longânima</span>
-        <span class="sm:hidden text-sm font-display font-semibold text-brand-teal">Longânima</span>
+    <div class="max-w-[1600px] mx-auto px-4 lg:px-8 h-14 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <img src="/assets/logo.png" alt="Longânima" class="h-7 sm:h-8 w-auto" />
+        <span class="hidden sm:block text-sm font-display font-semibold text-brand-teal">Kelly Bruzeguini Eira, Instituto Longânima</span>
+        <span class="sm:hidden text-xs font-display font-semibold text-brand-teal truncate max-w-[160px]">Instituto Longânima</span>
       </div>
-      <div class="flex items-center gap-2">
-        <button onclick="showWelcomeScreen()" class="text-xs font-medium px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom hover:bg-brand-sandDark transition flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button onclick="showWelcomeScreen()" class="text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom hover:bg-brand-sandDark transition flex items-center gap-1">
           <span class="text-amber-600">✦</span>
-          <span>Boas-vindas</span>
+          <span class="hidden xs:inline">Boas-vindas</span>
+          <span class="xs:hidden">Início</span>
         </button>
         <span class="hidden lg:inline text-xs text-brand-teal/60">Estratégia de Conteúdos • Atualizado 23 set 2026</span>
-        <span class="text-xs px-2 py-1 rounded-full bg-brand-teal text-white">Vercel • Slide-doc</span>
         <button id="presentBtn" class="hidden sm:inline-flex text-xs font-medium px-3 py-1.5 rounded-full border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition">Apresentar ⛶</button>
+        
+        <!-- Botão Menu Drawer Mobile -->
+        <button onclick="openMobileMenu()" class="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-teal text-white text-xs font-medium shadow-sm hover:bg-brand-tealLight transition active:scale-95">
+          <span>☰</span>
+          <span>Índice</span>
+          <span id="headerMobileCount" class="text-[10px] px-1.5 py-0.2 rounded-full bg-white/20 text-white font-bold">32</span>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- MOBILE OFF-CANVAS DRAWER OVERLAY -->
+  <div id="mobileDrawerOverlay" onclick="closeMobileMenu()" class="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-[80] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- MOBILE OFF-CANVAS DRAWER (32 ITENS COMPLETOS) -->
+  <aside id="mobileMenuDrawer" class="lg:hidden fixed top-0 right-0 bottom-0 w-[88%] max-w-[380px] bg-[#FDF8F0] shadow-2xl z-[90] flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out border-l border-brand-sandDark">
+    
+    <!-- Drawer Header -->
+    <div class="p-4 border-b border-brand-sandDark flex items-center justify-between bg-white/80 backdrop-blur">
+      <div class="flex items-center gap-2">
+        <img src="/assets/logo.png" alt="Logo" class="h-6 w-auto" />
+        <div>
+          <p class="text-xs font-display font-bold text-brand-marrom">Instituto Longânima</p>
+          <p class="text-[10px] text-brand-teal font-semibold">Índice • 32 Itens Estratégicos</p>
+        </div>
+      </div>
+      <button onclick="closeMobileMenu()" class="w-8 h-8 rounded-full bg-brand-sand border border-brand-sandDark flex items-center justify-center text-brand-marrom text-sm font-bold hover:bg-brand-sandDark transition">
+        ✕
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links (Scrollable) -->
+    <nav class="flex-1 overflow-y-auto p-4 space-y-5 text-xs">
+      
+      <!-- 01 FUNDAMENTOS -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">01 FUNDAMENTOS</p>
+        <div class="space-y-1">
+          <a href="#canais" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Canais digitais atuais</a>
+          <a href="#personalidade" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Personalidade do especialista</a>
+          <a href="#referencias" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Referências e concorrentes (ES)</a>
+          <a href="#objetivos" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Objetivos do projeto (20/mês)</a>
+          <a href="#dna" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> DNA do projeto</a>
+          <a href="#swot" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Análise SWOT</a>
+        </div>
+      </div>
+
+      <!-- 02 PARA QUEM -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">02 PARA QUEM</p>
+        <div class="space-y-1">
+          <a href="#personas" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Personas (4 Perfis Reais)</a>
+          <a href="#palavras" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Palavras-chave & SEO</a>
+        </div>
+      </div>
+
+      <!-- 03 COMO FALAMOS -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">03 COMO FALAMOS</p>
+        <div class="space-y-1">
+          <a href="#identidade" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Identidade Visual & Marca</a>
+          <a href="#site-estrategia" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Estratégia do site</a>
+          <a href="#mapa" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Mapa do Site (8 Páginas)</a>
+          <a href="#site-preview" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Prévia do Site (Protótipo)</a>
+          <a href="#linhas" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Linhas Editoriais</a>
+        </div>
+      </div>
+
+      <!-- 04 ONDE VIVEMOS -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">04 ONDE VIVEMOS</p>
+        <div class="space-y-1">
+          <a href="#instagram" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Instagram</a>
+          <a href="#materiais" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full border border-brand-teal/30 grid place-items-center text-[9px]">○</span> Materiais Educacionais</a>
+          <a href="#blog" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full border border-brand-teal/30 grid place-items-center text-[9px]">○</span> Blog</a>
+          <a href="#lives" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full border border-brand-teal/30 grid place-items-center text-[9px]">○</span> Lives</a>
+          <a href="#tiktok" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full border border-brand-teal/30 grid place-items-center text-[9px]">○</span> TikTok</a>
+          <a href="#whatsapp" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- 05 COMO OPERAMOS -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">05 COMO OPERAMOS</p>
+        <div class="space-y-1">
+          <a href="#tom" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Tom de Voz</a>
+          <a href="#automacao" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Fluxo de Automação</a>
+          <a href="#linha-tempo" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Linha do tempo</a>
+          <a href="#campanha-lead" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Campanha: Captação de Lead</a>
+          <a href="#campanha-conteudo" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Campanha: Distribuição</a>
+          <a href="#orientacoes" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full border border-brand-teal/30 grid place-items-center text-[9px]">○</span> Orientações Adicionais</a>
+        </div>
+      </div>
+
+      <!-- 06 ACELERAÇÃO & EXPANSÃO -->
+      <div>
+        <p class="text-[10px] tracking-widest font-bold text-brand-plum uppercase mb-1.5 px-1">06 ACELERAÇÃO & EXPANSÃO</p>
+        <div class="space-y-1">
+          <a href="#esteira-servicos" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Esteira de Serviços & Ofertas</a>
+          <a href="#script-whatsapp" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Conversão WhatsApp (Ponte Humana)</a>
+          <a href="#parcerias-es" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Parcerias Médicas & B2B (ES)</a>
+          <a href="#estudos-caso" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Prova Social Ética (Estudos de Caso)</a>
+          <a href="#filhos-cuidadores" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-teal text-white grid place-items-center text-[9px]">✓</span> Filhos Cuidadores (Comprador Oculto)</a>
+          <a href="#roadmap-futuro" onclick="closeMobileMenu()" class="mobile-nav-link flex items-center gap-2 px-2.5 py-2 rounded-xl bg-white border border-brand-sandDark hover:bg-brand-sand transition"><span class="w-4 h-4 rounded-full bg-brand-plum text-white grid place-items-center text-[9px]">★</span> Roadmap de Expansão (Instituto)</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Drawer Footer Actions -->
+    <div class="p-3 border-t border-brand-sandDark bg-white/90 backdrop-blur flex items-center justify-between gap-2 text-xs">
+      <button onclick="closeMobileMenu(); showWelcomeScreen();" class="flex-1 py-2 px-2.5 rounded-xl bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold text-center hover:bg-brand-sandDark transition">
+        ✦ Início
+      </button>
+      <a href="#" onclick="closeMobileMenu(); window.scrollTo({top:0,behavior:'smooth'}); return false;" class="flex-1 py-2 px-2.5 rounded-xl bg-brand-teal text-white font-semibold text-center hover:bg-brand-tealLight transition">
+        Topo ↑
+      </a>
+    </div>
+
+  </aside>
+
   <div class="max-w-[1600px] mx-auto flex">
     <!-- Sidebar -->
     <aside class="hidden lg:block w-[310px] shrink-0 sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto border-r border-brand-sandDark bg-[#FDF8F0]/60 backdrop-blur p-4">
-      <p class="text-[11px] tracking-widest font-semibold text-brand-teal/50 mb-3">ÍNDICE • 26 ITENS</p>
+      <p class="text-[11px] tracking-widest font-semibold text-brand-teal/50 mb-3">ÍNDICE • 32 ITENS</p>
       <nav id="sideNav" class="space-y-6 text-sm">
         <!-- Fundamentos -->
         <div>
@@ -192,6 +309,17 @@
             <a href="#orientacoes" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full border border-brand-teal/30 grid place-items-center text-[10px]">○</span> Orientações Adicionais</a>
           </div>
         </div>
+        <div>
+          <p class="text-[11px] tracking-widest font-semibold text-brand-plum mb-2">06 ACELERAÇÃO & EXPANSÃO</p>
+          <div class="space-y-1">
+            <a href="#esteira-servicos" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-teal text-white grid place-items-center text-[10px]">✓</span> Esteira de Serviços & Ofertas</a>
+            <a href="#script-whatsapp" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-teal text-white grid place-items-center text-[10px]">✓</span> Conversão WhatsApp (Ponte Humana)</a>
+            <a href="#parcerias-es" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-teal text-white grid place-items-center text-[10px]">✓</span> Parcerias Médicas & B2B (ES)</a>
+            <a href="#estudos-caso" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-teal text-white grid place-items-center text-[10px]">✓</span> Prova Social Ética (Estudos de Caso)</a>
+            <a href="#filhos-cuidadores" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-teal text-white grid place-items-center text-[10px]">✓</span> Filhos Cuidadores (Comprador Oculto)</a>
+            <a href="#roadmap-futuro" class="nav-link flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-white transition"><span class="w-5 h-5 rounded-full bg-brand-plum text-white grid place-items-center text-[10px]">★</span> Roadmap de Expansão (Instituto)</a>
+          </div>
+        </div>
       </nav>
     </aside>
 
@@ -203,7 +331,7 @@
           <div>
             <p class="text-[11px] tracking-[0.18em] font-semibold text-brand-amber">INSTITUTO LONGÂNIMA • ESTRATÉGIA DE CONTEÚDOS</p>
             <h1 class="font-display text-[34px] lg:text-[48px] leading-[0.95] text-brand-teal mt-3">Um novo olhar<br><span class="italic font-normal text-brand-plum">sobre o envelhecer.</span></h1>
-            <p class="mt-4 text-[15px] leading-7 text-brand-ink/70 max-w-[60ch]">Kelly Bruzeguini Eira é psicóloga clínica, especialista em envelhecimento ativo, sexualidade e luto. Este slide-doc consolida a estratégia para posicionar o Longânima como o lugar que <strong class="text-brand-teal">entende os desafios de envelhecer</strong> — e converter essa confiança em <strong>20 novos pacientes/mês até dez/2026</strong>.</p>
+            <p class="mt-4 text-[15px] leading-7 text-brand-ink/70 max-w-[60ch]">Kelly Bruzeguini Eira é psicóloga clínica, especialista em envelhecimento ativo, sexualidade e luto. Este slide-doc consolida a estratégia para posicionar o Longânima como o lugar que <strong class="text-brand-teal">entende os desafios de envelhecer</strong>, e converter essa confiança em <strong>20 novos pacientes/mês até dez/2026</strong>.</p>
             <div class="mt-6 flex flex-wrap gap-2 text-xs">
               <span class="px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark">3 conteúdos/semana</span>
               <span class="px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark">Instagram + TikTok → YouTube/Blog → WhatsApp</span>
@@ -474,7 +602,7 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">02/06 • FUNDAMENTOS</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Personalidade da Especialista — DNA & Missão</h2>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Personalidade da Especialista, DNA & Missão</h2>
               <p class="text-sm text-brand-ink/70 mt-1">Kelly Bruzeguini Eira: Psicóloga clínica, especialista em longevidade ativa, sexualidade 50+ e luto.</p>
             </div>
             <div class="flex items-center gap-2 shrink-0 self-start md:self-auto">
@@ -498,7 +626,7 @@
                 
                 <h3 class="font-display text-xl text-brand-marrom font-semibold">Dra. Kelly Bruzeguini Eira</h3>
                 <p class="text-xs text-brand-ink/80 leading-relaxed mt-2">
-                  Atuação fundamentada na <strong>abordagem comportamental</strong> com especial afinidade pelo atendimento de mulheres e casais maduros. Sua prática clínica é marcada pela <strong>escuta ativa e acolhimento imediato</strong> — um território de pausa sem interrogatórios frios ou distanciamento acadêmico.
+                  Atuação fundamentada na <strong>abordagem comportamental</strong> com especial afinidade pelo atendimento de mulheres e casais maduros. Sua prática clínica é marcada pela <strong>escuta ativa e acolhimento imediato</strong>, um território de pausa sem interrogatórios frios ou distanciamento acadêmico.
                 </p>
 
                 <!-- Grid de Especializações -->
@@ -531,7 +659,7 @@
                   <span class="text-[10px] opacity-70">História com Alma</span>
                 </div>
                 <p class="font-display text-base sm:text-lg leading-snug mt-2">
-                  “Uma mulher que transformou sofrimento pessoal em cuidado profissional — defendendo que envelhecer é continuar escolhendo e vivendo plenamente.”
+                  “Uma mulher que transformou sofrimento pessoal em cuidado profissional, defendendo que envelhecer é continuar escolhendo e vivendo plenamente.”
                 </p>
                 <div class="mt-4 pt-3 border-t border-white/20 flex flex-wrap items-center gap-1.5 text-[11px] opacity-90">
                   <span>Depressão superada</span> <span>→</span>
@@ -937,7 +1065,7 @@
         <div class="px-6 lg:px-10">
           <p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">05/06 • FUNDAMENTOS</p>
           <h2 class="font-display text-3xl text-brand-teal mt-2">DNA do projeto</h2>
-          <p class="text-sm text-brand-ink/60 mt-1">Configure o DNA do seu novo planejamento — características intrínsecas que permanecerão em todas as etapas.</p>
+          <p class="text-sm text-brand-ink/60 mt-1">Configure o DNA do seu novo planejamento, características intrínsecas que permanecerão em todas as etapas.</p>
           <div class="grid lg:grid-cols-2 gap-4 mt-6">
             <div class="rounded-2xl bg-white border border-brand-sandDark p-5">
               <p class="text-[11px] tracking-widest font-semibold text-brand-teal">POSICIONAMENTO ÚNICO</p>
@@ -950,7 +1078,7 @@
           </div>
           <div class="rounded-2xl bg-brand-teal text-white p-6 mt-4">
             <p class="text-[11px] tracking-widest font-semibold opacity-70">MAIOR TRANSFORMAÇÃO QUE O CONTEÚDO ENTREGA</p>
-            <p class="text-sm leading-6 mt-2">Fazer a pessoa 50+ compreender que os desafios de envelhecer podem ser reconhecidos, enfrentados e ressignificados — e que envelhecer não significa deixar de viver, escolher, desejar ou construir novos projetos.</p>
+            <p class="text-sm leading-6 mt-2">Fazer a pessoa 50+ compreender que os desafios de envelhecer podem ser reconhecidos, enfrentados e ressignificados, e que envelhecer não significa deixar de viver, escolher, desejar ou construir novos projetos.</p>
             <p class="text-xs opacity-80 mt-3">Na prática, cada conteúdo deve produzir pelo menos uma dessas mudanças: “Eu não sabia que isso faz parte do envelhecimento” → consciência • “Consigo nomear o que sinto” → identificação • “Eu não preciso simplesmente aceitar isso” → possibilidade de mudança • “Eu posso escolher sobre minha própria vida” → autonomia • “Eu preciso cuidar disso” → movimento.</p>
           </div>
           <div class="grid lg:grid-cols-2 gap-4 mt-4">
@@ -1002,7 +1130,7 @@
                 <ul class="space-y-2.5 mt-3 text-xs text-emerald-950/85 leading-relaxed">
                   <li class="flex items-start gap-2">
                     <span class="text-emerald-600 font-bold mt-0.5">✓</span>
-                    <span><strong>Identidade & Tom Único:</strong> Acolhimento profundo com "fala rasgada" de Kelly — quebra da postura fria ou infantilizadora comum no mercado.</span>
+                    <span><strong>Identidade & Tom Único:</strong> Acolhimento profundo com "fala rasgada" de Kelly, quebra da postura fria ou infantilizadora comum no mercado.</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <span class="text-emerald-600 font-bold mt-0.5">✓</span>
@@ -1139,7 +1267,7 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">PARA QUEM • 01/02</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Personas — 4 Retratos Capixabas</h2>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Personas, 4 Retratos Capixabas</h2>
               <p class="text-sm text-brand-ink/70 mt-1">Construídas com base no DNA Longânima (autonomia, luto, solidão, sexualidade) e na vivência de campo na Grande Vitória (Vila Velha, Vitória, Serra e Jardim Camburi).</p>
             </div>
             <div class="flex items-center gap-2 shrink-0 self-start md:self-auto">
@@ -1150,7 +1278,7 @@
           </div>
 
           <div class="flex flex-col gap-6 mt-6">
-            <!-- Persona 1 — Célia -->
+            <!-- Persona 1, Célia -->
             <div class="rounded-3xl bg-white border border-brand-sandDark overflow-hidden shadow-sm flex flex-col md:flex-row">
               <div class="md:w-[280px] lg:w-[300px] h-72 md:h-auto shrink-0 overflow-hidden bg-brand-sand">
                 <img src="/assets/personas/celia-61.jpg" alt="Célia Regina, 61 anos, Vila Velha" class="w-full h-full object-cover object-top" loading="lazy" />
@@ -1187,7 +1315,7 @@
               </div>
             </div>
 
-            <!-- Persona 2 — Aparecida -->
+            <!-- Persona 2, Aparecida -->
             <div class="rounded-3xl bg-white border border-brand-sandDark overflow-hidden shadow-sm flex flex-col md:flex-row">
               <div class="md:w-[280px] lg:w-[300px] h-72 md:h-auto shrink-0 overflow-hidden bg-brand-sand">
                 <img src="/assets/personas/aparecida-68.jpg" alt="Aparecida de Jesus, 68 anos, Jardim Camburi" class="w-full h-full object-cover object-top" loading="lazy" />
@@ -1224,7 +1352,7 @@
               </div>
             </div>
 
-            <!-- Persona 3 — Marlene & Jorge -->
+            <!-- Persona 3, Marlene & Jorge -->
             <div class="rounded-3xl bg-white border border-brand-sandDark overflow-hidden shadow-sm flex flex-col md:flex-row">
               <div class="md:w-[280px] lg:w-[300px] h-72 md:h-auto shrink-0 overflow-hidden bg-brand-sand">
                 <img src="/assets/personas/marlene-jorge.jpg" alt="Marlene e Jorge, Serra" class="w-full h-full object-cover object-top" loading="lazy" />
@@ -1262,7 +1390,7 @@
               </div>
             </div>
 
-            <!-- Persona 4 — Lúcia -->
+            <!-- Persona 4, Lúcia -->
             <div class="rounded-3xl bg-white border border-brand-sandDark overflow-hidden shadow-sm flex flex-col md:flex-row">
               <div class="md:w-[280px] lg:w-[300px] h-72 md:h-auto shrink-0 overflow-hidden bg-brand-sand">
                 <img src="/assets/personas/lucia-54.jpg" alt="Lúcia Helena, 54 anos, Vitória" class="w-full h-full object-cover object-top" loading="lazy" />
@@ -1476,7 +1604,7 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO FALAMOS • 01/05</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Identidade Visual — Diretrizes da Marca</h2>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Identidade Visual, Diretrizes da Marca</h2>
               <p class="text-sm text-brand-ink/70 mt-1">Manual 1.0 • Sistema cromático áureo, hierarquia tipográfica e direção estética para o Instituto Longânima.</p>
             </div>
             <a href="https://drive.google.com/file/d/1SkDfdjnArSO3gSDHqaJ1jH4AScAnn-qS/view?usp=sharing" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full bg-brand-teal text-white hover:bg-brand-tealLight transition shadow-sm shrink-0 self-start md:self-auto">
@@ -1586,7 +1714,7 @@
                     “Psicologia, cuidado e presença no tempo de cada um.”
                   </p>
                   <p class="text-[10px] text-brand-ink/60 mt-2">
-                    SemiBold / Regular / Italic — Transmite elegância, profundidade clínica e calor humano.
+                    SemiBold / Regular / Italic, Transmite elegância, profundidade clínica e calor humano.
                   </p>
                 </div>
 
@@ -1600,7 +1728,7 @@
                     Cuidado é oferecer o suporte necessário para que a pessoa continue sendo quem ela é, preservando sua capacidade de decidir sobre a própria vida.
                   </p>
                   <p class="text-[10px] text-brand-ink/60 mt-2">
-                    Regular / Medium / SemiBold — Tipografia sem serifa para textos explicativos, CRP e botões de ação.
+                    Regular / Medium / SemiBold, Tipografia sem serifa para textos explicativos, CRP e botões de ação.
                   </p>
                 </div>
               </div>
@@ -1676,8 +1804,8 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO FALAMOS • 02/05</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Estratégia do Site — Hub de Autoridade & Conversão</h2>
-              <p class="text-sm text-brand-ink/70 mt-1">O site como ativo central de institucionalização da marca, acolhimento profundo e conversão humana via WhatsApp — longe de uma vitrine fria de serviços.</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Estratégia do Site, Hub de Autoridade & Conversão</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">O site como ativo central de institucionalização da marca, acolhimento profundo e conversão humana via WhatsApp, longe de uma vitrine fria de serviços.</p>
             </div>
             <div class="flex items-center gap-2 shrink-0 self-start md:self-auto">
               <span class="text-xs px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold">Ativo de Autoridade</span>
@@ -1799,7 +1927,7 @@
           <div class="mt-4 rounded-2xl bg-brand-sand/80 border border-brand-sandDark p-3.5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
             <div class="flex items-center gap-2">
               <span class="px-2 py-0.5 rounded bg-brand-marrom text-white text-[10px] font-bold uppercase tracking-wider">Diretriz Visual</span>
-              <span class="text-brand-ink/80 text-[11px]">Estética <strong>humana, contemporânea, acolhedora e adulta</strong> — banindo estética hospitalar, portais geriátricos cinzas ou fotos posadas e artificiais.</span>
+              <span class="text-brand-ink/80 text-[11px]">Estética <strong>humana, contemporânea, acolhedora e adulta</strong>, banindo estética hospitalar, portais geriátricos cinzas ou fotos posadas e artificiais.</span>
             </div>
             <span class="text-brand-teal font-bold text-[10px] shrink-0">Instituto Longânima • Design com Alma</span>
           </div>
@@ -1813,7 +1941,7 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO FALAMOS • 03/05</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Mapa do Site — Arquitetura de Informação & Sitemap</h2>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Mapa do Site, Arquitetura de Informação & Sitemap</h2>
               <p class="text-sm text-brand-ink/70 mt-1">Estrutura funcional das páginas, árvore de navegação em 6 blocos e o escopo de conteúdo detalhado para o desenvolvimento web.</p>
             </div>
             <div class="flex items-center gap-2 shrink-0 self-start md:self-auto">
@@ -1823,7 +1951,7 @@
             </div>
           </div>
 
-          <!-- SITEMAP VISUAL — 6 BLOCOS DE JORNADA -->
+          <!-- SITEMAP VISUAL, 6 BLOCOS DE JORNADA -->
           <div class="mt-5">
             <div class="flex items-center justify-between">
               <p class="text-xs font-bold tracking-widest text-brand-marrom uppercase">Árvore de Navegação & Rotas Funcionais</p>
@@ -2050,7 +2178,7 @@
           <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
             <div>
               <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO FALAMOS • 04/05</p>
-              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Prévia do Site — Protótipo Interativo em Alta Fidelidade</h2>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Prévia do Site, Protótipo Interativo em Alta Fidelidade</h2>
               <p class="text-sm text-brand-ink/70 mt-1">Navegação funcional pelas 5 telas do projeto estruturadas no Google Stitch com o Design System oficial do Instituto Longânima.</p>
             </div>
             <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
@@ -2151,10 +2279,10 @@
               <div onclick="switchPrototypeScreen('home')" class="cursor-pointer group rounded-2xl bg-brand-sand/50 hover:bg-brand-sand border border-brand-sandDark p-3 transition shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="relative aspect-video rounded-xl overflow-hidden border border-brand-sandDark bg-white mb-2.5">
-                    <img src="/assets/stitch-screens/home.png" alt="Home — Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
+                    <img src="/assets/stitch-screens/home.png" alt="Home, Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
                     <span class="absolute top-1.5 left-1.5 text-[9px] font-bold px-2 py-0.5 rounded-md bg-brand-marrom text-white">01. Home</span>
                   </div>
-                  <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Home — O Refúgio Seguro</h4>
+                  <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Home, O Refúgio Seguro</h4>
                   <p class="text-[11px] text-brand-ink/75 mt-1 leading-relaxed">
                     Apresentação acolhedora, manifesto do envelhecimento ativo, bio resumida e quebra de tabus com chamada para agendamento.
                   </p>
@@ -2169,10 +2297,10 @@
               <div onclick="switchPrototypeScreen('quem-sou-eu')" class="cursor-pointer group rounded-2xl bg-brand-sand/50 hover:bg-brand-sand border border-brand-sandDark p-3 transition shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="relative aspect-video rounded-xl overflow-hidden border border-brand-sandDark bg-white mb-2.5">
-                    <img src="/assets/stitch-screens/quem-sou-eu.png" alt="Quem Sou Eu — Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
+                    <img src="/assets/stitch-screens/quem-sou-eu.png" alt="Quem Sou Eu, Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
                     <span class="absolute top-1.5 left-1.5 text-[9px] font-bold px-2 py-0.5 rounded-md bg-brand-marrom text-white">02. Sobre Mim</span>
                   </div>
-                  <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Quem Sou Eu — Kelly Bruzeguini</h4>
+                  <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Quem Sou Eu, Kelly Bruzeguini</h4>
                   <p class="text-[11px] text-brand-ink/75 mt-1 leading-relaxed">
                     Trajetória com alma, experiência clínica e comunitária nos CCTI, credenciais e filosofia do cuidado sem julgamentos.
                   </p>
@@ -2187,7 +2315,7 @@
               <div onclick="switchPrototypeScreen('especialidades')" class="cursor-pointer group rounded-2xl bg-brand-sand/50 hover:bg-brand-sand border border-brand-sandDark p-3 transition shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="relative aspect-video rounded-xl overflow-hidden border border-brand-sandDark bg-white mb-2.5">
-                    <img src="/assets/stitch-screens/especialidades.png" alt="Especialidades — Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
+                    <img src="/assets/stitch-screens/especialidades.png" alt="Especialidades, Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
                     <span class="absolute top-1.5 left-1.5 text-[9px] font-bold px-2 py-0.5 rounded-md bg-brand-marrom text-white">03. Atuação</span>
                   </div>
                   <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Especialidades Clínicas</h4>
@@ -2205,7 +2333,7 @@
               <div onclick="switchPrototypeScreen('artigos')" class="cursor-pointer group rounded-2xl bg-brand-sand/50 hover:bg-brand-sand border border-brand-sandDark p-3 transition shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="relative aspect-video rounded-xl overflow-hidden border border-brand-sandDark bg-white mb-2.5">
-                    <img src="/assets/stitch-screens/artigos.png" alt="Reflexões & Artigos — Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
+                    <img src="/assets/stitch-screens/artigos.png" alt="Reflexões & Artigos, Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
                     <span class="absolute top-1.5 left-1.5 text-[9px] font-bold px-2 py-0.5 rounded-md bg-brand-marrom text-white">04. Artigos</span>
                   </div>
                   <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Reflexões & Artigos (Blog)</h4>
@@ -2223,7 +2351,7 @@
               <div onclick="switchPrototypeScreen('contato')" class="cursor-pointer group rounded-2xl bg-brand-sand/50 hover:bg-brand-sand border border-brand-sandDark p-3 transition shadow-xs flex flex-col justify-between">
                 <div>
                   <div class="relative aspect-video rounded-xl overflow-hidden border border-brand-sandDark bg-white mb-2.5">
-                    <img src="/assets/stitch-screens/contato.png" alt="Contato & Agendamento — Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
+                    <img src="/assets/stitch-screens/contato.png" alt="Contato & Agendamento, Instituto Longânima" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300" loading="lazy" />
                     <span class="absolute top-1.5 left-1.5 text-[9px] font-bold px-2 py-0.5 rounded-md bg-brand-marrom text-white">05. Contato</span>
                   </div>
                   <h4 class="font-display text-xs font-bold text-brand-marrom group-hover:text-brand-teal transition">Contato & Agendamento</h4>
@@ -2279,7 +2407,7 @@
           </div>
 
           <div class="grid md:grid-cols-2 gap-4 mt-3">
-            <!-- Prioritárias — destaque terroso -->
+            <!-- Prioritárias, destaque terroso -->
             <div class="rounded-2xl bg-brand-teal text-white p-5 relative overflow-hidden">
               <div class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-white/10"></div>
               <p class="text-[11px] tracking-widest font-semibold opacity-70">LINHA 01 • PRIORITÁRIA</p>
@@ -2336,7 +2464,7 @@
               <div class="mt-3 h-1.5 rounded-full bg-white/20 overflow-hidden"><div class="h-full bg-white" style="width:100%"></div></div>
               <p class="text-[11px] opacity-70 mt-1">Prioridade alta • diferencial e descoberta</p>
             </div>
-            <!-- Sustentação — claras -->
+            <!-- Sustentação, claras -->
             <div class="rounded-2xl bg-white border border-brand-sandDark p-5">
               <p class="text-[11px] tracking-widest font-semibold text-brand-teal/60">LINHA 05 • SUSTENTAÇÃO</p>
               <h3 class="font-display text-base text-brand-teal leading-tight mt-1">Saúde Emocional e Mental</h3>
@@ -2416,7 +2544,7 @@
             </div>
           </div>
           <div class="mt-4 rounded-2xl bg-brand-sand border border-brand-sandDark p-4">
-            <p class="text-xs leading-5"><strong>Regra editorial:</strong> <span class="px-2 py-1 rounded-full bg-brand-teal text-white text-[11px]">IG/TikTok = amplitude</span> <span class="px-2 py-1 rounded-full bg-white border text-[11px]">YouTube/Blog = profundidade</span> <span class="px-2 py-1 rounded-full bg-white border text-[11px]">WhatsApp = relacionamento/conversão</span> — um núcleo editorial gera 5 adaptações. <span class="text-brand-ink/60">*YouTube/Blog trabalham em ciclos, não todas as 8 linhas todo mês.</span></p>
+            <p class="text-xs leading-5"><strong>Regra editorial:</strong> <span class="px-2 py-1 rounded-full bg-brand-teal text-white text-[11px]">IG/TikTok = amplitude</span> <span class="px-2 py-1 rounded-full bg-white border text-[11px]">YouTube/Blog = profundidade</span> <span class="px-2 py-1 rounded-full bg-white border text-[11px]">WhatsApp = relacionamento/conversão</span>, um núcleo editorial gera 5 adaptações. <span class="text-brand-ink/60">*YouTube/Blog trabalham em ciclos, não todas as 8 linhas todo mês.</span></p>
           </div>
         </div>
       </section>
@@ -2485,16 +2613,16 @@
             </div>
             <div class="rounded-2xl bg-brand-teal text-white p-4 text-xs leading-relaxed">
               <p class="text-[11px] tracking-widest font-semibold opacity-80 mb-1">RÉGUA ÉTICA DO CFP & TOM DE VOZ</p>
-              <p>✓ <strong>Falar COM a pessoa idosa</strong> — nunca SOBRE ela como se não estivesse ali.</p>
+              <p>✓ <strong>Falar COM a pessoa idosa</strong>, nunca SOBRE ela como se não estivesse ali.</p>
               <p class="mt-1">✓ Acolhe antes de orientar • Preserva autonomia • Sem promessas milagrosas • Rigor técnico com calor humano.</p>
             </div>
           </div>
 
-          <!-- PREVIEW DOS POSTS — modelos de 06_SOCIAL_MEDIA -->
+          <!-- PREVIEW DOS POSTS, modelos de 06_SOCIAL_MEDIA -->
           <div class="mt-8">
-            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">PREVIEW — CARROSSEL (6 telas) • 06_SOCIAL_MEDIA/CARROSSEL</p>
+            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">PREVIEW, CARROSSEL (6 telas) • 06_SOCIAL_MEDIA/CARROSSEL</p>
             <div class="grid grid-cols-3 lg:grid-cols-6 gap-3 mt-3">
-              <img src="/assets/carrossel/1.png" alt="Carrossel 1 — Olá, eu sou Kelly" class="rounded-xl border border-brand-sandDark object-cover aspect-[4/5] bg-white" loading="lazy" />
+              <img src="/assets/carrossel/1.png" alt="Carrossel 1, Olá, eu sou Kelly" class="rounded-xl border border-brand-sandDark object-cover aspect-[4/5] bg-white" loading="lazy" />
               <img src="/assets/carrossel/2.png" alt="Carrossel 2" class="rounded-xl border border-brand-sandDark object-cover aspect-[4/5] bg-white" loading="lazy" />
               <img src="/assets/carrossel/3.png" alt="Carrossel 3" class="rounded-xl border border-brand-sandDark object-cover aspect-[4/5] bg-white" loading="lazy" />
               <img src="/assets/carrossel/4.png" alt="Carrossel 4" class="rounded-xl border border-brand-sandDark object-cover aspect-[4/5] bg-white" loading="lazy" />
@@ -2503,10 +2631,10 @@
             </div>
             <p class="text-xs text-brand-ink/60 mt-2">Modelo do feed 1080×1350, paleta #4B3A2F/#56614A/#EDE6D8, tipografia Noto Serif Display + Noto Sans. Alterne fundos fotográficos (ex: 1. Olá Kelly) e claros para ritmo no grid.</p>
 
-            <p class="text-[11px] tracking-widest font-semibold text-brand-teal mt-6">PREVIEW — POSTS PRONTOS (grid 3 colunas) • 06_SOCIAL_MEDIA/POSTS_PRONTOS</p>
+            <p class="text-[11px] tracking-widest font-semibold text-brand-teal mt-6">PREVIEW, POSTS PRONTOS (grid 3 colunas) • 06_SOCIAL_MEDIA/POSTS_PRONTOS</p>
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-3">
               <img src="/assets/posts/FRASE.png" alt="Post FRASE" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
-              <img src="/assets/carrossel/1.png" alt="Carrossel 1 — Olá, eu sou Kelly (na grade)" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
+              <img src="/assets/carrossel/1.png" alt="Carrossel 1, Olá, eu sou Kelly (na grade)" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
               <img src="/assets/posts/ChatGPT%20Image%2029%20de%20ago.%20de%202026,%2002_50_18.png" alt="Post ChatGPT" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
               <img src="/assets/posts/11774ed54e25f3aea9cff4624c71592b.jpg" alt="Post 11774" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
               <img src="/assets/posts/1a6b862e0cfee916deb702ea92669eea.jpg" alt="Post 1a6b" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
@@ -2514,11 +2642,11 @@
               <img src="/assets/posts/bdd57ff219cf49857811347f55edc48e.jpg" alt="Post bdd5" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
               <img src="/assets/posts/e6c6464906b0908a67f58978ed7b49b8.jpg" alt="Post e6c6" class="rounded-xl border border-brand-sandDark object-cover aspect-square bg-white" loading="lazy" />
             </div>
-            <p class="text-xs text-brand-ink/60 mt-2">Grid 4:5 — clique para ampliar. Modelos já seguem paleta terrosa e luz natural lateral (manual p.04–05).</p>
+            <p class="text-xs text-brand-ink/60 mt-2">Grid 4:5, clique para ampliar. Modelos já seguem paleta terrosa e luz natural lateral (manual p.04–05).</p>
           </div>
-          <!-- CONTEÚDOS SELECIONADOS — INSTAGRAM (37 do Notion) -->
+          <!-- CONTEÚDOS SELECIONADOS, INSTAGRAM (37 do Notion) -->
           <div class="mt-8">
-            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">CONTEÚDOS SELECIONADOS — INSTAGRAM (8 de 37) • Home DJSM/Brain/(SAFSM) Conteúdo</p>
+            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">CONTEÚDOS SELECIONADOS, INSTAGRAM (8 de 37) • Home DJSM/Brain/(SAFSM) Conteúdo</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
               <div class="rounded-2xl bg-white border border-brand-sandDark p-4 flex flex-col">
                 <p class="text-[11px] tracking-widest font-semibold text-brand-amber">13 OUT • REELS • TOPO</p>
@@ -2547,7 +2675,7 @@
               </div>
               <div class="rounded-2xl bg-white border border-brand-sandDark p-4 flex flex-col">
                 <p class="text-[11px] tracking-widest font-semibold text-brand-amber">08 OUT • REELS • TOPO</p>
-                <p class="font-display text-sm text-brand-teal leading-tight mt-1">O que muda nos relacionamentos depois dos 50 — e o que não precisa mudar</p>
+                <p class="font-display text-sm text-brand-teal leading-tight mt-1">O que muda nos relacionamentos depois dos 50, e o que não precisa mudar</p>
                 <p class="text-xs text-brand-ink/60 mt-2">Linha 3: Relacionamentos</p>
               </div>
               <div class="rounded-2xl bg-white border border-brand-sandDark p-4 flex flex-col">
@@ -2569,7 +2697,7 @@
         </div>
       </section>
 
-      <section id="materiais" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 02/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Materiais Educacionais</h2><p class="text-sm text-brand-ink/60 mt-1">Catálogo de iscas propostas para captura — <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento</span> PDFs em produção, sem perder o planejamento do funil.</p>
+      <section id="materiais" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 02/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Materiais Educacionais</h2><p class="text-sm text-brand-ink/60 mt-1">Catálogo de iscas propostas para captura, <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento</span> PDFs em produção, sem perder o planejamento do funil.</p>
         <div class="grid md:grid-cols-3 gap-4 mt-6">
           <div class="rounded-2xl bg-white border border-brand-sandDark overflow-hidden flex flex-col">
             <div class="h-28 bg-gradient-to-br from-brand-teal to-[#3A4A3A] p-4 flex flex-col justify-end">
@@ -2578,7 +2706,7 @@
               <p class="text-xs text-white/80">7 perguntas para decidir sem passar por cima de você</p>
             </div>
             <div class="p-4 flex-1">
-              <p class="text-xs leading-5"><strong>Público:</strong> Célia (Vila Velha) + Marlene & Jorge (Serra) — linha 2 Autonomia</p>
+              <p class="text-xs leading-5"><strong>Público:</strong> Célia (Vila Velha) + Marlene & Jorge (Serra), linha 2 Autonomia</p>
               <p class="text-xs leading-5 mt-1"><strong>Dor:</strong> infantilização financeira/digital e culpa por dizer não</p>
               <p class="text-xs leading-5 mt-2"><strong>Destino:</strong> Página de Materiais → Campanha de Captação → WhatsApp</p>
               <p class="text-[11px] mt-3"><span class="px-2 py-1 rounded-full bg-amber-50 border border-amber-200">Em produção</span> <span class="px-2 py-1 rounded-full border">Funil: meio</span></p>
@@ -2591,7 +2719,7 @@
               <p class="text-xs text-white/80">Por onde começar sem constrangimento</p>
             </div>
             <div class="p-4 flex-1">
-              <p class="text-xs leading-5"><strong>Público:</strong> Célia (61) + Lúcia (54) — linha 4 Sexualidade</p>
+              <p class="text-xs leading-5"><strong>Público:</strong> Célia (61) + Lúcia (54), linha 4 Sexualidade</p>
               <p class="text-xs leading-5 mt-1"><strong>Dor:</strong> vergonha de falar de desejo, mudanças no corpo</p>
               <p class="text-xs leading-5 mt-2"><strong>Destino:</strong> Página Sexualidade e Intimidade → SEO + Campanhas</p>
               <p class="text-[11px] mt-3"><span class="px-2 py-1 rounded-full bg-amber-50 border border-amber-200">Em produção</span> <span class="px-2 py-1 rounded-full border">Funil: meio</span></p>
@@ -2604,7 +2732,7 @@
               <p class="text-xs text-white/80">Rede de apoio sem tirar autonomia</p>
             </div>
             <div class="p-4 flex-1">
-              <p class="text-xs leading-5"><strong>Público:</strong> Aparecida (68) + família — linha 8 Cuidado/Proteção</p>
+              <p class="text-xs leading-5"><strong>Público:</strong> Aparecida (68) + família, linha 8 Cuidado/Proteção</p>
               <p class="text-xs leading-5 mt-1"><strong>Dor:</strong> proteção que vira controle, solidão</p>
               <p class="text-xs leading-5 mt-2"><strong>Destino:</strong> Página de Materiais → nutrição e-mail/WhatsApp</p>
               <p class="text-[11px] mt-3"><span class="px-2 py-1 rounded-full bg-amber-50 border border-amber-200">Em produção</span> <span class="px-2 py-1 rounded-full border">Funil: topo/meio</span></p>
@@ -2615,41 +2743,41 @@
           <span class="text-lg">⚙️</span>
           <div>
             <p class="text-sm font-semibold text-amber-800">Status: Em desenvolvimento</p>
-            <p class="text-xs leading-5 mt-1">As 3 iscas acima são <strong>propostas aprovadas do funil</strong> (linhas 2, 4 e 8) — PDFs ainda em produção. Já entram no planejamento de <code>Página de Materiais → Campanha de Captação → WhatsApp</code> para não travar o fluxo, mas com entrega futura. Assim que os PDFs forem diagramados, é só trocar o mock por download real.</p>
+            <p class="text-xs leading-5 mt-1">As 3 iscas acima são <strong>propostas aprovadas do funil</strong> (linhas 2, 4 e 8), PDFs ainda em produção. Já entram no planejamento de <code>Página de Materiais → Campanha de Captação → WhatsApp</code> para não travar o fluxo, mas com entrega futura. Assim que os PDFs forem diagramados, é só trocar o mock por download real.</p>
           </div>
         </div>
         </div></section>
-      <section id="blog" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 03/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Blog</h2><p class="text-sm text-brand-ink/60 mt-1">1 artigo/semana (4/mês) focado em busca orgânica — cada artigo mira um termo de cauda longa. <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento — ideias em curadoria</span></p><div class="mt-6 rounded-2xl bg-white border border-brand-sandDark p-5 text-sm">
+      <section id="blog" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 03/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Blog</h2><p class="text-sm text-brand-ink/60 mt-1">1 artigo/semana (4/mês) focado em busca orgânica, cada artigo mira um termo de cauda longa. <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento, ideias em curadoria</span></p><div class="mt-6 rounded-2xl bg-white border border-brand-sandDark p-5 text-sm">
         <p class="font-semibold text-brand-teal">Primeiras ideias em desenvolvimento:</p>
         <ul class="list-disc pl-5 leading-6 mt-2">
           <li>“Sinais de infantilização na maturidade”</li>
           <li>“Sexualidade depois dos 50: o que muda”</li>
           <li>“Luto crônico: quando a dor não passa”</li>
         </ul>
-        <p class="text-xs text-brand-ink/60 mt-3">Reaproveita núcleo de IG/YouTube. Textos ainda em curadoria — entram no calendário assim que as 37 pautas de Instagram forem priorizadas.</p>
+        <p class="text-xs text-brand-ink/60 mt-3">Reaproveita núcleo de IG/YouTube. Textos ainda em curadoria, entram no calendário assim que as 37 pautas de Instagram forem priorizadas.</p>
         <div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-3 flex items-start gap-2">
           <span>⚙️</span>
-          <p class="text-xs leading-5"><strong>Status:</strong> Em desenvolvimento — ideias em curadoria, sem publicação. Já reservado no fluxo <code>Conteúdo → Blog (SEO) → aprofundamento</code> para não travar o planejamento.</p>
+          <p class="text-xs leading-5"><strong>Status:</strong> Em desenvolvimento, ideias em curadoria, sem publicação. Já reservado no fluxo <code>Conteúdo → Blog (SEO) → aprofundamento</code> para não travar o planejamento.</p>
         </div>
         </div></div></section>
-      <section id="lives" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 04/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Lives</h2><p class="text-sm text-brand-ink/60 mt-1">1 live/mês como aprofundamento (YouTube/IG) + cortes para TikTok • <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento</span></p><div class="mt-6 grid md:grid-cols-2 gap-4 text-sm"><div class="rounded-2xl bg-white border border-brand-sandDark p-5"><p class="font-semibold text-brand-teal">Formato</p><p class="leading-6 mt-2">Conversa com Kelly + convidado (ex: Alex sobre planejamento financeiro 50+), 45 min, Q&A. Transmissão simultânea IG + YouTube.</p></div><div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-5"><p class="font-semibold text-brand-teal">Reaproveitamento</p><p class="leading-6 mt-2">1 live → 3 cortes TikTok (30–45s) → 1 carrossel resumo → 1 artigo Blog. Ideias em curadoria, sem data fechada.</p></div></div><div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-3 flex items-start gap-2"><span>⚙️</span><p class="text-xs leading-5"><strong>Status:</strong> Em desenvolvimento — formato definido, pautas em curadoria. Já reservado no ecossistema como aprofundamento mensal.</p></div></div></section>
-      <section id="linkedin" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 05/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Linkedin</h2><p class="text-sm text-brand-ink/60 mt-1"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-gray-100 border text-[11px] font-semibold text-gray-600">○ Não previsto para esta fase</span> — sem operação para este projeto específico.</p><div class="mt-6 rounded-2xl bg-white border border-dashed border-gray-300 p-5 text-sm text-gray-600">Este projeto não prevê LinkedIn ativo. Canal reservado para frente institucional futura (convites para eventos, projetos de maturidade) — sem disputa de verba de aquisição nesta fase. Mantido no mapa apenas como referência.</div></div></section>
-      <section id="tiktok" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 06/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">TikTok</h2><p class="text-sm text-brand-ink/60 mt-1">Canal de descoberta — 12 posts/mês (3/sem). <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-50 border border-sky-200 text-[11px] font-semibold text-sky-700">Momentaneamente com conteúdos do Instagram</span></p><div class="mt-6 rounded-2xl bg-brand-teal text-white p-5 text-sm"><p class="font-semibold">Estratégia transitória</p><p class="leading-6 mt-2">Reaproveitar os 3 conteúdos/semana do Instagram com adaptação nativa para TikTok: cortes de Reels (30–45s), pergunta direta + storytelling + CTA suave para o IG. Ex: “3 frases que infantilizam seu pai 60+”. Quando o TikTok ganhar tração própria, criar pautas nativas.</p><p class="text-xs opacity-80 mt-2">Mesma matriz das 8 linhas editoriais — amplitude no IG/TikTok, profundidade no YouTube/Blog.</p></div></div></section>
-      <section id="whatsapp" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 07/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">WhatsApp</h2><p class="text-sm text-brand-ink/60 mt-1">Principal canal de conversão — <strong>8 comunicações/mês (2/sem)</strong>: relacionamento + condução para avaliação. Ponto de decisão individual.</p>
+      <section id="lives" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 04/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Lives</h2><p class="text-sm text-brand-ink/60 mt-1">1 live/mês como aprofundamento (YouTube/IG) + cortes para TikTok • <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em desenvolvimento</span></p><div class="mt-6 grid md:grid-cols-2 gap-4 text-sm"><div class="rounded-2xl bg-white border border-brand-sandDark p-5"><p class="font-semibold text-brand-teal">Formato</p><p class="leading-6 mt-2">Conversa com Kelly + convidado (ex: Alex sobre planejamento financeiro 50+), 45 min, Q&A. Transmissão simultânea IG + YouTube.</p></div><div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-5"><p class="font-semibold text-brand-teal">Reaproveitamento</p><p class="leading-6 mt-2">1 live → 3 cortes TikTok (30–45s) → 1 carrossel resumo → 1 artigo Blog. Ideias em curadoria, sem data fechada.</p></div></div><div class="mt-4 rounded-xl bg-amber-50 border border-amber-200 p-3 flex items-start gap-2"><span>⚙️</span><p class="text-xs leading-5"><strong>Status:</strong> Em desenvolvimento, formato definido, pautas em curadoria. Já reservado no ecossistema como aprofundamento mensal.</p></div></div></section>
+      <section id="linkedin" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 05/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">Linkedin</h2><p class="text-sm text-brand-ink/60 mt-1"><span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-gray-100 border text-[11px] font-semibold text-gray-600">○ Não previsto para esta fase</span>, sem operação para este projeto específico.</p><div class="mt-6 rounded-2xl bg-white border border-dashed border-gray-300 p-5 text-sm text-gray-600">Este projeto não prevê LinkedIn ativo. Canal reservado para frente institucional futura (convites para eventos, projetos de maturidade), sem disputa de verba de aquisição nesta fase. Mantido no mapa apenas como referência.</div></div></section>
+      <section id="tiktok" class="slide bg-white"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 06/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">TikTok</h2><p class="text-sm text-brand-ink/60 mt-1">Canal de descoberta, 12 posts/mês (3/sem). <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-sky-50 border border-sky-200 text-[11px] font-semibold text-sky-700">Momentaneamente com conteúdos do Instagram</span></p><div class="mt-6 rounded-2xl bg-brand-teal text-white p-5 text-sm"><p class="font-semibold">Estratégia transitória</p><p class="leading-6 mt-2">Reaproveitar os 3 conteúdos/semana do Instagram com adaptação nativa para TikTok: cortes de Reels (30–45s), pergunta direta + storytelling + CTA suave para o IG. Ex: “3 frases que infantilizam seu pai 60+”. Quando o TikTok ganhar tração própria, criar pautas nativas.</p><p class="text-xs opacity-80 mt-2">Mesma matriz das 8 linhas editoriais, amplitude no IG/TikTok, profundidade no YouTube/Blog.</p></div></div></section>
+      <section id="whatsapp" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-amber">ONDE VIVEMOS • 07/07</p><h2 class="font-display text-3xl text-brand-teal mt-2">WhatsApp</h2><p class="text-sm text-brand-ink/60 mt-1">Principal canal de conversão, <strong>8 comunicações/mês (2/sem)</strong>: relacionamento + condução para avaliação. Ponto de decisão individual.</p>
         <div class="grid lg:grid-cols-2 gap-4 mt-6">
           <div class="rounded-2xl bg-brand-teal text-white p-5">
-            <p class="text-[11px] tracking-widest font-semibold opacity-70">PAPEL — PONTO DE DECISÃO</p>
+            <p class="text-[11px] tracking-widest font-semibold opacity-70">PAPEL, PONTO DE DECISÃO</p>
             <p class="text-sm leading-6 mt-2">O WhatsApp é o ambiente em que a comunicação deixa de ser predominantemente pública e passa a ser individual. Por isso, ele precisa representar a marca.</p>
             <p class="text-sm leading-6 mt-2"><strong>acolhimento → compreensão → orientação → encaminhamento.</strong></p>
             <p class="text-xs opacity-70 mt-2">Não: anúncio → pressão → fechamento. Essa diferença é importante para uma marca cujo principal ativo é confiança.</p>
           </div>
           <div class="rounded-2xl bg-white border border-brand-sandDark p-5">
             <p class="text-[11px] tracking-widest font-semibold text-brand-teal">FREQUÊNCIA</p>
-            <p class="text-sm leading-6 mt-2"><strong>2 comunicações/semana • 8/mês</strong> — Relacionamento e conversão. Reaproveita reflexões das 8 linhas editoriais + convites para conversa (ex: reflexão sobre autonomia + convite para conversar).</p>
-            <p class="text-xs leading-5 mt-2">WhatsApp como relacionamento e conversão — até 8 comunicações/mês, 2 por semana, de forma sustentável.</p>
+            <p class="text-sm leading-6 mt-2"><strong>2 comunicações/semana • 8/mês</strong>, Relacionamento e conversão. Reaproveita reflexões das 8 linhas editoriais + convites para conversa (ex: reflexão sobre autonomia + convite para conversar).</p>
+            <p class="text-xs leading-5 mt-2">WhatsApp como relacionamento e conversão, até 8 comunicações/mês, 2 por semana, de forma sustentável.</p>
           </div>
           <div class="rounded-2xl bg-white border border-brand-sandDark p-5">
-            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 11 — ACOLHIMENTO INICIAL</p>
+            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 11, ACOLHIMENTO INICIAL</p>
             <p class="text-sm leading-6 mt-2">Não deve ser um robô tentando “fechar consulta”. Deve funcionar como uma <strong>ponte humana.</strong></p>
             <p class="text-sm font-mono leading-6 mt-2">Contato → identificação da demanda → orientação → encaminhamento</p>
             <p class="text-xs leading-5 mt-2">Automação pode ajudar em: mensagem inicial; horário de atendimento; coleta mínima de informação; encaminhamento. Mas a conversa sensível deve preservar o componente humano.</p>
@@ -2657,7 +2785,7 @@
           <div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-5">
             <p class="text-[11px] tracking-widest font-semibold text-brand-teal">WHATSAPP BUSINESS</p>
             <p class="text-sm leading-6 mt-2"><strong>Conversão e relacionamento humano.</strong></p>
-            <p class="text-xs leading-5 mt-2">Plataforma recomendada para conversão — origem e destino dos conteúdos, base central de contatos e segmentação via CRM e e-mail marketing.</p>
+            <p class="text-xs leading-5 mt-2">Plataforma recomendada para conversão, origem e destino dos conteúdos, base central de contatos e segmentação via CRM e e-mail marketing.</p>
             <p class="text-xs leading-5 mt-2">Fluxo base: interesse no IG → WhatsApp → explicar funcionamento da psicoterapia → agendamento → acompanhamento posterior.</p>
           </div>
         </div>
@@ -2668,10 +2796,10 @@
         <div class="px-6 lg:px-10">
           <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 01/06</p>
           <h2 class="font-display text-3xl text-brand-teal mt-2">Tom de Voz</h2>
-          <p class="text-sm text-brand-ink/60 mt-1">Defina o Tom de Voz — a forma como a marca se comunica e conversa com seu público.</p>
+          <p class="text-sm text-brand-ink/60 mt-1">Defina o Tom de Voz, a forma como a marca se comunica e conversa com seu público.</p>
           <div class="rounded-2xl bg-brand-teal text-white p-6 mt-6">
-            <p class="text-[11px] tracking-widest font-semibold opacity-70">TOM DE VOZ ESTRATÉGICO — INSTITUTO LONGÂNIMA</p>
-            <p class="text-sm leading-6 mt-2">Acolhedor, sério sem ser solene, respeitoso, filosófico na medida, técnico quando precisa, inspirador, educativo, enfático sem ser contestador, amigável e com ritmo sem ser rápido. Linguagem clara, adulta, educativa e eventualmente provocativa — <strong>nunca sensacionalista, explícita, apelativa, baseada em vergonha ou em padrões corporais.</strong></p>
+            <p class="text-[11px] tracking-widest font-semibold opacity-70">TOM DE VOZ ESTRATÉGICO, INSTITUTO LONGÂNIMA</p>
+            <p class="text-sm leading-6 mt-2">Acolhedor, sério sem ser solene, respeitoso, filosófico na medida, técnico quando precisa, inspirador, educativo, enfático sem ser contestador, amigável e com ritmo sem ser rápido. Linguagem clara, adulta, educativa e eventualmente provocativa, <strong>nunca sensacionalista, explícita, apelativa, baseada em vergonha ou em padrões corporais.</strong></p>
           </div>
           <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4 text-xs">
             <div class="rounded-xl bg-brand-sand border border-brand-sandDark p-3 text-center font-semibold">ACOLHEDOR</div>
@@ -2688,8 +2816,8 @@
             <div class="rounded-xl bg-white border border-brand-sandDark p-3 text-center">RÁPIDO</div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div class="rounded-2xl bg-white border border-brand-sandDark p-5"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">VOCABULÁRIO E ESTRUTURA</p><p class="text-sm leading-6 mt-1">Termos técnicos necessários, mas traduzidos. Frases curtas. Evitar jargão clínico frio na primeira abordagem — preferir “vamos conversar sobre...” a “você precisa tratar...”.</p></div>
-            <div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-5"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">REFERÊNCIA</p><p class="text-xs leading-5 mt-1">Comunicação e Identidade Verbal — <a href="https://www.mindmeister.com/4090989349/log-nima-comunica-o-e-identidade-verbal" target="_blank" class="underline text-brand-teal">MindMeister LongAnima</a></p>
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-5"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">VOCABULÁRIO E ESTRUTURA</p><p class="text-sm leading-6 mt-1">Termos técnicos necessários, mas traduzidos. Frases curtas. Evitar jargão clínico frio na primeira abordagem, preferir “vamos conversar sobre...” a “você precisa tratar...”.</p></div>
+            <div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-5"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">REFERÊNCIA</p><p class="text-xs leading-5 mt-1">Comunicação e Identidade Verbal, <a href="https://www.mindmeister.com/4090989349/log-nima-comunica-o-e-identidade-verbal" target="_blank" class="underline text-brand-teal">MindMeister LongAnima</a></p>
               <p class="font-display text-sm mt-3">“A Kelly é uma psicóloga que abraça a gente, fala o que a gente precisa ouvir de maneira clara e objetiva.”</p></div>
           </div>
         </div>
@@ -2698,7 +2826,7 @@
         <div class="px-6 lg:px-10">
           <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 02/06</p>
           <h2 class="font-display text-3xl text-brand-teal mt-2">Fluxo de Automação</h2>
-          <p class="text-sm text-brand-ink/60 mt-1">Não automatizar a venda; automatizar a continuidade da conversa — conteúdos coerentes com o motivo da aproximação.</p>
+          <p class="text-sm text-brand-ink/60 mt-1">Não automatizar a venda; automatizar a continuidade da conversa, conteúdos coerentes com o motivo da aproximação.</p>
           <div class="rounded-2xl bg-brand-teal text-white p-5 mt-6">
             <p class="text-[11px] tracking-widest font-semibold opacity-70">PAPEL DA AUTOMAÇÃO</p>
             <p class="text-sm leading-6 mt-2">A jornada é progressiva: <strong>situação vivida → identificação → compreensão → novo olhar → confiança → reconhecimento da necessidade → conversa → avaliação → psicoterapia.</strong> A automação atua entre <strong>identificação → confiança → reconhecimento → conversa</strong> e resolve: não perder leads • manter relacionamento com quem ainda não está pronto • personalizar por interesse • identificar sinais de intenção • encaminhar para WhatsApp no momento adequado.</p>
@@ -2707,26 +2835,26 @@
             <p class="text-[11px] tracking-widest font-semibold text-brand-teal">ARQUITETURA GERAL</p>
             <p class="text-xs font-mono leading-6 mt-2">Instagram/TikTok/Google → Site/Landing Page → Material educativo → CRM → Identificação do interesse → Automação temática → Conteúdo complementar → Reconhecimento da necessidade → Sinal de intenção → WhatsApp → Conversa → Avaliação → Psicoterapia</p>
           </div>
-          <!-- FLUXOS AGRUPADOS POR FUNIL — opção A -->
+          <!-- FLUXOS AGRUPADOS POR FUNIL, opção A -->
           <div class="grid lg:grid-cols-3 gap-4 mt-4">
-            <!-- TOPO — Atração -->
+            <!-- TOPO, Atração -->
             <div class="rounded-2xl bg-brand-sand border border-brand-sandDark p-4">
-              <p class="text-[11px] tracking-widest font-semibold text-brand-teal">TOPO — ATRAÇÃO</p>
+              <p class="text-[11px] tracking-widest font-semibold text-brand-teal">TOPO, ATRAÇÃO</p>
               <p class="text-xs text-brand-ink/60">Quem acabou de chegar • não perder contato</p>
               <div class="space-y-3 mt-3">
-                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 1 — ENTREGA</p><p class="font-semibold text-sm text-brand-teal">Boas-vindas Longânima</p><p class="text-xs leading-5 mt-1">Gatilho: baixa qualquer material. E1 imediato + E2 2d + E3 4d + E4 7d.</p></div>
-                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 8 — ABANDONO</p><p class="text-xs leading-5 mt-1">Gatilho: iniciou captação e não concluiu. Mensagem curta + reentrega.</p></div>
+                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 1, ENTREGA</p><p class="font-semibold text-sm text-brand-teal">Boas-vindas Longânima</p><p class="text-xs leading-5 mt-1">Gatilho: baixa qualquer material. E1 imediato + E2 2d + E3 4d + E4 7d.</p></div>
+                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 8, ABANDONO</p><p class="text-xs leading-5 mt-1">Gatilho: iniciou captação e não concluiu. Mensagem curta + reentrega.</p></div>
               </div>
               <div class="mt-3 h-1.5 rounded-full bg-white overflow-hidden"><div class="h-full bg-brand-teal" style="width:30%"></div></div>
               <p class="text-[11px] text-brand-ink/60 mt-1">2 fluxos • entrada</p>
             </div>
-            <!-- MEIO — Nutrição temática -->
+            <!-- MEIO, Nutrição temática -->
             <div class="rounded-2xl bg-white border-2 border-brand-teal/20 p-4">
-              <p class="text-[11px] tracking-widest font-semibold text-brand-teal">MEIO — NUTRIÇÃO TEMÁTICA</p>
+              <p class="text-[11px] tracking-widest font-semibold text-brand-teal">MEIO, NUTRIÇÃO TEMÁTICA</p>
               <p class="text-xs text-brand-ink/60">Personalizado por interesse • 6 fluxos</p>
               <div class="space-y-3 mt-3">
-                <div class="rounded-xl bg-brand-sand border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 2 — SEXUALIDADE</p><p class="font-semibold text-xs text-brand-teal">Pode Falar Sobre Isso</p><p class="text-[11px] leading-4 mt-1">D0→D2→D5→D8→D12→D16→D20. Só converte com sinal.</p></div>
-                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 3 — IDENTIDADE</p><p class="text-xs leading-4 mt-1">Quem Sou Eu Agora? — “Você não precisa voltar a ser quem era…”</p></div>
+                <div class="rounded-xl bg-brand-sand border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 2, SEXUALIDADE</p><p class="font-semibold text-xs text-brand-teal">Pode Falar Sobre Isso</p><p class="text-[11px] leading-4 mt-1">D0→D2→D5→D8→D12→D16→D20. Só converte com sinal.</p></div>
+                <div class="rounded-xl bg-white border p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 3, IDENTIDADE</p><p class="text-xs leading-4 mt-1">Quem Sou Eu Agora?, “Você não precisa voltar a ser quem era…”</p></div>
                 <div class="rounded-xl bg-white border p-3"><p class="text-xs leading-4"><strong>FLUXO 4</strong> Autonomia e Família • proteção → protagonismo</p></div>
                 <div class="rounded-xl bg-white border p-3"><p class="text-xs leading-4"><strong>FLUXO 5</strong> Luto e Reconstrução • ritmo espaçado, sem pressa</p></div>
                 <div class="rounded-xl bg-white border p-3"><p class="text-xs leading-4"><strong>FLUXO 6</strong> Relacionamentos • intimidade e comunicação</p></div>
@@ -2735,15 +2863,15 @@
               <div class="mt-3 h-1.5 rounded-full bg-brand-sandDark overflow-hidden"><div class="h-full bg-brand-teal" style="width:65%"></div></div>
               <p class="text-[11px] text-brand-ink/60 mt-1">6 fluxos • personalização</p>
             </div>
-            <!-- FUNDO — Intenção / Conversão -->
+            <!-- FUNDO, Intenção / Conversão -->
             <div class="rounded-2xl bg-brand-teal text-white p-4">
-              <p class="text-[11px] tracking-widest font-semibold opacity-70">FUNDO — INTENÇÃO / CONVERSÃO</p>
+              <p class="text-[11px] tracking-widest font-semibold opacity-70">FUNDO, INTENÇÃO / CONVERSÃO</p>
               <p class="text-xs opacity-80">Quente para conversa • ponte humana</p>
               <div class="space-y-3 mt-3">
-                <div class="rounded-xl bg-white text-brand-ink p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 7 — RECONHECIMENTO</p><p class="text-xs leading-4 mt-1">Engajamento sem download → levar à percepção de necessidade</p></div>
-                <div class="rounded-xl bg-white/10 border border-white/30 p-3"><p class="text-[11px] tracking-widest font-semibold opacity-80">FLUXO 10 — ALTA INTENÇÃO</p><p class="text-xs leading-4 mt-1">Clique recorrente WhatsApp + visita Psicoterapia → convite direto</p></div>
-                <div class="rounded-xl bg-white text-brand-ink p-3 border-2 border-amber-300"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 11 — WHATSAPP</p><p class="font-semibold text-xs text-brand-teal">Acolhimento Inicial • Ponte humana</p><p class="text-[11px] leading-4 mt-1">Contato → identificação → orientação → encaminhamento. Só mensagem inicial/horário/coleta mínima automatizados.</p></div>
-                <div class="rounded-xl bg-white/10 border border-white/30 p-3"><p class="text-[11px] tracking-widest font-semibold opacity-80">FLUXO 12 — PÓS-CONTATO</p><p class="text-xs leading-4 mt-1">Conversou e não agendou → acompanhamento sensível</p></div>
+                <div class="rounded-xl bg-white text-brand-ink p-3"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">FLUXO 7, RECONHECIMENTO</p><p class="text-xs leading-4 mt-1">Engajamento sem download → levar à percepção de necessidade</p></div>
+                <div class="rounded-xl bg-white/10 border border-white/30 p-3"><p class="text-[11px] tracking-widest font-semibold opacity-80">FLUXO 10, ALTA INTENÇÃO</p><p class="text-xs leading-4 mt-1">Clique recorrente WhatsApp + visita Psicoterapia → convite direto</p></div>
+                <div class="rounded-xl bg-white text-brand-ink p-3 border-2 border-amber-300"><p class="text-[11px] tracking-widest font-semibold text-brand-amber">FLUXO 11, WHATSAPP</p><p class="font-semibold text-xs text-brand-teal">Acolhimento Inicial • Ponte humana</p><p class="text-[11px] leading-4 mt-1">Contato → identificação → orientação → encaminhamento. Só mensagem inicial/horário/coleta mínima automatizados.</p></div>
+                <div class="rounded-xl bg-white/10 border border-white/30 p-3"><p class="text-[11px] tracking-widest font-semibold opacity-80">FLUXO 12, PÓS-CONTATO</p><p class="text-xs leading-4 mt-1">Conversou e não agendou → acompanhamento sensível</p></div>
               </div>
               <div class="mt-3 h-1.5 rounded-full bg-white/20 overflow-hidden"><div class="h-full bg-white" style="width:90%"></div></div>
               <p class="text-[11px] opacity-70 mt-1">4 fluxos • conversão</p>
@@ -2759,7 +2887,7 @@
         <div class="px-6 lg:px-10">
           <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 03/06</p>
           <h2 class="font-display text-3xl text-brand-teal mt-2">Linha do tempo</h2>
-          <p class="text-sm text-brand-ink/60 mt-1">Cronograma de implantação — do kickoff à operação contínua.</p>
+          <p class="text-sm text-brand-ink/60 mt-1">Cronograma de implantação, do kickoff à operação contínua.</p>
           <div class="grid md:grid-cols-4 gap-3 mt-6">
             <div class="rounded-2xl bg-brand-teal text-white p-4"><p class="text-[11px] tracking-widest font-semibold opacity-70">19 AGO 2026</p><p class="font-semibold text-sm">Kickoff & Diagnóstico</p><p class="text-xs opacity-80 mt-1">Briefing, DNA, SWOT, Personas, Canais</p></div>
             <div class="rounded-2xl bg-white border border-brand-sandDark p-4"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">SET 2026</p><p class="font-semibold text-sm">Fundação</p><p class="text-xs mt-1">Identidade, Tom de Voz, Sitemap, Linhas Editoriais, Mapa de Conteúdo</p></div>
@@ -2775,9 +2903,9 @@
         <div class="px-6 lg:px-10">
           <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 04/06</p>
           <h2 class="font-display text-3xl text-brand-teal mt-2">Campanha: Captação de Lead</h2>
-          <p class="text-sm text-brand-ink/60 mt-1">Conteúdo → Material → Lead → Nutrição → WhatsApp → Conversa — <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em produção — iscas propostas</span></p>
+          <p class="text-sm text-brand-ink/60 mt-1">Conteúdo → Material → Lead → Nutrição → WhatsApp → Conversa, <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-[11px] font-semibold text-amber-700">● Em produção, iscas propostas</span></p>
 
-          <!-- FUNIL VISUAL — 5 PASSOS -->
+          <!-- FUNIL VISUAL, 5 PASSOS -->
           <div class="mt-8 relative">
             <div class="hidden lg:block absolute top-[42px] left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-brand-teal/20 via-brand-teal/40 to-brand-teal/20"></div>
             <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
@@ -2819,9 +2947,9 @@
             <p class="text-xs text-center text-brand-ink/60 mt-3">Fluxo literal: <code>Conteúdo → Material → Lead → identificação do interesse → nutrição → reconhecimento da necessidade → WhatsApp → conversa.</code></p>
           </div>
 
-          <!-- 3 ISCAS — VISUAL SIMPLES -->
+          <!-- 3 ISCAS, VISUAL SIMPLES -->
           <div class="mt-8">
-            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">ISCAS — 3 MATERIAIS GRATUITOS (EM PRODUÇÃO)</p>
+            <p class="text-[11px] tracking-widest font-semibold text-brand-teal">ISCAS, 3 MATERIAIS GRATUITOS (EM PRODUÇÃO)</p>
             <div class="grid md:grid-cols-3 gap-4 mt-3">
               <div class="rounded-2xl bg-white border border-brand-sandDark overflow-hidden flex flex-col">
                 <div class="h-2 bg-brand-teal"></div>
@@ -2864,13 +2992,13 @@
                   <li>Reflexão relacionada ao tema (D+2)</li>
                   <li>Conteúdo complementar (D+4)</li>
                   <li>História / prova social (D+6)</li>
-                  <li><strong>Convite para conversar no WhatsApp</strong> (D+8) — só com sinal de interesse</li>
+                  <li><strong>Convite para conversar no WhatsApp</strong> (D+8), só com sinal de interesse</li>
                 </ol>
               </div>
               <div>
                 <p class="font-semibold text-brand-teal">Destinos:</p>
-                <p class="mt-1"><strong>Anúncio → página/conteúdo de contexto → WhatsApp</strong> (quando precisa de contexto) <br><strong>ou</strong> <strong>Anúncio → WhatsApp direto</strong> (quando há alta intenção). Ambos levam para <code>Fluxo 11 — Acolhimento Inicial (ponte humana)</code>.</p>
-                <p class="text-[11px] text-brand-ink/60 mt-2">Fonte: <code>CAMPANHA DE CAPTAÇÃO DE LEADS ...3dee104</code> • PDFs das iscas em produção — por isso o check permanece ○ até entrega.</p>
+                <p class="mt-1"><strong>Anúncio → página/conteúdo de contexto → WhatsApp</strong> (quando precisa de contexto) <br><strong>ou</strong> <strong>Anúncio → WhatsApp direto</strong> (quando há alta intenção). Ambos levam para <code>Fluxo 11, Acolhimento Inicial (ponte humana)</code>.</p>
+                <p class="text-[11px] text-brand-ink/60 mt-2">Fonte: <code>CAMPANHA DE CAPTAÇÃO DE LEADS ...3dee104</code> • PDFs das iscas em produção, por isso o check permanece ○ até entrega.</p>
               </div>
             </div>
           </details>
@@ -2886,46 +3014,695 @@
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="rounded-2xl bg-white border border-brand-sandDark p-5"><p class="text-[11px] tracking-widest font-semibold text-brand-teal">OBJETIVO</p><p class="text-sm leading-6 mt-1">Ampliar de forma recorrente o alcance qualificado dos conteúdos do Longânima entre pessoas 50+ e públicos diretamente relacionados às principais questões emocionais e relacionais, aumentando reconhecimento de marca, identificação com os temas e formação de audiência própria ao longo de 2026.</p></div>
-            <div class="rounded-2xl bg-brand-teal text-white p-5"><p class="text-[11px] tracking-widest font-semibold opacity-70">ORÇAMENTO — CENÁRIO INICIAL R$ 3.000/MÊS</p><div class="grid grid-cols-2 gap-2 text-xs mt-2"><div class="rounded-xl bg-white/10 p-3">Instagram 50%<br><strong>R$ 1.500</strong></div><div class="rounded-xl bg-white/10 p-3">TikTok 25%<br><strong>R$ 750</strong></div><div class="rounded-xl bg-white/10 p-3">YouTube 15%<br><strong>R$ 450</strong></div><div class="rounded-xl bg-white/10 p-3">Facebook 10%<br><strong>R$ 300</strong></div></div><p class="text-xs opacity-70 mt-2">Valores são hipóteses de planejamento, não estimativas de mercado. Após 30–60 dias, CPM, alcance, retenção e custo por engajamento substituem premissas.</p></div>
+            <div class="rounded-2xl bg-brand-teal text-white p-5"><p class="text-[11px] tracking-widest font-semibold opacity-70">ORÇAMENTO, CENÁRIO INICIAL R$ 3.000/MÊS</p><div class="grid grid-cols-2 gap-2 text-xs mt-2"><div class="rounded-xl bg-white/10 p-3">Instagram 50%<br><strong>R$ 1.500</strong></div><div class="rounded-xl bg-white/10 p-3">TikTok 25%<br><strong>R$ 750</strong></div><div class="rounded-xl bg-white/10 p-3">YouTube 15%<br><strong>R$ 450</strong></div><div class="rounded-xl bg-white/10 p-3">Facebook 10%<br><strong>R$ 300</strong></div></div><p class="text-xs opacity-70 mt-2">Valores são hipóteses de planejamento, não estimativas de mercado. Após 30–60 dias, CPM, alcance, retenção e custo por engajamento substituem premissas.</p></div>
           </div>
         </div>
       </section>
-      <section id="orientacoes" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 06/06</p><h2 class="font-display text-3xl text-brand-teal mt-2">Orientações Adicionais</h2><p class="text-sm text-brand-ink/60 mt-1">○ Em construção — reunir “como começar amanhã”.</p><div class="mt-6 rounded-2xl bg-white border border-brand-sandDark p-6 text-sm leading-6"><ul class="list-disc pl-5 space-y-1"><li>Manter 3/sem no IG/TikTok — não tentar 1/dia e quebrar.</li><li>Priorizar sexualidade e autonomia como portas de entrada (maior diferenciação).</li><li>Medir origem de cada novo paciente no WhatsApp desde o dia 1.</li><li>Reunião quinzenal: revisar 2 linhas editoriais por vez (Zoom Editorial previsto no GEST).</li></ul><p class="text-xs text-brand-ink/60 mt-4">Próximos passos no GEST: Tarefas 11P (calendário, linha do tempo, revisão da estratégia no MAC).</p></div></div></section>
+      <section id="orientacoes" class="slide bg-brand-sand"><div class="px-6 lg:px-10"><p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">COMO OPERAMOS • 06/06</p><h2 class="font-display text-3xl text-brand-teal mt-2">Orientações Adicionais</h2><p class="text-sm text-brand-ink/60 mt-1">○ Em construção, reunir “como começar amanhã”.</p><div class="mt-6 rounded-2xl bg-white border border-brand-sandDark p-6 text-sm leading-6"><ul class="list-disc pl-5 space-y-1"><li>Manter 3/sem no IG/TikTok, não tentar 1/dia e quebrar.</li><li>Priorizar sexualidade e autonomia como portas de entrada (maior diferenciação).</li><li>Medir origem de cada novo paciente no WhatsApp desde o dia 1.</li><li>Reunião quinzenal: revisar 2 linhas editoriais por vez (Zoom Editorial previsto no GEST).</li></ul><p class="text-xs text-brand-ink/60 mt-4">Próximos passos no GEST: Tarefas 11P (calendário, linha do tempo, revisão da estratégia no MAC).</p></div></div></section>
+
+      <!-- 06.01 ESTEIRA DE SERVIÇOS & OFERTAS -->
+      <section id="esteira-servicos" class="slide bg-white">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 01/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Esteira de Serviços, Programas Clínicos & Ofertas</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Transformando psicoterapia abstrata em programas focados em momentos de vida, transições e dores concretas do público 50+.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold">5 Modalidades Estruturadas</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">Conversão por Momento de Vida</span>
+            </div>
+          </div>
+
+          <!-- GRID DOS 5 PROGRAMAS E SERVIÇOS -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+
+            <!-- OFERTA 1: ENTRADA / ACOLHIMENTO -->
+            <div class="rounded-3xl bg-brand-sand/70 border-2 border-brand-teal/30 p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute top-0 right-0 bg-brand-teal text-white text-[9px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">Porta de Entrada</div>
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-brand-teal">01 • PRIMEIRA CONEXÃO</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1">Sessão de Acolhimento & Mapeamento</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Primeiro encontro individual de escuta profunda (online ou presencial no ES). Sem questionários invasivos ou pressão diagnóstica. Focado em compreender o momento vivido e desenhar o caminho terapêutico.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> <strong>Objetivo:</strong> Quebrar o medo de "não saber o que falar".</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> <strong>Duração:</strong> 50 a 60 minutos.</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> <strong>Destino:</strong> Direcionamento para acompanhamento contínuo.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark flex items-center justify-between text-[11px] font-semibold text-brand-teal">
+                <span>Anti-fricção • Conversa Leve</span>
+                <span>Taxa de adesão: ~75%</span>
+              </div>
+            </div>
+
+            <!-- OFERTA 2: PROGRAMA NOVOS CICLOS -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-brand-marrom">02 • PROGRAMA INDIVIDUAL</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1">Programa "Novos Ciclos"</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Jornada de 8 a 12 semanas para quem está vivenciando a transição da aposentadoria, o ninho vazio ou a sensação de perda de propósito e invisibilidade social após os 50/60 anos.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold">✓</span> Resgate da identidade além da profissão.</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold">✓</span> Reorganização da rotina, autonomia e projetos pessoais.</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold">✓</span> Exercícios reflexivos de autopercepção.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark flex items-center justify-between text-[11px] font-semibold text-brand-marrom">
+                <span>Público: Transição de Vida</span>
+                <span>Ciclo de 8 a 12 sessões</span>
+              </div>
+            </div>
+
+            <!-- OFERTA 3: PROGRAMA RECONSTRUIR (LUTO & PERDAS) -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-brand-plum">03 • ESPECIALIDADE CLÍNICA</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1">Programa "Reconstruir" (Luto & Perdas)</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Acompanhamento especializado em Tanatologia para elaboração de lutos cumulativos: falecimento do cônjuge, perda de amigos, perda de mobilidade física ou rompimentos na maturidade.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-plum font-bold">✓</span> Espaço de acolhimento para dor sem pressa de superação.</div>
+                  <div class="flex items-center gap-2 text-brand-plum font-bold">✓</span> Validação da tristeza sem patologização da saudade.</div>
+                  <div class="flex items-center gap-2 text-brand-plum font-bold">✓</span> Reconstrução do senso de pertencimento e autocuidado.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark flex items-center justify-between text-[11px] font-semibold text-brand-plum">
+                <span>Tanatologia Clínica</span>
+                <span>Cuidado Continuado</span>
+              </div>
+            </div>
+
+            <!-- OFERTA 4: INTIMIDADE & DESEJO 50+ -->
+            <div class="rounded-3xl bg-[#F8F5EE] border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-brand-teal">04 • DIFERENCIAÇÃO MÁXIMA</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1">Intimidade, Corpo & Desejo 50+</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Psicoterapia individual ou para casais maduros abordando sexualidade após a menopausa/andropausa, mudanças corporais, comunicação íntima e quebra de culpas culturais.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> Desmistificação de tabus sexuais na longevidade.</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> Diálogo aberto sobre novos formatos de prazer e carinho.</div>
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold">✓</span> Atendimento individual ou para o casal.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark flex items-center justify-between text-[11px] font-semibold text-brand-teal">
+                <span>Maior Motor de Atração</span>
+                <span>Individual / Casal</span>
+              </div>
+            </div>
+
+            <!-- OFERTA 5: ORIENTAÇÃO FAMILIAR & CUIDADORES -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-brand-marrom">05 • NÚCLEO FAMILIAR</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1">Orientação para Filhos & Cuidadores</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Consultorias pontuais (1 a 3 sessões) com filhos e familiares para alinhar o cuidado sem infantilização, mediação de conflitos sobre moradia/autonomia e prevenção do esgotamento do cuidador.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-center gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold">✓</span> Como ajudar o idoso sem tirar sua independência.</div>
+                  <div class="flex items-center gap-2 text-brand-marrom font-bold">✓</span> Alívio da sobrecarga emocional e culpa dos filhos.</div>
+                  <div class="flex items-center gap-2 text-brand-marrom font-bold">✓</span> Estratégias práticas de diálogo em família.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark flex items-center justify-between text-[11px] font-semibold text-brand-marrom">
+                <span>Comprador Oculto</span>
+                <span>Pacote de 1 a 3 sessões</span>
+              </div>
+            </div>
+
+            <!-- CARD SÍNTESE DO MODELO DE NEGÓCIOS -->
+            <div class="rounded-3xl bg-brand-marrom text-white p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-amber-300 uppercase tracking-widest">Sustentabilidade Clínica</span>
+                <h4 class="font-display text-lg font-bold text-white mt-1">A Lógica da Conversão Contínua</h4>
+                <p class="text-xs text-white/80 mt-2 leading-relaxed">
+                  Em vez de disputar preço por sessão avulsa, o Instituto Longânima posiciona cada atendimento como uma <strong>jornada com começo, meio e transformação clara</strong>, aumentando o LTV (tempo de permanência) e a retenção espontânea.
+                </p>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-white/20 text-[11px] text-white/90">
+                ★ <strong>Meta 20 novos/mês:</strong> 15 pacientes em programas contínuos + 5 em sessões de orientação familiar.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 06.02 MANUAL DE CONVERSÃO WHATSAPP (A PONTE HUMANA) -->
+      <section id="script-whatsapp" class="slide bg-brand-sand">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 02/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Manual de Conversão no WhatsApp, "A Ponte Humana"</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Protocolos de atendimento acolhedor para transformar o clique do anúncio/site em consulta agendada, sem frieza robótica.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-white border border-brand-sandDark text-brand-marrom font-semibold">Tempo de Resposta &lt; 15 min</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">4 Scripts Prontos</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-plum text-white font-semibold">Ética CFP</span>
+            </div>
+          </div>
+
+          <!-- OS 3 PRINCÍPIOS DE OURO DO ATENDIMENTO -->
+          <div class="grid md:grid-cols-3 gap-3.5 mt-5">
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm">
+              <div class="flex items-center gap-2 text-brand-teal font-bold text-xs">
+                <span class="w-6 h-6 rounded-full bg-brand-sand grid place-items-center text-[11px]">1</span>
+                <span>Acolher Antes de Precificar</span>
+              </div>
+              <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                Nunca responder apenas com a tabela de preços. Validar o sentimento: <em>“Que bom que você deu esse passo. Como você está se sentindo hoje?”</em>
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm">
+              <div class="flex items-center gap-2 text-brand-marrom font-bold text-xs">
+                <span class="w-6 h-6 rounded-full bg-brand-sand grid place-items-center text-[11px]">2</span>
+                <span>Identificar Quem Fala (Triagem Sutil)</span>
+              </div>
+              <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                Perguntar com gentileza se a mensagem é para a própria pessoa ou se ela está buscando apoio para um pai, mãe ou parceiro(a).
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm">
+              <div class="flex items-center gap-2 text-brand-plum font-bold text-xs">
+                <span class="w-6 h-6 rounded-full bg-brand-sand grid place-items-center text-[11px]">3</span>
+                <span>Desmistificar a 1ª Sessão</span>
+              </div>
+              <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                Esclarecer que a primeira conversa não é um interrogatório, mas um momento seguro e calmo para se conhecerem sem julgamentos.
+              </p>
+            </div>
+          </div>
+
+          <!-- GRID DOS 4 SCRIPTS REAIS DE RESPOSTA -->
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+
+            <!-- SCRIPT 1: PACIENTE COM VERGONHA / TIMIDEZ -->
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-sand text-brand-marrom uppercase">Cenário 01 • Paciente Próprio (Inseguro)</span>
+                  <span class="text-[10px] text-brand-teal font-medium">“Gostaria de saber como funciona...”</span>
+                </div>
+                <div class="mt-2.5 p-3 rounded-xl bg-[#FDF8F0] border border-brand-sandDark text-xs text-brand-ink leading-relaxed font-sans">
+                  <p>“Olá! Que alegria receber sua mensagem. Aqui é do Instituto Longânima com a Dra. Kelly Bruzeguini.</p>
+                  <p class="mt-1.5">Antes de mais nada, quero te tranquilizar: dar esse primeiro passo exige coragem, e aqui nós cuidamos de cada história no seu próprio tempo, sem nenhuma cobrança.</p>
+                  <p class="mt-1.5">Nossa primeira sessão é uma <strong>conversa de escuta e acolhimento</strong>, onde você fica à vontade para compartilhar o que estiver sentindo. Atendemos presencialmente aqui no ES e também por vídeo com todo o sigilo.</p>
+                  <p class="mt-1.5">Você prefere atendimento presencial ou online? Me conta também qual o melhor dia/horário para você!”</p>
+                </div>
+              </div>
+              <span class="text-[10px] text-brand-ink/60 mt-2">✓ Taxa de resposta média: 82% de engajamento positivo.</span>
+            </div>
+
+            <!-- SCRIPT 2: FILHO(A) BUSCANDO AJUDA PARA OS PAIS -->
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-sand text-brand-marrom uppercase">Cenário 02 • Filho(a) Cuidador(a)</span>
+                  <span class="text-[10px] text-brand-marrom font-medium">“Meu pai/mãe está muito desanimado...”</span>
+                </div>
+                <div class="mt-2.5 p-3 rounded-xl bg-[#FDF8F0] border border-brand-sandDark text-xs text-brand-ink leading-relaxed font-sans">
+                  <p>“Olá! É muito bonito ver o seu cuidado com a sua família. Sei o quanto pode ser desafiador ver quem amamos passando por um momento difícil.</p>
+                  <p class="mt-1.5">A Dra. Kelly é especialista em maturidade e tem um jeito muito acolhedor de conversar, <strong>sem nunca infantilizar ou fazer a pessoa se sentir doente</strong>.</p>
+                  <p class="mt-1.5">Muitas vezes, fazemos uma primeira conversa de orientação com você (filho/filha) para traçar a melhor forma de convidá-lo(a) com leveza, ou agendamos direto se ele(a) já estiver de acordo. Como está a aceitação dele(a) no momento?”</p>
+                </div>
+              </div>
+              <span class="text-[10px] text-brand-ink/60 mt-2">✓ Quebra o dilema de como convencer o idoso sem atrito.</span>
+            </div>
+
+            <!-- SCRIPT 3: SEXUALIDADE & INTIMIDADE -->
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-sand text-brand-teal uppercase">Cenário 03 • Dúvida sobre Sexualidade</span>
+                  <span class="text-[10px] text-brand-teal font-medium">“Vi seu vídeo sobre menopausa/desejo...”</span>
+                </div>
+                <div class="mt-2.5 p-3 rounded-xl bg-[#FDF8F0] border border-brand-sandDark text-xs text-brand-ink leading-relaxed font-sans">
+                  <p>“Olá! Que maravilhoso que você viu nosso conteúdo. Falar sobre intimidade e sexualidade na maturidade ainda é um tabu para muitos, mas para a Dra. Kelly é um território de saúde, afeto e vida.</p>
+                  <p class="mt-1.5">Nosso espaço é 100% livre de julgamentos. O atendimento pode ser individual ou com o casal, focado nas mudanças do corpo, na redescoberta do prazer e no diálogo com o parceiro.</p>
+                  <p class="mt-1.5">Gostaria de agendar uma conversa para entender como podemos te apoiar?”</p>
+                </div>
+              </div>
+              <span class="text-[10px] text-brand-ink/60 mt-2">✓ Alivia a vergonha e normaliza o tema imediatamente.</span>
+            </div>
+
+            <!-- SCRIPT 4: PLANOS DE SAÚDE & REEMBOLSO -->
+            <div class="rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-sand text-brand-plum uppercase">Cenário 04 • Objeção de Convênio / Plano</span>
+                  <span class="text-[10px] text-brand-plum font-medium">“Vocês atendem Unimed / Cassi / Bradesco?”</span>
+                </div>
+                <div class="mt-2.5 p-3 rounded-xl bg-[#FDF8F0] border border-brand-sandDark text-xs text-brand-ink leading-relaxed font-sans">
+                  <p>“Olá! Para garantir um atendimento com tempo dedicado, escuta sem pressa e acompanhamento personalizado de verdade, nossos atendimentos são particulares.</p>
+                  <p class="mt-1.5">No entanto, <strong>emitimos recibo profissional com CRP completo para solicitação de reembolso</strong> junto ao seu plano de saúde (a maioria dos convênios cobre parte significativa das sessões de psicoterapia).</p>
+                  <p class="mt-1.5">Podemos te orientar em como solicitar o reembolso com a declaração. Quer que eu te apresente os horários disponíveis desta semana?”</p>
+                </div>
+              </div>
+              <span class="text-[10px] text-brand-ink/60 mt-2">✓ Converte a objeção do convênio em oportunidade de reembolso.</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 06.03 PARCERIAS MÉDICAS & B2B NO ES -->
+      <section id="parcerias-es" class="slide bg-white">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 03/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Parcerias Médicas & Ecossistema B2B no Espírito Santo</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Estratégia de encaminhamento qualificado com médicos e centros de longevidade na Grande Vitória e interior do ES.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold">Tráfego B2B & Encaminhamento</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">Praia do Canto • Bento Ferreira • Linhares</span>
+            </div>
+          </div>
+
+          <!-- GRID DE ESPECIALIDADES MÉDICAS PARCEIRAS (3 Colunas) -->
+          <div class="grid lg:grid-cols-3 gap-5 mt-5">
+
+            <!-- COLUNA 1: GINECOLOGIA & CLIMATÉRIO -->
+            <div class="rounded-3xl bg-brand-sand/60 border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-brand-teal uppercase tracking-wide">01 • Ginecologia & Menopausa</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded bg-white font-mono text-brand-teal">Alta Sinergia</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Clínicas de Saúde da Mulher 40+</h4>
+                <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                  Mulheres em climatério e menopausa frequentemente relatam queda de libido, ansiedade e angústia corporal aos ginecologistas. O médico cuida da reposição hormonal, enquanto a Dra. Kelly assume o suporte emocional e psicoterapêutico da sexualidade.
+                </p>
+                <div class="mt-3 p-2.5 rounded-xl bg-white border border-brand-sandDark text-[11px] text-brand-marrom">
+                  <strong>Ação Estratégica:</strong> Visita institucional e envio do One-Pager da Longânima para 15 ginecologistas de Vitória e Vila Velha.
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark text-[10px] text-brand-ink/70">
+                Público compartilhado: Mulheres 48–65 anos (Persona Marlene & Lúcia).
+              </div>
+            </div>
+
+            <!-- COLUNA 2: GERIATRIA & CARDIOLOGIA / CLÍNICAS -->
+            <div class="rounded-3xl bg-brand-sand/60 border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-brand-marrom uppercase tracking-wide">02 • Geriatria & Clínica Geral</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded bg-white font-mono text-brand-marrom">Grande Vitória</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Médicos Geriatras do ES</h4>
+                <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                  Geriatras diagnosticam isolamento social, lutos recentes e sintomas depressivos leves, mas não têm tempo de consulta para terapia continuada. Kelly se posiciona como o braço de escuta e saúde mental de confiança do médico.
+                </p>
+                <div class="mt-3 p-2.5 rounded-xl bg-white border border-brand-sandDark text-[11px] text-brand-marrom">
+                  <strong>Ação Estratégica:</strong> Apresentação em eventos da SBGG-ES (Sociedade Brasileira de Geriatria e Gerontologia - ES).
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark text-[10px] text-brand-ink/70">
+                Público compartilhado: Idosos 65+ e famílias cuidadoras (Aparecida & Célia).
+              </div>
+            </div>
+
+            <!-- COLUNA 3: ESPAÇOS DE LONGEVIDADE, PILATES & CONVIVÊNCIA -->
+            <div class="rounded-3xl bg-brand-sand/60 border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-brand-plum uppercase tracking-wide">03 • Bem-Estar Sênior & Pilates</span>
+                  <span class="text-[9px] px-2 py-0.5 rounded bg-white font-mono text-brand-plum">Espaços Ativos</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Estúdios de Movimento & CCTIs</h4>
+                <p class="text-xs text-brand-ink/75 mt-1.5 leading-relaxed">
+                  Parcerias com estúdios de Pilates funcional, fisioterapia preventiva e grupos de convivência na Praia do Canto e Jardim Camburi para palestras breves e rodas de conversa sobre "Envelhecimento Ativo & Mente Lúcida".
+                </p>
+                <div class="mt-3 p-2.5 rounded-xl bg-white border border-brand-sandDark text-[11px] text-brand-marrom">
+                  <strong>Ação Estratégica:</strong> Workshops presenciais de 1 hora com distribuição de material impresso do Instituto Longânima.
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark text-[10px] text-brand-ink/70">
+                Público compartilhado: Pessoas 55+ ativas e com poder aquisitivo.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- O KIT DE PARCERIA MÉDICA (ONE-PAGER) -->
+          <div class="mt-5 rounded-2xl bg-brand-teal text-white p-5 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="space-y-1">
+              <span class="text-[10px] font-bold tracking-widest px-2 py-0.5 rounded bg-white/20 uppercase text-amber-200">Instrumento de Vendas B2B</span>
+              <h4 class="font-display text-base font-bold">O One-Pager Institucional da Dra. Kelly para Médicos</h4>
+              <p class="text-xs text-white/85 max-w-3xl leading-relaxed">
+                Documento executivo em PDF de 1 página apresentando: Credenciais (CRP, Gerontologia, Tanatologia) • Abordagem sem jargão • Relatório de contra-referência e evolução ética para o médico assistente • Canal direto e exclusivo de WhatsApp para médicos encaminhadores.
+              </p>
+            </div>
+            <span class="px-4 py-2 rounded-full bg-white text-brand-teal font-bold text-xs shrink-0 shadow-sm">Meta: 5 novos pacientes/mês via rede médica</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06.04 PROVA SOCIAL ÉTICA & ESTUDOS DE CASOS -->
+      <section id="estudos-caso" class="slide bg-brand-sand">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 04/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Prova Social Ética, Estudos de Casos Clínicos</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Como transmitir autoridade e identificação de resultados clínicos em total conformidade com o Código de Ética do CFP.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-white border border-brand-sandDark text-brand-marrom font-semibold">Sigilo Absoluto</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">Casos Anonimizados</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-plum text-white font-semibold">Storytelling Clínico</span>
+            </div>
+          </div>
+
+          <!-- GRID DOS 4 CASOS ARQUETÍPICOS -->
+          <div class="grid md:grid-cols-2 gap-4 mt-5">
+
+            <!-- CASO 1: DONA MARLENE -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-sand text-brand-marrom uppercase">Caso 01 • Luto & Reencontro</span>
+                  <span class="text-xs text-brand-teal font-semibold">Mulher, 68 anos • Grande Vitória</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Da Viuvez Silenciosa à Redescoberta do Desejo</h4>
+                <div class="mt-3 space-y-2 text-xs leading-relaxed text-brand-ink/80">
+                  <p><strong>Cenário Inicial:</strong> Viúva há 4 anos, vivia em função dos netos e afazeres domésticos. Sentia culpa profunda ao sentir atração por um novo companheiro e medo do julgamento dos filhos.</p>
+                  <p><strong>Intervenção Terapêutica (Dra. Kelly):</strong> Desconstrução da crença de que a viuvez exige luto eterno. Validação do corpo e da sexualidade madura como direito inegociável de vida.</p>
+                  <p class="text-brand-teal font-medium"><strong>Resultado Clínico:</strong> Estabeleceu diálogo firme com os filhos, assumiu o novo namoro e resgatou a vaidade e a rotina social com autonomia plena.</p>
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark flex items-center justify-between text-[11px] text-brand-ink/60">
+                <span>Aplicação: Artigos de Blog & Cortes de Vídeo</span>
+                <span class="font-semibold text-brand-teal">Tema: Sexualidade 50+</span>
+              </div>
+            </div>
+
+            <!-- CASO 2: DR. JORGE -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-sand text-brand-marrom uppercase">Caso 02 • Aposentadoria & Identidade</span>
+                  <span class="text-xs text-brand-teal font-semibold">Homem, 63 anos • Vitória</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Do Vazio Pós-Carreira ao Novo Ciclo de Propósito</h4>
+                <div class="mt-3 space-y-2 text-xs leading-relaxed text-brand-ink/80">
+                  <p><strong>Cenário Inicial:</strong> Ex-diretor de empresa, aposentou-se e entrou em quadro de irritabilidade, insônia e perda de identidade: <em>“Quem sou eu agora que não tenho crachá?”</em></p>
+                  <p><strong>Intervenção Terapêutica (Dra. Kelly):</strong> Programa Novos Ciclos. Ressignificação do valor pessoal desvinculado da produtividade corporativa e reconstrução da relação com a esposa em casa.</p>
+                  <p class="text-brand-marrom font-medium"><strong>Resultado Clínico:</strong> Início de consultorias voluntárias pontuais, resgate de hobbies manuais e redução drástica da ansiedade diária.</p>
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark flex items-center justify-between text-[11px] text-brand-ink/60">
+                <span>Aplicação: Carrosséis no Instagram & LinkedIn</span>
+                <span class="font-semibold text-brand-marrom">Tema: Aposentadoria Ativa</span>
+              </div>
+            </div>
+
+            <!-- CASO 3: CÉLIA E SUA MÃE -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-sand text-brand-plum uppercase">Caso 03 • Família & Tutela</span>
+                  <span class="text-xs text-brand-plum font-semibold">Filha 61 anos & Mãe 84 anos</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Cuidar com Amor sem Transformar a Mãe em Criança</h4>
+                <div class="mt-3 space-y-2 text-xs leading-relaxed text-brand-ink/80">
+                  <p><strong>Cenário Inicial:</strong> A filha Célia controlava horários, finanças e amizades da mãe viúva, gerando brigas constantes e sensação de asfixia na idosa.</p>
+                  <p><strong>Intervenção Terapêutica (Dra. Kelly):</strong> Sessões de orientação familiar. Diferenciação entre apoio com segurança e superproteção invalidante.</p>
+                  <p class="text-brand-plum font-medium"><strong>Resultado Clínico:</strong> Devolução da autonomia de compras e decisões da mãe; alívio da sobrecarga e culpa da filha cuidadora.</p>
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark flex items-center justify-between text-[11px] text-brand-ink/60">
+                <span>Aplicação: Vídeos de Alerta para Filhos</span>
+                <span class="font-semibold text-brand-plum">Tema: Cuidar sem Infantilizar</span>
+              </div>
+            </div>
+
+            <!-- CASO 4: LÚCIA -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-sand text-brand-teal uppercase">Caso 04 • Prevenção & Longevidade</span>
+                  <span class="text-xs text-brand-teal font-semibold">Mulher, 54 anos • Vila Velha</span>
+                </div>
+                <h4 class="font-display text-base font-bold text-brand-marrom mt-2">Preparação Emocional para os Próximos 30 Anos</h4>
+                <div class="mt-3 space-y-2 text-xs leading-relaxed text-brand-ink/80">
+                  <p><strong>Cenário Inicial:</strong> Advogada no auge da carreira com crise de meia-idade e pavor do envelhecimento físico e da perda de relevância social.</p>
+                  <p><strong>Intervenção Terapêutica (Dra. Kelly):</strong> Construção de uma narrativa de longevidade positiva, resgate do autocuidado sem pressões estéticas inalcançáveis.</p>
+                  <p class="text-brand-teal font-medium"><strong>Resultado Clínico:</strong> Paz com as mudanças corporais, melhoria nas relações afetivas e planejamento tranquilo da transição de carreira.</p>
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-brand-sandDark flex items-center justify-between text-[11px] text-brand-ink/60">
+                <span>Aplicação: Artigos Longform & E-book</span>
+                <span class="font-semibold text-brand-teal">Tema: Longevidade Ativa</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 06.05 FILHOS CUIDADORES (O COMPRADOR OCULTO) -->
+      <section id="filhos-cuidadores" class="slide bg-white">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 05/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Comunicação com Filhos Cuidadores, O Comprador Oculto</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Estratégia dedicada aos filhos de 35 a 52 anos que financiam, incentivam ou pesquisam apoio terapêutico para os pais.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold">Público Decisor 35–52 Anos</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">Tráfego Segmentado Meta</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-plum text-white font-semibold">Sem Culpa, Com Técnica</span>
+            </div>
+          </div>
+
+          <!-- TOP GRID: O DILEMA DO FILHO CUIDADOR VS. A SOLUÇÃO DA LONGÂNIMA -->
+          <div class="grid lg:grid-cols-12 gap-5 mt-5">
+
+            <!-- CARD 1: O MAPA DE DORES DO FILHO (6 Colunas) -->
+            <div class="lg:col-span-6 rounded-3xl bg-brand-sand/60 border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-white border text-brand-marrom uppercase">O Dilema Real dos Filhos</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-2">“Quero ajudar, mas meu pai se recusa a ir ao psicólogo.”</h3>
+                <ul class="text-xs text-brand-ink/80 mt-3 space-y-2 leading-relaxed">
+                  <li>• <strong>Medo de Ofender:</strong> O idoso acha que ir ao psicólogo significa que está <em>“ficando gagá”</em> ou <em>“dando trabalho”</em>.</li>
+                  <li>• <strong>Sobrecarga Emocional:</strong> Filhos se dividem entre trabalho, filhos pequenos e o cuidado cansativo dos pais envelhecidos.</li>
+                  <li>• <strong>Culpa Constante:</strong> A sensação de nunca estar fazendo o suficiente ou de estar sendo impaciente com a lentidão do idoso.</li>
+                </ul>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark text-[11px] text-brand-marrom font-semibold">
+                ★ <strong>Oportunidade:</strong> O Instituto Longânima é o porto seguro que orienta os filhos a abordar os pais sem conflito.
+              </div>
+            </div>
+
+            <!-- CARD 2: ESTRATÉGIA DE ANÚNCIOS & CRIATIVOS ESPECÍFICOS (6 Colunas) -->
+            <div class="lg:col-span-6 rounded-3xl bg-brand-teal text-white p-5 shadow-sm flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-white/20 uppercase text-amber-200">Campanhas Dedicadas (Meta Ads)</span>
+                <h3 class="font-display text-lg font-bold text-white mt-2">Criativos Direcionados para Filhos (35 a 52 anos)</h3>
+                
+                <div class="space-y-2 mt-3 text-xs text-white/90">
+                  <div class="p-2.5 rounded-xl bg-white/10 border border-white/15">
+                    <p class="font-bold text-amber-200">Gancho 01: Acolher sem desautorizar</p>
+                    <p class="text-[11px] mt-0.5">“Você já percebeu que, ao tentar proteger seus pais idosos, você pode estar tirando a autonomia deles? Veja como conversar com eles sem criar brigas.”</p>
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-white/10 border border-white/15">
+                    <p class="font-bold text-amber-200">Gancho 02: O luto silencioso da aposentadoria</p>
+                    <p class="text-[11px] mt-0.5">“Seu pai ou sua mãe se aposentou e perdeu o brilho nos olhos? A psicologia da longevidade ajuda a encontrar novos propósitos.”</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3 pt-2.5 border-t border-white/20 text-[10px] text-white/80">
+                ⚡ <strong>CTA do Anúncio:</strong> “Agende uma conversa de orientação para saber como apoiar seus pais.” ➔ WhatsApp da Longânima.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TABELA DE LINHAS EDITORIAIS PARA FILHOS CUIDADORES -->
+          <div class="mt-4 rounded-2xl bg-white border border-brand-sandDark p-4 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-brand-marrom uppercase">Território Editorial: Cuidar de Quem Cuidou de Você</span>
+              <span class="text-[10px] text-brand-teal font-medium">1 post quinzenal dedicado a filhos cuidadores</span>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-brand-sand">
+                <p class="font-bold text-brand-marrom">1. Comunicação Não-Violenta</p>
+                <p class="text-[11px] text-brand-ink/75 mt-1">Como sugerir auxílio sem usar frases que diminuem a capacidade de decisão do idoso.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-brand-sand">
+                <p class="font-bold text-brand-marrom">2. Limites do Cuidador</p>
+                <p class="text-[11px] text-brand-ink/75 mt-1">Como os filhos podem cuidar da própria saúde mental sem se sentirem egoístas.</p>
+              </div>
+              <div class="p-3 rounded-xl bg-brand-sand">
+                <p class="font-bold text-brand-marrom">3. Mediação Familiar</p>
+                <p class="text-[11px] text-brand-ink/75 mt-1">Sessões conjuntas para alinhar divisões de cuidados entre irmãos sem desgaste.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 06.06 ROADMAP DE EXPANSÃO (DE CONSULTÓRIO A INSTITUTO) -->
+      <section id="roadmap-futuro" class="slide bg-brand-sand">
+        <div class="px-6 lg:px-10 max-w-[1400px]">
+          <!-- Header do Slide -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-brand-sandDark pb-4">
+            <div>
+              <p class="text-xs tracking-[0.18em] font-semibold text-brand-plum">ACELERAÇÃO & EXPANSÃO • 06/06</p>
+              <h2 class="font-display text-3xl lg:text-4xl text-brand-marrom mt-1 font-semibold">Roadmap de Expansão, De Consultório a Instituto</h2>
+              <p class="text-sm text-brand-ink/70 mt-1">Visão estratégica plurianual (2026–2028) para escalar o impacto da Longânima sem sobrecarregar a capacidade individual da Kelly.</p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-start md:self-auto flex-wrap">
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-plum text-white font-semibold">Visão de Futuro 2026–2028</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-brand-teal text-white font-semibold">Corpo Clínico Associado</span>
+              <span class="text-xs px-3 py-1.5 rounded-full bg-white border border-brand-sandDark text-brand-marrom font-semibold">Hub de Longevidade</span>
+            </div>
+          </div>
+
+          <!-- LINHA DO TEMPO EM 3 FASES ESTRATÉGICAS -->
+          <div class="grid lg:grid-cols-3 gap-5 mt-5">
+
+            <!-- FASE 1: 2026 (ATUAL) -->
+            <div class="rounded-3xl bg-white border-2 border-brand-teal p-5 shadow-sm flex flex-col justify-between relative">
+              <div class="absolute -top-3 left-6 bg-brand-teal text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Fase Atual • 2026</div>
+              <div>
+                <span class="text-xs font-bold text-brand-teal tracking-wide">FASE 01 • CONSOLIDAÇÃO INDIVIDUAL</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1.5">Consultório Líder & Tração</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Foco na consolidação da autoridade da Dra. Kelly como a principal referência capixaba em sexualidade, luto e envelhecimento ativo.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold shrink-0">✓</span> Atingir e manter a meta de <strong>20 novos pacientes/mês</strong>.</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold shrink-0">✓</span> Publicação de 3 conteúdos/semana e rotina de gravação sustentável.</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-teal font-bold shrink-0">✓</span> Otimização da conversão via site oficial e WhatsApp Business.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark text-[11px] font-semibold text-brand-teal">
+                Capacidade: Até 35 atendimentos semanais da Kelly.
+              </div>
+            </div>
+
+            <!-- FASE 2: 2027 (EXPANSÃO DO CORPO CLÍNICO) -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between relative">
+              <div class="absolute -top-3 left-6 bg-brand-marrom text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Projeto Futuro • 2027</div>
+              <div>
+                <span class="text-xs font-bold text-brand-marrom tracking-wide">FASE 02 • CORPO CLÍNICO ASSOCIADO</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1.5">Transição de Consultório para Instituto</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Entrada de psicólogos parceiros / associados sob a supervisão clínica e metodologia da Dra. Kelly para absorver a demanda excedente.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold shrink-0">★</span> Contratação e supervisão de <strong>2 psicólogos associados</strong>.</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold shrink-0">★</span> Criação de <strong>Grupos Terapêuticos de Convivência</strong> (maior escala e acessibilidade).</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-marrom font-bold shrink-0">★</span> Kelly assume papel de Diretora Clínica, casos complexos e mentora.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark text-[11px] font-semibold text-brand-marrom">
+                Escalabilidade: +60 a 80 pacientes ativos simultâneos.
+              </div>
+            </div>
+
+            <!-- FASE 3: 2027-2028 (INSTITUTO LONGÂNIMA HUB) -->
+            <div class="rounded-3xl bg-white border border-brand-sandDark p-5 shadow-sm flex flex-col justify-between relative">
+              <div class="absolute -top-3 left-6 bg-brand-plum text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Visão Macro • 2028</div>
+              <div>
+                <span class="text-xs font-bold text-brand-plum tracking-wide">FASE 03 • HUB DE LONGEVIDADE</span>
+                <h3 class="font-display text-lg font-bold text-brand-marrom mt-1.5">O Espaço Integrado Longânima</h3>
+                <p class="text-xs text-brand-ink/75 mt-2 leading-relaxed">
+                  Consolidação do sonho master: um espaço multidisciplinar dedicado ao envelhecimento ativo, com psicoterapia, oficinas de memória, sexualidade e palestras corporativas.
+                </p>
+                <div class="mt-3.5 space-y-1.5 text-xs">
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-plum font-bold shrink-0">★</span> Espaço físico com alma na Grande Vitória (ES).</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-plum font-bold shrink-0">★</span> <strong>Programas Corporativos Anti-Etarismo</strong> para empresas capixabas.</div>
+                  <div class="flex items-start gap-2 text-brand-ink/80"><span class="text-brand-plum font-bold shrink-0">★</span> Cursos e e-books em escala nacional.</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-brand-sandDark text-[11px] font-semibold text-brand-plum">
+                Impacto: Referência regional e nacional em Psicogerontologia.
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BARRA INFERIOR DE CONCLUSÃO ESTRATÉGICA -->
+          <div class="mt-4 rounded-2xl bg-brand-marrom text-white p-4 flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-300 text-brand-marrom text-[10px] font-bold uppercase">Diretriz de Crescimento</span>
+              <span class="text-white/90 text-[11px]">Crescer com sustentabilidade ética, preservando o calor humano e o tempo da especialista enquanto a marca Longânima se institucionaliza.</span>
+            </div>
+            <span class="text-amber-200 font-mono text-[10px] font-semibold shrink-0">Instituto Longânima • 2026–2028</span>
+          </div>
+
+        </div>
+      </section>
 
       <!-- FOOTER -->
-      <footer class="bg-brand-teal text-white">
-        <div class="px-6 lg:px-10 py-10 grid lg:grid-cols-3 gap-8 text-sm">
-          <div>
-            <p class="font-display text-lg">Instituto Longânima</p>
-            <p class="opacity-70 leading-6 mt-2">Viver bem, rejuvenescendo. Projeto que começa como consultório psicológico voltado à maturidade e sonha em construir um espaço dedicado ao envelhecimento com dignidade, autonomia e qualidade de vida.</p>
-            <p class="text-xs opacity-50 mt-3">Fotos: GBA • Vídeos: 05_VIDEOS • Estratégia: 08_CONTEÚDOS_NOTION/_CURADOS_KELLY</p>
+      <footer class="bg-brand-teal text-white border-t border-brand-tealLight/30">
+        <div class="px-6 lg:px-10 py-10 max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+          <div class="flex items-center gap-3">
+            <img src="/assets/logo.png" alt="Instituto Longânima" class="h-10 w-auto brightness-0 invert opacity-90" />
+            <div>
+              <p class="font-display text-base font-semibold">Instituto Longânima</p>
+              <p class="text-xs opacity-75">Dra. Kelly Bruzeguini Eira • Psicologia Clínica, Sexualidade & Envelhecimento Ativo</p>
+            </div>
+          </div>
+          <div class="text-xs text-white/70 text-center md:text-right space-y-1">
+            <p>Planejamento Estratégico de Posicionamento & Conteúdos • 2026</p>
+            <p class="text-[11px] text-white/50">Grande Vitória • Espírito Santo</p>
           </div>
           <div>
-            <p class="font-semibold">Fontes deste slide-doc</p>
-            <ul class="opacity-80 leading-6 mt-2 text-xs">
-              <li>• 33 MDs curados de GEST/Central</li>
-              <li>• 13 PDFs de 02_ESTRATEGIA/DOCUMENTOS_ESTRATEGICOS</li>
-              <li>• pagina-sobre-mim-kelly.md + Persona/Jornada</li>
-              <li>• LOGO + Manual de Marca + Linguagem Visual</li>
-            </ul>
-          </div>
-          <div>
-            <p class="font-semibold">Deploy</p>
-            <p class="opacity-80 leading-6 mt-2 text-xs">Vite + Tailwind • <code>09_SITE_SLIDE_DOC</code> → <code>dist/</code> → Vercel. <br> <code>npm run dev</code> local, <code>npm run build</code> + <code>vercel --prod</code>. Ver AGENT.md para workflow.</p>
-            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="inline-block mt-4 text-xs px-3 py-1.5 rounded-full bg-white text-brand-teal font-medium">Voltar ao topo ↑</a>
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-full bg-white text-brand-teal font-semibold hover:bg-brand-sand transition shadow-sm">
+              <span>Voltar ao topo</span>
+              <span>↑</span>
+            </a>
           </div>
         </div>
       </footer>
     </main>
   </div>
 
-  <!-- Mobile nav (bottom) -->
-  <nav class="lg:hidden fixed bottom-0 inset-x-0 bg-white border-t border-brand-sandDark flex overflow-x-auto gap-1 p-2 text-xs z-40">
-    <a href="#objetivos" class="shrink-0 px-3 py-1.5 rounded-full bg-brand-teal text-white">Objetivos</a>
-    <a href="#canais" class="shrink-0 px-3 py-1.5 rounded-full border">Canais</a>
-    <a href="#linhas" class="shrink-0 px-3 py-1.5 rounded-full border">Linhas</a>
-    <a href="#instagram" class="shrink-0 px-3 py-1.5 rounded-full border">Instagram</a>
-    <a href="#tom" class="shrink-0 px-3 py-1.5 rounded-full border">Tom</a>
+  <!-- Mobile Navigation Action Bar (Bottom Fixed) -->
+  <nav id="mobileActionBar" class="lg:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-brand-sandDark px-3 py-2 z-40 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] flex items-center justify-between gap-2 text-xs">
+    
+    <!-- Botão Anterior -->
+    <button onclick="goToPrevSlide()" id="mobilePrevBtn" class="flex items-center gap-1 px-3 py-2 rounded-xl bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold active:scale-95 transition">
+      <span class="text-sm">‹</span>
+      <span class="hidden xs:inline">Anterior</span>
+    </button>
+
+    <!-- Botão Centro: Indicador de Slide & Abrir Drawer -->
+    <button onclick="openMobileMenu()" class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-brand-teal text-white font-semibold shadow-xs active:scale-98 transition">
+      <span>☰</span>
+      <span id="mobileCurrentSlideText" class="truncate max-w-[130px] sm:max-w-[180px]">Índice</span>
+      <span id="mobileSlideCounterBadge" class="text-[10px] px-1.5 py-0.5 rounded-full bg-white/20 text-white font-mono shrink-0">1/32</span>
+    </button>
+
+    <!-- Botão Próximo -->
+    <button onclick="goToNextSlide()" id="mobileNextBtn" class="flex items-center gap-1 px-3 py-2 rounded-xl bg-brand-sand border border-brand-sandDark text-brand-marrom font-semibold active:scale-95 transition">
+      <span class="hidden xs:inline">Próximo</span>
+      <span class="text-sm">›</span>
+    </button>
+
   </nav>
 
   <script type="module" src="/src/app.js"></script>

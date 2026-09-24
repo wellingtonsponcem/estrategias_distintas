@@ -1,26 +1,86 @@
 import "./style.css";
 
-// progress + spy
+// Elements & Navigation IDs
 const progress = document.getElementById("progress");
-const links = [...document.querySelectorAll(".nav-link")];
-const ids = links.map(a => a.getAttribute("href")).filter(Boolean);
+const desktopLinks = [...document.querySelectorAll(".nav-link")];
+const mobileLinks = [...document.querySelectorAll(".mobile-nav-link")];
+const ids = desktopLinks.map(a => a.getAttribute("href")).filter(Boolean);
 const sections = ids.map(id => document.querySelector(id)).filter(Boolean);
+
+// Mobile action bar elements
+const mobileCurrentSlideText = document.getElementById("mobileCurrentSlideText");
+const mobileSlideCounterBadge = document.getElementById("mobileSlideCounterBadge");
+const mobileMenuDrawer = document.getElementById("mobileMenuDrawer");
+const mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
 
 function onScroll() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
   if (progress) progress.style.width = pct + "%";
 
-  let active = ids[0];
-  for (const s of sections) {
-    if (window.scrollY + 120 >= s.offsetTop) active = "#" + s.id;
+  let activeIndex = 0;
+  let activeId = ids[0];
+
+  for (let i = 0; i < sections.length; i++) {
+    const s = sections[i];
+    if (window.scrollY + 140 >= s.offsetTop) {
+      activeId = "#" + s.id;
+      activeIndex = i;
+    }
   }
-  links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === active));
+
+  // Update Desktop links
+  desktopLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === activeId));
+  
+  // Update Mobile links
+  mobileLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === activeId));
+
+  // Update Mobile Action Bar text and badge
+  if (mobileSlideCounterBadge) {
+    mobileSlideCounterBadge.textContent = `${activeIndex + 1}/${ids.length}`;
+  }
+  if (mobileCurrentSlideText) {
+    const activeSection = sections[activeIndex];
+    const sectionTitle = activeSection?.querySelector("h2, h1")?.textContent?.trim() || "Índice";
+    mobileCurrentSlideText.textContent = sectionTitle;
+  }
 }
+
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// keyboard nav
+// Mobile Navigation Controls
+window.goToNextSlide = function() {
+  const curIndex = ids.findIndex(h => {
+    const el = document.querySelector(h);
+    return el && window.scrollY + 220 >= el.offsetTop && window.scrollY + 220 < el.offsetTop + el.offsetHeight;
+  });
+  const nextId = ids[Math.min(ids.length - 1, curIndex + 1)];
+  if (nextId) document.querySelector(nextId)?.scrollIntoView({ behavior: "smooth" });
+};
+
+window.goToPrevSlide = function() {
+  const curIndex = ids.findIndex(h => {
+    const el = document.querySelector(h);
+    return el && window.scrollY + 220 >= el.offsetTop && window.scrollY + 220 < el.offsetTop + el.offsetHeight;
+  });
+  const prevId = ids[Math.max(0, curIndex - 1)];
+  if (prevId) document.querySelector(prevId)?.scrollIntoView({ behavior: "smooth" });
+};
+
+window.openMobileMenu = function() {
+  if (mobileMenuDrawer) mobileMenuDrawer.classList.add("mobile-drawer-open");
+  if (mobileDrawerOverlay) mobileDrawerOverlay.classList.add("mobile-overlay-visible");
+  document.body.style.overflow = "hidden";
+};
+
+window.closeMobileMenu = function() {
+  if (mobileMenuDrawer) mobileMenuDrawer.classList.remove("mobile-drawer-open");
+  if (mobileDrawerOverlay) mobileDrawerOverlay.classList.remove("mobile-overlay-visible");
+  document.body.style.overflow = "";
+};
+
+// Keyboard navigation
 const order = ids;
 window.addEventListener("keydown", (e) => {
   const welcome = document.getElementById("welcomeScreen");
@@ -34,25 +94,58 @@ window.addEventListener("keydown", (e) => {
     }
   }
 
+  if (e.key === "Escape") {
+    window.closeMobileMenu();
+    return;
+  }
+
   if (e.key === "ArrowDown" || e.key === "ArrowRight") {
     e.preventDefault();
-    const cur = order.findIndex(h => {
-      const el = document.querySelector(h);
-      return el && window.scrollY + 200 >= el.offsetTop && window.scrollY + 200 < el.offsetTop + el.offsetHeight;
-    });
-    const next = order[Math.min(order.length - 1, cur + 1)];
-    if (next) document.querySelector(next)?.scrollIntoView({ behavior: "smooth" });
+    window.goToNextSlide();
   }
   if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
     e.preventDefault();
-    const cur = order.findIndex(h => {
-      const el = document.querySelector(h);
-      return el && window.scrollY + 200 >= el.offsetTop && window.scrollY + 200 < el.offsetTop + el.offsetHeight;
-    });
-    const prev = order[Math.max(0, cur - 1)];
-    if (prev) document.querySelector(prev)?.scrollIntoView({ behavior: "smooth" });
+    window.goToPrevSlide();
   }
 });
+
+// Touch swipe gestures for mobile slides
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+window.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+window.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleTouchSwipe();
+}, { passive: true });
+
+function handleTouchSwipe() {
+  const diffX = touchEndX - touchStartX;
+  const diffY = touchEndY - touchStartY;
+  
+  // Only trigger horizontal swipe if deltaX is significant and predominantly horizontal
+  const welcome = document.getElementById("welcomeScreen");
+  const isWelcomeOpen = welcome && welcome.style.display !== "none" && welcome.getAttribute("data-dismissed") !== "true";
+  const isDrawerOpen = mobileMenuDrawer && mobileMenuDrawer.classList.contains("mobile-drawer-open");
+
+  if (isWelcomeOpen || isDrawerOpen) return;
+
+  // Swipe left -> Next slide
+  if (diffX < -70 && Math.abs(diffY) < 50) {
+    window.goToNextSlide();
+  }
+  // Swipe right -> Prev slide
+  else if (diffX > 70 && Math.abs(diffY) < 50) {
+    window.goToPrevSlide();
+  }
+}
 
 document.getElementById("presentBtn")?.addEventListener("click", () => {
   document.documentElement.requestFullscreen?.();
