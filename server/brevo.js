@@ -8,11 +8,11 @@ export class BrevoService {
   }
 
   senderEmail() {
-    return process.env.BREVO_SENDER_EMAIL || 'atendimento@wedistinto.com';
+    return process.env.BREVO_SENDER_EMAIL || 'ola@wedistinto.com';
   }
 
   senderName() {
-    return process.env.BREVO_SENDER_NAME || 'Agência Distinto • Estratégias';
+    return process.env.BREVO_SENDER_NAME || 'Distinto • Estratégias';
   }
 
   isConfigured() {
