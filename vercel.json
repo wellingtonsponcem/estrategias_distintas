@@ -1,13 +1,34 @@
 {
   "version": 2,
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/assets/(.*)",
       "destination": "/public/assets/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/admin",
+      "destination": "/public/admin.html"
+    },
+    {
+      "source": "/manual",
+      "destination": "/public/manual.html"
+    },
+    {
+      "source": "/reset-password",
+      "destination": "/public/reset-password.html"
+    },
+    {
+      "source": "/estrategias/:slug",
+      "destination": "/public/estrategias/:slug.html"
+    },
+    {
+      "source": "/api/(.*)",
       "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "destination": "/public/index.html"
     }
   ]
 }
