@@ -421,14 +421,19 @@ apiRouter.put('/users/clients/:id', authenticateToken, requireAdmin, async (req,
       }
     }
 
-    if (sendEmail && password && password.trim() !== '') {
-      await brevoService.sendCredentialsEmail({
-        name,
-        email: email.trim(),
-        password: password.trim(),
-        loginUrl: getBaseUrl(req),
-        role: 'client'
-      });
+    let emailResult = null;
+    if (sendEmail) {
+      if (password && password.trim() !== '') {
+        emailResult = await brevoService.sendCredentialsEmail({
+          name,
+          email: email.trim(),
+          password: password.trim(),
+          loginUrl: getBaseUrl(req),
+          role: 'client'
+        });
+      } else {
+        return res.status(400).json({ error: 'Para enviar os dados por e-mail, preencha o campo "Nova Senha" com a senha que deseja enviar.' });
+      }
     }
 
     const updatedUser = await pool.query(`
@@ -447,7 +452,11 @@ apiRouter.put('/users/clients/:id', authenticateToken, requireAdmin, async (req,
       GROUP BY u.id
     `, [id]);
 
-    res.json(updatedUser.rows[0]);
+    res.json({
+      ...updatedUser.rows[0],
+      emailSent: emailResult?.ok || false,
+      emailError: emailResult?.error || null
+    });
   } catch (err) {
     console.error('Erro ao atualizar cliente:', err);
     res.status(500).json({ error: 'Erro ao atualizar dados do cliente.' });
@@ -548,18 +557,27 @@ apiRouter.put('/users/admins/:id', authenticateToken, requireAdmin, async (req, 
       );
     }
 
-    if (sendEmail && password && password.trim() !== '') {
-      await brevoService.sendCredentialsEmail({
-        name,
-        email: email.trim(),
-        password: password.trim(),
-        loginUrl: `${getBaseUrl(req)}/admin`,
-        role: 'admin'
-      });
+    let emailResult = null;
+    if (sendEmail) {
+      if (password && password.trim() !== '') {
+        emailResult = await brevoService.sendCredentialsEmail({
+          name,
+          email: email.trim(),
+          password: password.trim(),
+          loginUrl: `${getBaseUrl(req)}/admin`,
+          role: 'admin'
+        });
+      } else {
+        return res.status(400).json({ error: 'Para enviar as credenciais por e-mail, preencha o campo "Nova Senha" com a senha que deseja enviar.' });
+      }
     }
 
     const updatedAdmin = await pool.query(`SELECT id, name, email, role, created_at FROM users WHERE id = $1`, [id]);
-    res.json(updatedAdmin.rows[0]);
+    res.json({
+      ...updatedAdmin.rows[0],
+      emailSent: emailResult?.ok || false,
+      emailError: emailResult?.error || null
+    });
   } catch (err) {
     console.error('Erro ao atualizar administrador:', err);
     res.status(500).json({ error: 'Erro ao atualizar dados do administrador.' });

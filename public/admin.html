@@ -486,6 +486,66 @@
     </div>
   </div>
 
+  <!-- ============================================================== -->
+  <!-- MODAL: COMPARTILHAR VIA WHATSAPP -->
+  <!-- ============================================================== -->
+  <div id="whatsappModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-lg p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-lg">
+            💬
+          </div>
+          <div>
+            <h3 class="text-lg font-display font-semibold text-white">Enviar Acesso via WhatsApp</h3>
+            <p class="text-[11px] text-distinto-sand/60">Dispare a mensagem pronta diretamente pelo WhatsApp Web.</p>
+          </div>
+        </div>
+        <button onclick="closeWhatsAppModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <div class="mt-6 space-y-4">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">WhatsApp do Destinatário (com DDD)</label>
+          <input 
+            type="tel" 
+            id="waPhoneNumber" 
+            placeholder="Ex: 11999998888 (opcional)" 
+            class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-emerald-400 font-mono" 
+          />
+          <span class="text-[10px] text-distinto-sand/40 mt-1 block">Se não preencher o número, o WhatsApp abrirá para você selecionar o contato.</span>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-xs uppercase tracking-wider text-distinto-sand/70">Mensagem Formatada</label>
+            <button onclick="copyWhatsAppMessage()" id="copyWaBtn" class="text-[11px] text-emerald-300 hover:text-emerald-200 transition cursor-pointer flex items-center gap-1 font-medium">
+              <span>📋 Copiar Texto</span>
+            </button>
+          </div>
+          <textarea 
+            id="waMessageText" 
+            rows="8" 
+            class="w-full p-3.5 rounded-xl bg-black/60 border border-distinto-border text-distinto-sand text-xs focus:outline-none focus:border-emerald-400 font-mono leading-relaxed resize-none"
+          ></textarea>
+        </div>
+
+        <div class="pt-4 border-t border-distinto-border flex items-center justify-between gap-3">
+          <button type="button" onclick="closeWhatsAppModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Fechar</button>
+          
+          <button 
+            type="button" 
+            onclick="sendWhatsAppDirect()" 
+            class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-black font-semibold text-xs tracking-wide transition flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/20"
+          >
+            <span>🟢 Abrir no WhatsApp Web</span>
+            <span>↗</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Proteção de rota
     const token = localStorage.getItem('distinto_token');
@@ -629,8 +689,11 @@
               }
             </td>
             <td class="px-5 py-3.5 text-right space-x-2">
+              <button onclick="openWhatsAppModalForClient(${c.id})" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500 hover:text-black text-emerald-300 text-[11px] font-semibold transition cursor-pointer flex-inline items-center gap-1">
+                💬 WhatsApp
+              </button>
               <button onclick="openEditClientModal(${c.id})" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-amber-400 hover:text-black text-amber-300 text-[11px] font-semibold transition cursor-pointer">
-                ✏️ Editar Acesso & Senha
+                ✏️ Editar
               </button>
               <button onclick="handleDeleteClient(${c.id}, '${c.name.replace(/'/g, "\\'")}')" class="p-1 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir cliente">
                 🗑️
@@ -661,8 +724,11 @@
               ${new Date(a.created_at).toLocaleDateString('pt-BR')}
             </td>
             <td class="px-5 py-3.5 text-right space-x-2">
+              <button onclick="openWhatsAppModalForAdmin(${a.id})" class="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500 hover:text-black text-emerald-300 text-[11px] font-semibold transition cursor-pointer flex-inline items-center gap-1">
+                💬 WhatsApp
+              </button>
               <button onclick="openEditAdminModal(${a.id})" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-purple-500 hover:text-white text-purple-300 text-[11px] font-semibold transition cursor-pointer">
-                ✏️ Editar / Mudar Senha
+                ✏️ Editar
               </button>
               ${!isCurrentUser ? `
                 <button onclick="handleDeleteAdmin(${a.id}, '${a.name.replace(/'/g, "\\'")}')" class="p-1 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir administrador">
@@ -862,6 +928,11 @@
       const password = document.getElementById('editClientPassword').value;
       const sendEmail = document.getElementById('editClientSendEmail').checked;
 
+      if (sendEmail && (!password || password.trim() === '')) {
+        alert('⚠️ Para enviar as credenciais por e-mail via Brevo, é necessário preencher o campo "Nova Senha".');
+        return;
+      }
+
       const checkedCheckboxes = document.querySelectorAll('input[name="editStratCheckbox"]:checked');
       const strategyIds = Array.from(checkedCheckboxes).map(cb => parseInt(cb.value));
 
@@ -881,7 +952,12 @@
 
         closeEditClientModal();
         await loadData();
-        alert('Dados do cliente e acessos atualizados com sucesso!');
+        
+        let msg = 'Dados do cliente atualizados com sucesso!';
+        if (data.emailSent) {
+          msg += '\n✉️ E-mail com as credenciais enviado via Brevo!';
+        }
+        alert(msg);
       } catch (err) {
         alert(err.message);
       }
@@ -947,6 +1023,11 @@
       const password = document.getElementById('editAdminPassword').value;
       const sendEmail = document.getElementById('editAdminSendEmail').checked;
 
+      if (sendEmail && (!password || password.trim() === '')) {
+        alert('⚠️ Para enviar as credenciais por e-mail via Brevo, é necessário preencher o campo "Nova Senha".');
+        return;
+      }
+
       const body = { name, email, sendEmail };
       if (password && password.trim() !== '') {
         body.password = password.trim();
@@ -963,7 +1044,12 @@
 
         closeEditAdminModal();
         await loadData();
-        alert('Dados do administrador atualizados com sucesso!');
+
+        let msg = 'Dados do administrador atualizados com sucesso!';
+        if (data.emailSent) {
+          msg += '\n✉️ E-mail com as credenciais enviado via Brevo!';
+        }
+        alert(msg);
       } catch (err) {
         alert(err.message);
       }
@@ -991,6 +1077,65 @@
       const name = document.getElementById('editAdminName').value;
       closeEditAdminModal();
       handleDeleteAdmin(id, name);
+    }
+
+    // ==========================================
+    // FUNÇÕES DO WHATSAPP
+    // ==========================================
+    function openWhatsAppModalForClient(clientId) {
+      const client = allClients.find(c => c.id === clientId);
+      if (!client) return;
+
+      const stratNames = (client.strategies && client.strategies.length > 0)
+        ? client.strategies.map(s => s.title).join(', ')
+        : 'Estratégia Digital';
+
+      const origin = window.location.origin;
+      const message = `✦ *Distinto • Acesso Liberado* ✦\n\nOlá, *${client.name}*!\nSeu acesso à apresentação estratégica de *${stratNames}* já está liberado na plataforma da Distinto:\n\n🌐 *Acesse aqui:* ${origin}/\n👤 *Login:* ${client.email}\n🔑 *Senha:* (a sua senha cadastrada)\n\nEm caso de dúvidas, estamos à disposição por aqui! ✨`;
+
+      document.getElementById('waPhoneNumber').value = '';
+      document.getElementById('waMessageText').value = message;
+      document.getElementById('whatsappModal').classList.remove('hidden');
+    }
+
+    function openWhatsAppModalForAdmin(adminId) {
+      const admin = allAdmins.find(a => a.id === adminId);
+      if (!admin) return;
+
+      const origin = window.location.origin;
+      const message = `👑 *Distinto • Painel Administrativo* 👑\n\nOlá, *${admin.name}*!\nSeus dados de acesso de Administrador ao Painel de Estratégias da Distinto:\n\n🌐 *Painel:* ${origin}/admin\n👤 *Login:* ${admin.email}\n🔑 *Senha:* (a sua senha cadastrada)\n\nBom trabalho! 🚀`;
+
+      document.getElementById('waPhoneNumber').value = '';
+      document.getElementById('waMessageText').value = message;
+      document.getElementById('whatsappModal').classList.remove('hidden');
+    }
+
+    function closeWhatsAppModal() {
+      document.getElementById('whatsappModal').classList.add('hidden');
+    }
+
+    function sendWhatsAppDirect() {
+      const rawPhone = document.getElementById('waPhoneNumber').value.replace(/\D/g, '');
+      const text = encodeURIComponent(document.getElementById('waMessageText').value);
+      
+      let url = `https://api.whatsapp.com/send?text=${text}`;
+      if (rawPhone.length >= 10) {
+        const fullPhone = rawPhone.startsWith('55') ? rawPhone : `55${rawPhone}`;
+        url = `https://api.whatsapp.com/send?phone=${fullPhone}&text=${text}`;
+      }
+      
+      window.open(url, '_blank');
+    }
+
+    function copyWhatsAppMessage() {
+      const text = document.getElementById('waMessageText').value;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyWaBtn');
+        btn.innerHTML = '<span>✅ Copiado!</span>';
+        setTimeout(() => {
+          btn.innerHTML = '<span>📋 Copiar Texto</span>';
+        }, 2000);
+      });
     }
 
     // Inicialização
