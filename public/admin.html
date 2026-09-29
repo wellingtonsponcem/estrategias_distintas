@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Administrativo | Estratégias Distinto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            distinto: {
+              gold: '#D4AF37',
+              sand: '#EDE6D8',
+              dark: '#0A0E0B',
+              card: '#141A16',
+              border: '#243027'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#0A0E0B] text-distinto-sand font-sans min-h-screen selection:bg-amber-400 selection:text-black">
+
+  <!-- NAVBAR -->
+  <header class="border-b border-distinto-border bg-black/40 backdrop-blur-xl sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/admin" class="flex items-center gap-2.5">
+          <img src="/assets/logo-distinto-white.png" alt="Distinto" class="h-6 w-auto object-contain" />
+          <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20 font-semibold hidden sm:inline-block">Admin</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="/manual" class="text-xs px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/30 transition flex items-center gap-1.5 font-medium">
+          <span>📖 Manual</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="userNameText" class="text-white/80">Administrador</span>
+        </div>
+        <button onclick="handleLogout()" class="text-xs px-3.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 transition cursor-pointer">
+          Sair ⎋
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Top Action Banner -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-distinto-border">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-display font-semibold text-white">
+          Projetos & Estratégias
+        </h1>
+        <p class="text-xs sm:text-sm text-distinto-sand/60 mt-1">
+          Gerencie apresentações interativas, clientes, administradores e credenciais via Brevo.
+        </p>
+      </div>
+
+      <div class="flex items-center flex-wrap gap-2.5">
+        <button onclick="openAdminModal()" class="px-3.5 py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wide transition flex items-center gap-2 cursor-pointer">
+          <span>👑 + Administrador</span>
+        </button>
+        <button onclick="openClientModal()" class="px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold tracking-wide transition flex items-center gap-2 cursor-pointer">
+          <span>👥 + Cliente</span>
+        </button>
+        <button onclick="openStrategyModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-black text-xs font-semibold tracking-wide shadow-lg shadow-amber-400/10 hover:scale-[1.02] active:scale-[0.98] transition flex items-center gap-2 cursor-pointer">
+          <span>✦ Nova Estratégia</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+      <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
+        <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Total de Estratégias</span>
+        <p id="totalStrategies" class="text-2xl font-bold text-white mt-1">0</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
+        <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Clientes Ativos</span>
+        <p id="totalClients" class="text-2xl font-bold text-amber-300 mt-1">0</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
+        <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Administradores</span>
+        <p id="totalAdmins" class="text-2xl font-bold text-purple-300 mt-1">0</p>
+      </div>
+    </div>
+
+    <!-- Strategies List Grid -->
+    <div class="mt-8">
+      <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <span>Estratégias Cadastradas</span>
+        <span id="badgeCount" class="text-xs px-2.5 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">0</span>
+      </h2>
+
+      <div id="strategiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="p-8 text-center text-distinto-sand/40 col-span-full border border-dashed border-distinto-border rounded-2xl">
+          Carregando estratégias...
+        </div>
+      </div>
+    </div>
+
+    <!-- Clients Management Section -->
+    <div class="mt-14 pt-10 border-t border-distinto-border">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <span>👥 Clientes & Logins de Acesso</span>
+          </h2>
+          <p class="text-xs text-distinto-sand/60">Edite dados, redefina senhas e gerencie quais estratégias cada cliente pode visualizar.</p>
+        </div>
+        <button onclick="openClientModal()" class="text-xs font-semibold text-amber-300 hover:text-amber-200 transition cursor-pointer">
+          + Adicionar Novo Cliente
+        </button>
+      </div>
+
+      <div class="bg-distinto-card border border-distinto-border rounded-2xl overflow-hidden shadow-lg">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-black/40 border-b border-distinto-border text-distinto-sand/60 uppercase tracking-wider">
+            <tr>
+              <th class="px-5 py-3.5">Nome do Cliente</th>
+              <th class="px-5 py-3.5">E-mail de Login</th>
+              <th class="px-5 py-3.5">Estratégias Liberadas</th>
+              <th class="px-5 py-3.5 text-right">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="clientsTableBody" class="divide-y divide-distinto-border/50">
+            <tr>
+              <td colspan="4" class="px-5 py-6 text-center text-distinto-sand/40">Carregando clientes...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Admins Management Section -->
+    <div class="mt-14 pt-10 border-t border-distinto-border">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <span>👑 Administradores do Sistema</span>
+          </h2>
+          <p class="text-xs text-distinto-sand/60">Controle quem tem acesso total ao painel, criação de estratégias e envio de credenciais.</p>
+        </div>
+        <button onclick="openAdminModal()" class="text-xs font-semibold text-purple-300 hover:text-purple-200 transition cursor-pointer">
+          + Adicionar Administrador
+        </button>
+      </div>
+
+      <div class="bg-distinto-card border border-distinto-border rounded-2xl overflow-hidden shadow-lg">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-black/40 border-b border-distinto-border text-distinto-sand/60 uppercase tracking-wider">
+            <tr>
+              <th class="px-5 py-3.5">Nome do Administrador</th>
+              <th class="px-5 py-3.5">E-mail de Login</th>
+              <th class="px-5 py-3.5">Função</th>
+              <th class="px-5 py-3.5">Cadastrado em</th>
+              <th class="px-5 py-3.5 text-right">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="adminsTableBody" class="divide-y divide-distinto-border/50">
+            <tr>
+              <td colspan="5" class="px-5 py-6 text-center text-distinto-sand/40">Carregando administradores...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: NOVA ESTRATÉGIA -->
+  <!-- ============================================================== -->
+  <div id="strategyModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-lg p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <h3 class="text-lg font-display font-semibold text-white">Cadastrar Nova Estratégia</h3>
+        <button onclick="closeStrategyModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="newStrategyForm" class="mt-6 space-y-4" onsubmit="handleCreateStrategy(event)">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Título do Projeto / Marca *</label>
+          <input type="text" id="stratTitle" required placeholder="Ex: Instituto Longânima" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Nome do Especialista / Cliente *</label>
+          <input type="text" id="stratClientName" required placeholder="Ex: Dra. Kelly Bruzeguini Eira" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Slug / URL da Apresentação *</label>
+          <div class="flex items-center">
+            <span class="px-3 py-2.5 bg-black/60 border border-r-0 border-distinto-border rounded-l-xl text-xs text-white/40">/estrategias/</span>
+            <input type="text" id="stratSlug" required placeholder="kelly-loganima" class="w-full px-4 py-2.5 rounded-r-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+          </div>
+          <span class="text-[10px] text-distinto-sand/40 mt-1 block">Apenas letras minúsculas, números e traços.</span>
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Headline / Subtítulo Aspiracional</label>
+          <input type="text" id="stratSubtitle" placeholder="Ex: Um novo olhar sobre o envelhecer." class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Meta Principal</label>
+            <input type="text" id="stratMeta" placeholder="Ex: 20 Pacientes / mês" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Território</label>
+            <input type="text" id="stratTerritorio" placeholder="Ex: Maturidade Ativa 50+" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+          </div>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeStrategyModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs tracking-wide cursor-pointer">Salvar Estratégia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: CADASTRAR CLIENTE & ACESSO -->
+  <!-- ============================================================== -->
+  <div id="clientModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <h3 class="text-lg font-display font-semibold text-white">Cadastrar Login do Cliente</h3>
+        <button onclick="closeClientModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="newClientForm" class="mt-6 space-y-4" onsubmit="handleCreateClient(event)">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Nome Completo *</label>
+          <input type="text" id="clientName" required placeholder="Ex: Dra. Kelly Bruzeguini" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">E-mail de Acesso *</label>
+          <input type="email" id="clientEmail" required placeholder="kelly@loganima.com.br" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Senha de Acesso *</label>
+          <input type="password" id="clientPassword" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Vincular à Estratégia</label>
+          <select id="clientStrategySelect" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400">
+            <option value="">Selecione a estratégia...</option>
+          </select>
+        </div>
+
+        <!-- Opção Brevo Email -->
+        <div class="pt-2">
+          <label class="flex items-center gap-2 text-xs text-distinto-sand/80 cursor-pointer p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition">
+            <input type="checkbox" id="clientSendEmail" checked class="w-4 h-4 rounded text-amber-400 bg-black/60 border-distinto-border focus:ring-amber-400" />
+            <span>✉️ Enviar dados de acesso por e-mail via <strong>Brevo</strong></span>
+          </label>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeClientModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-black font-semibold text-xs tracking-wide cursor-pointer">Criar Acesso</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: EDITAR CLIENTE & GERENCIAR ACESSOS -->
+  <!-- ============================================================== -->
+  <div id="editClientModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-lg p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <div>
+          <h3 class="text-lg font-display font-semibold text-white">Editar Acesso do Cliente</h3>
+          <p class="text-xs text-distinto-sand/60">Altere dados cadastrais, redefina a senha ou selecione as estratégias permitidas.</p>
+        </div>
+        <button onclick="closeEditClientModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="editClientForm" class="mt-6 space-y-4" onsubmit="handleUpdateClient(event)">
+        <input type="hidden" id="editClientId" />
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Nome Completo *</label>
+          <input type="text" id="editClientName" required class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">E-mail de Login *</label>
+          <input type="email" id="editClientEmail" required class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">
+            Nova Senha 
+            <span class="text-[10px] text-distinto-sand/40 normal-case font-normal">(Deixe em branco para manter a senha atual)</span>
+          </label>
+          <input type="password" id="editClientPassword" placeholder="Digite uma nova senha caso queira alterar..." class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-2">
+            Estratégias com Acesso Liberado
+          </label>
+          <div id="editStrategiesCheckboxes" class="space-y-2 p-3 rounded-xl bg-black/40 border border-distinto-border max-h-48 overflow-y-auto text-xs">
+            <!-- Checkboxes de estratégias -->
+          </div>
+        </div>
+
+        <!-- Opção Brevo Email -->
+        <div class="pt-2">
+          <label class="flex items-center gap-2 text-xs text-distinto-sand/80 cursor-pointer p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-amber-400/40 transition">
+            <input type="checkbox" id="editClientSendEmail" class="w-4 h-4 rounded text-amber-400 bg-black/60 border-distinto-border focus:ring-amber-400" />
+            <span>✉️ Enviar novas credenciais por e-mail via <strong>Brevo</strong> (se senha alterada)</span>
+          </label>
+        </div>
+
+        <div class="pt-4 border-t border-distinto-border flex items-center justify-between">
+          <button type="button" onclick="handleDeleteClientFromModal()" class="px-3 py-2 rounded-xl text-xs text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition cursor-pointer">
+            🗑️ Excluir Cliente
+          </button>
+
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="closeEditClientModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs tracking-wide cursor-pointer">Salvar Alterações</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: CADASTRAR ADMINISTRADOR -->
+  <!-- ============================================================== -->
+  <div id="adminModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <h3 class="text-lg font-display font-semibold text-white">Cadastrar Administrador</h3>
+        <button onclick="closeAdminModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="newAdminForm" class="mt-6 space-y-4" onsubmit="handleCreateAdmin(event)">
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Nome Completo *</label>
+          <input type="text" id="adminName" required placeholder="Ex: Wellington Ponce" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">E-mail de Login *</label>
+          <input type="email" id="adminEmail" required placeholder="admin@distinto.com.br" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Senha de Acesso *</label>
+          <input type="password" id="adminPassword" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <!-- Opção Brevo Email -->
+        <div class="pt-2">
+          <label class="flex items-center gap-2 text-xs text-distinto-sand/80 cursor-pointer p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition">
+            <input type="checkbox" id="adminSendEmail" checked class="w-4 h-4 rounded text-purple-400 bg-black/60 border-distinto-border focus:ring-purple-400" />
+            <span>✉️ Enviar dados de acesso por e-mail via <strong>Brevo</strong></span>
+          </label>
+        </div>
+
+        <div class="pt-4 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeAdminModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs tracking-wide cursor-pointer">Criar Administrador</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: EDITAR ADMINISTRADOR & MUDAR SENHA -->
+  <!-- ============================================================== -->
+  <div id="editAdminModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <div>
+          <h3 class="text-lg font-display font-semibold text-white">Editar Administrador</h3>
+          <p class="text-xs text-distinto-sand/60">Altere nome, e-mail ou redefina a senha do administrador.</p>
+        </div>
+        <button onclick="closeEditAdminModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="editAdminForm" class="mt-6 space-y-4" onsubmit="handleUpdateAdmin(event)">
+        <input type="hidden" id="editAdminId" />
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Nome Completo *</label>
+          <input type="text" id="editAdminName" required class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">E-mail de Login *</label>
+          <input type="email" id="editAdminEmail" required class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">
+            Nova Senha 
+            <span class="text-[10px] text-distinto-sand/40 normal-case font-normal">(Deixe em branco para manter a atual)</span>
+          </label>
+          <input type="password" id="editAdminPassword" placeholder="Digite uma nova senha caso queira alterar..." class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-purple-400" />
+        </div>
+
+        <!-- Opção Brevo Email -->
+        <div class="pt-2">
+          <label class="flex items-center gap-2 text-xs text-distinto-sand/80 cursor-pointer p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-purple-400/40 transition">
+            <input type="checkbox" id="editAdminSendEmail" class="w-4 h-4 rounded text-purple-400 bg-black/60 border-distinto-border focus:ring-purple-400" />
+            <span>✉️ Enviar novas credenciais por e-mail via <strong>Brevo</strong></span>
+          </label>
+        </div>
+
+        <div class="pt-4 border-t border-distinto-border flex items-center justify-between">
+          <button type="button" onclick="handleDeleteAdminFromModal()" class="px-3 py-2 rounded-xl text-xs text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition cursor-pointer">
+            🗑️ Excluir Admin
+          </button>
+
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="closeEditAdminModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs tracking-wide cursor-pointer">Salvar Alterações</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: EXCLUSÃO DE SEGURANÇA (CONFIRMAÇÃO EM 2 ETAPAS) -->
+  <!-- ============================================================== -->
+  <div id="deleteModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-[#181112] border border-rose-500/30 rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+      <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-4 text-xl">
+        ⚠️
+      </div>
+      <h3 class="text-lg font-display font-semibold text-white">Excluir Estratégia</h3>
+      <p class="text-xs text-distinto-sand/70 mt-2">
+        Esta ação é irreversível. Todos os dados, apresentações e vínculos de acesso associados a <strong id="deleteStratTitle" class="text-white"></strong> serão apagados do banco.
+      </p>
+
+      <div class="mt-5 p-3 rounded-xl bg-black/40 border border-white/10 text-xs">
+        <p class="text-distinto-sand/60">Para confirmar a exclusão, digite o slug exato abaixo:</p>
+        <p id="deleteRequiredSlug" class="font-mono font-bold text-amber-300 mt-1 select-all"></p>
+      </div>
+
+      <div class="mt-4">
+        <input 
+          type="text" 
+          id="deleteConfirmInput" 
+          placeholder="Digite o slug aqui..." 
+          class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-rose-500/40 text-white text-xs focus:outline-none focus:border-rose-400 font-mono"
+        />
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-3">
+        <button type="button" onclick="closeDeleteModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+        <button type="button" id="confirmDeleteBtn" onclick="executeDeleteStrategy()" class="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs tracking-wide cursor-pointer">
+          Confirmar Exclusão
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Proteção de rota
+    const token = localStorage.getItem('distinto_token');
+    const userRole = localStorage.getItem('distinto_role');
+
+    if (!token || userRole !== 'admin') {
+      window.location.href = '/';
+    }
+
+    const userData = JSON.parse(localStorage.getItem('distinto_user') || '{}');
+    if (userData.name) {
+      document.getElementById('userNameText').textContent = userData.name;
+    }
+
+    let allStrategies = [];
+    let allClients = [];
+    let allAdmins = [];
+    let currentDeleteId = null;
+    let currentDeleteSlug = null;
+
+    // Headers autenticados
+    function getAuthHeaders() {
+      return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
+    }
+
+    function handleLogout() {
+      localStorage.clear();
+      window.location.href = '/';
+    }
+
+    // Carregar dados
+    async function loadData() {
+      try {
+        const [stratRes, clientRes, adminRes] = await Promise.all([
+          fetch('/api/strategies', { headers: getAuthHeaders() }),
+          fetch('/api/users/clients', { headers: getAuthHeaders() }),
+          fetch('/api/users/admins', { headers: getAuthHeaders() })
+        ]);
+
+        if (stratRes.status === 401 || stratRes.status === 403) {
+          handleLogout();
+          return;
+        }
+
+        allStrategies = await stratRes.json();
+        allClients = await clientRes.json();
+        allAdmins = await adminRes.json();
+
+        renderDashboard();
+      } catch (err) {
+        console.error('Erro ao carregar dados:', err);
+      }
+    }
+
+    function renderDashboard() {
+      // Estatísticas
+      document.getElementById('totalStrategies').textContent = allStrategies.length;
+      document.getElementById('totalClients').textContent = allClients.length;
+      document.getElementById('totalAdmins').textContent = allAdmins.length;
+      document.getElementById('badgeCount').textContent = allStrategies.length;
+
+      // Renderizar Grid de Estratégias
+      const grid = document.getElementById('strategiesGrid');
+      if (allStrategies.length === 0) {
+        grid.innerHTML = `
+          <div class="p-8 text-center text-distinto-sand/40 col-span-full border border-dashed border-distinto-border rounded-2xl">
+            Nenhuma estratégia cadastrada ainda. Clique em "+ Nova Estratégia" para começar.
+          </div>
+        `;
+      } else {
+        grid.innerHTML = allStrategies.map(strat => {
+          const clientList = strat.clients || [];
+          return `
+          <div class="p-6 rounded-3xl bg-distinto-card border border-distinto-border hover:border-amber-400/40 transition-all duration-300 shadow-xl flex flex-col justify-between group relative">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">
+                  ${strat.territorio || 'Estratégia 10P'}
+                </span>
+                <span class="text-[11px] text-white/40">
+                  ${new Date(strat.created_at).toLocaleDateString('pt-BR')}
+                </span>
+              </div>
+
+              <h3 class="text-xl font-display font-semibold text-white group-hover:text-amber-200 transition">
+                ${strat.title}
+              </h3>
+              <p class="text-xs text-distinto-sand/70 font-medium mt-0.5">
+                ${strat.client_name}
+              </p>
+
+              ${strat.subtitle ? `<p class="text-xs italic text-distinto-sand/50 mt-2 line-clamp-2">"${strat.subtitle}"</p>` : ''}
+
+              <div class="mt-4 pt-3 border-t border-distinto-border/60 grid grid-cols-2 gap-2 text-[11px]">
+                <div>
+                  <span class="text-white/40 block text-[10px]">Meta</span>
+                  <span class="text-white font-medium">${strat.meta_principal || 'Não informada'}</span>
+                </div>
+                <div>
+                  <span class="text-white/40 block text-[10px]">Acessos Liberados</span>
+                  <div class="flex flex-wrap gap-1 mt-0.5">
+                    ${clientList.length > 0 
+                      ? clientList.map(c => `<button onclick="openEditClientModal(${c.id})" class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 hover:bg-emerald-500/20 transition cursor-pointer" title="Editar acesso de ${c.name}">👤 ${c.name}</button>`).join('')
+                      : `<button onclick="openClientModal()" class="text-[10px] text-amber-300/80 hover:underline cursor-pointer">+ Adicionar acesso</button>`
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-distinto-border flex items-center justify-between gap-2">
+              <a href="/estrategias/${strat.slug}" target="_blank" class="flex-1 py-2 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold text-center transition flex items-center justify-center gap-1.5">
+                <span>Ver Apresentação</span>
+                <span class="text-amber-300">↗</span>
+              </a>
+
+              <button onclick="openDeleteModal(${strat.id}, '${strat.slug}', '${strat.title.replace(/'/g, "\\'")}')" class="p-2 rounded-xl text-rose-400 hover:bg-rose-500/10 transition border border-transparent hover:border-rose-500/20 cursor-pointer" title="Excluir estratégia">
+                🗑️
+              </button>
+            </div>
+          </div>
+        `}).join('');
+      }
+
+      // Renderizar Tabela de Clientes
+      const tbodyClients = document.getElementById('clientsTableBody');
+      if (allClients.length === 0) {
+        tbodyClients.innerHTML = `<tr><td colspan="4" class="px-5 py-6 text-center text-distinto-sand/40">Nenhum cliente cadastrado.</td></tr>`;
+      } else {
+        tbodyClients.innerHTML = allClients.map(c => `
+          <tr class="hover:bg-white/5 transition">
+            <td class="px-5 py-3.5 font-semibold text-white">${c.name}</td>
+            <td class="px-5 py-3.5 text-distinto-sand/70 font-mono text-[11px]">${c.email}</td>
+            <td class="px-5 py-3.5">
+              ${c.strategies && c.strategies.length > 0 
+                ? c.strategies.map(s => `<span class="inline-block px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 text-[10px] mr-1">${s.title}</span>`).join('')
+                : '<span class="text-white/30 italic">Nenhuma vinculada</span>'
+              }
+            </td>
+            <td class="px-5 py-3.5 text-right space-x-2">
+              <button onclick="openEditClientModal(${c.id})" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-amber-400 hover:text-black text-amber-300 text-[11px] font-semibold transition cursor-pointer">
+                ✏️ Editar Acesso & Senha
+              </button>
+              <button onclick="handleDeleteClient(${c.id}, '${c.name.replace(/'/g, "\\'")}')" class="p-1 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir cliente">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Renderizar Tabela de Administradores
+      const tbodyAdmins = document.getElementById('adminsTableBody');
+      if (allAdmins.length === 0) {
+        tbodyAdmins.innerHTML = `<tr><td colspan="5" class="px-5 py-6 text-center text-distinto-sand/40">Nenhum administrador cadastrado.</td></tr>`;
+      } else {
+        tbodyAdmins.innerHTML = allAdmins.map(a => {
+          const isCurrentUser = userData.email === a.email;
+          return `
+          <tr class="hover:bg-white/5 transition">
+            <td class="px-5 py-3.5 font-semibold text-white flex items-center gap-2">
+              <span>${a.name}</span>
+              ${isCurrentUser ? '<span class="text-[9px] uppercase px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">Você</span>' : ''}
+            </td>
+            <td class="px-5 py-3.5 text-distinto-sand/70 font-mono text-[11px]">${a.email}</td>
+            <td class="px-5 py-3.5">
+              <span class="inline-block px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 text-[10px]">Super Admin</span>
+            </td>
+            <td class="px-5 py-3.5 text-distinto-sand/50 text-[11px]">
+              ${new Date(a.created_at).toLocaleDateString('pt-BR')}
+            </td>
+            <td class="px-5 py-3.5 text-right space-x-2">
+              <button onclick="openEditAdminModal(${a.id})" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-purple-500 hover:text-white text-purple-300 text-[11px] font-semibold transition cursor-pointer">
+                ✏️ Editar / Mudar Senha
+              </button>
+              ${!isCurrentUser ? `
+                <button onclick="handleDeleteAdmin(${a.id}, '${a.name.replace(/'/g, "\\'")}')" class="p-1 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir administrador">
+                  🗑️
+                </button>
+              ` : ''}
+            </td>
+          </tr>
+        `}).join('');
+      }
+
+      // Atualizar select de estratégias no modal de cadastro de clientes
+      const select = document.getElementById('clientStrategySelect');
+      select.innerHTML = '<option value="">Selecione a estratégia...</option>' + 
+        allStrategies.map(s => `<option value="${s.id}">${s.title} (${s.client_name})</option>`).join('');
+    }
+
+    // Modais - Estratégia
+    function openStrategyModal() {
+      document.getElementById('strategyModal').classList.remove('hidden');
+    }
+    function closeStrategyModal() {
+      document.getElementById('strategyModal').classList.add('hidden');
+    }
+
+    // Modais - Cliente
+    function openClientModal() {
+      document.getElementById('clientModal').classList.remove('hidden');
+    }
+    function closeClientModal() {
+      document.getElementById('clientModal').classList.add('hidden');
+    }
+
+    function openEditClientModal(clientId) {
+      const client = allClients.find(c => c.id === clientId);
+      if (!client) return;
+
+      document.getElementById('editClientId').value = client.id;
+      document.getElementById('editClientName').value = client.name;
+      document.getElementById('editClientEmail').value = client.email;
+      document.getElementById('editClientPassword').value = '';
+      document.getElementById('editClientSendEmail').checked = false;
+
+      const userStrategyIds = (client.strategies || []).map(s => s.id);
+
+      // Renderizar Checkboxes de Estratégias
+      const container = document.getElementById('editStrategiesCheckboxes');
+      if (allStrategies.length === 0) {
+        container.innerHTML = '<p class="text-white/40 italic">Nenhuma estratégia disponível.</p>';
+      } else {
+        container.innerHTML = allStrategies.map(strat => `
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-white/5 cursor-pointer transition">
+            <input 
+              type="checkbox" 
+              name="editStratCheckbox" 
+              value="${strat.id}" 
+              ${userStrategyIds.includes(strat.id) ? 'checked' : ''}
+              class="w-4 h-4 rounded text-amber-400 bg-black/60 border-distinto-border focus:ring-amber-400"
+            />
+            <div>
+              <span class="text-white font-medium block text-xs">${strat.title}</span>
+              <span class="text-distinto-sand/50 block text-[10px]">${strat.client_name} • /estrategias/${strat.slug}</span>
+            </div>
+          </label>
+        `).join('');
+      }
+
+      document.getElementById('editClientModal').classList.remove('hidden');
+    }
+    function closeEditClientModal() {
+      document.getElementById('editClientModal').classList.add('hidden');
+    }
+
+    // Modais - Administrador
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.remove('hidden');
+    }
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.add('hidden');
+    }
+
+    function openEditAdminModal(adminId) {
+      const admin = allAdmins.find(a => a.id === adminId);
+      if (!admin) return;
+
+      document.getElementById('editAdminId').value = admin.id;
+      document.getElementById('editAdminName').value = admin.name;
+      document.getElementById('editAdminEmail').value = admin.email;
+      document.getElementById('editAdminPassword').value = '';
+      document.getElementById('editAdminSendEmail').checked = false;
+
+      document.getElementById('editAdminModal').classList.remove('hidden');
+    }
+    function closeEditAdminModal() {
+      document.getElementById('editAdminModal').classList.add('hidden');
+    }
+
+    // Modais - Exclusão de Estratégia
+    function openDeleteModal(id, slug, title) {
+      currentDeleteId = id;
+      currentDeleteSlug = slug;
+      document.getElementById('deleteStratTitle').textContent = title;
+      document.getElementById('deleteRequiredSlug').textContent = slug;
+      document.getElementById('deleteConfirmInput').value = '';
+      document.getElementById('deleteModal').classList.remove('hidden');
+    }
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').classList.add('hidden');
+    }
+
+    // Handlers - Estratégias
+    async function handleCreateStrategy(e) {
+      e.preventDefault();
+      const body = {
+        title: document.getElementById('stratTitle').value,
+        client_name: document.getElementById('stratClientName').value,
+        slug: document.getElementById('stratSlug').value,
+        subtitle: document.getElementById('stratSubtitle').value,
+        meta_principal: document.getElementById('stratMeta').value,
+        territorio: document.getElementById('stratTerritorio').value
+      };
+
+      try {
+        const res = await fetch('/api/strategies', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeStrategyModal();
+        document.getElementById('newStrategyForm').reset();
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function executeDeleteStrategy() {
+      const typedSlug = document.getElementById('deleteConfirmInput').value.trim();
+      if (typedSlug !== currentDeleteSlug) {
+        alert(`O slug digitado não confere. Digite exatamente: ${currentDeleteSlug}`);
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/strategies/${currentDeleteId}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ confirmSlug: typedSlug })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeDeleteModal();
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    // Handlers - Clientes
+    async function handleCreateClient(e) {
+      e.preventDefault();
+      const body = {
+        name: document.getElementById('clientName').value,
+        email: document.getElementById('clientEmail').value,
+        password: document.getElementById('clientPassword').value,
+        strategyId: document.getElementById('clientStrategySelect').value || null,
+        sendEmail: document.getElementById('clientSendEmail').checked
+      };
+
+      try {
+        const res = await fetch('/api/users/clients', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeClientModal();
+        document.getElementById('newClientForm').reset();
+        await loadData();
+        alert('Cliente cadastrado com sucesso!');
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function handleUpdateClient(e) {
+      e.preventDefault();
+      const id = document.getElementById('editClientId').value;
+      const name = document.getElementById('editClientName').value;
+      const email = document.getElementById('editClientEmail').value;
+      const password = document.getElementById('editClientPassword').value;
+      const sendEmail = document.getElementById('editClientSendEmail').checked;
+
+      const checkedCheckboxes = document.querySelectorAll('input[name="editStratCheckbox"]:checked');
+      const strategyIds = Array.from(checkedCheckboxes).map(cb => parseInt(cb.value));
+
+      const body = { name, email, strategyIds, sendEmail };
+      if (password && password.trim() !== '') {
+        body.password = password.trim();
+      }
+
+      try {
+        const res = await fetch(`/api/users/clients/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeEditClientModal();
+        await loadData();
+        alert('Dados do cliente e acessos atualizados com sucesso!');
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function handleDeleteClient(id, name) {
+      if (!confirm(`Tem certeza que deseja excluir o acesso do cliente "${name}"?`)) return;
+
+      try {
+        const res = await fetch(`/api/users/clients/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function handleDeleteClientFromModal() {
+      const id = document.getElementById('editClientId').value;
+      const name = document.getElementById('editClientName').value;
+      closeEditClientModal();
+      handleDeleteClient(id, name);
+    }
+
+    // Handlers - Administradores
+    async function handleCreateAdmin(e) {
+      e.preventDefault();
+      const body = {
+        name: document.getElementById('adminName').value,
+        email: document.getElementById('adminEmail').value,
+        password: document.getElementById('adminPassword').value,
+        sendEmail: document.getElementById('adminSendEmail').checked
+      };
+
+      try {
+        const res = await fetch('/api/users/admins', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeAdminModal();
+        document.getElementById('newAdminForm').reset();
+        await loadData();
+        alert('Administrador cadastrado com sucesso!');
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function handleUpdateAdmin(e) {
+      e.preventDefault();
+      const id = document.getElementById('editAdminId').value;
+      const name = document.getElementById('editAdminName').value;
+      const email = document.getElementById('editAdminEmail').value;
+      const password = document.getElementById('editAdminPassword').value;
+      const sendEmail = document.getElementById('editAdminSendEmail').checked;
+
+      const body = { name, email, sendEmail };
+      if (password && password.trim() !== '') {
+        body.password = password.trim();
+      }
+
+      try {
+        const res = await fetch(`/api/users/admins/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeaders(),
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        closeEditAdminModal();
+        await loadData();
+        alert('Dados do administrador atualizados com sucesso!');
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    async function handleDeleteAdmin(id, name) {
+      if (!confirm(`Tem certeza que deseja remover as permissões do administrador "${name}"?`)) return;
+
+      try {
+        const res = await fetch(`/api/users/admins/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function handleDeleteAdminFromModal() {
+      const id = document.getElementById('editAdminId').value;
+      const name = document.getElementById('editAdminName').value;
+      closeEditAdminModal();
+      handleDeleteAdmin(id, name);
+    }
+
+    // Inicialização
+    loadData();
+  </script>
+</body>
+</html>

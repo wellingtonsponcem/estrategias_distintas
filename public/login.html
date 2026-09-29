@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal de Estratégias | Agência Distinto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            distinto: {
+              gold: '#D4AF37',
+              sand: '#EDE6D8',
+              dark: '#0E1310',
+              card: '#161D18',
+              border: '#27332B'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.08); }
+    }
+    .orb-1 { animation: pulseGlow 9s ease-in-out infinite; }
+    .orb-2 { animation: pulseGlow 12s ease-in-out infinite reverse; }
+    .glass-card {
+      background: rgba(22, 29, 24, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(237, 230, 216, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-[#0A0E0B] text-distinto-sand font-sans min-h-screen flex items-center justify-center p-4 relative overflow-hidden selection:bg-amber-400 selection:text-black">
+
+  <!-- Ambient Orbs -->
+  <div class="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[#1E3326]/60 blur-[130px] pointer-events-none orb-1"></div>
+  <div class="absolute -bottom-40 -right-40 w-[650px] h-[650px] rounded-full bg-[#52442C]/40 blur-[140px] pointer-events-none orb-2"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(#EDE6D8_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.03] pointer-events-none"></div>
+
+  <div class="w-full max-w-md relative z-10">
+    
+    <!-- Header Logo & Branding -->
+    <div class="text-center mb-8 flex flex-col items-center">
+      <img src="/assets/logo-distinto-white.png" alt="Distinto" class="h-12 w-auto object-contain mb-3 drop-shadow-lg" />
+      <span class="text-[10px] uppercase tracking-[0.25em] text-amber-300/90 font-semibold block">
+        Portal de Estratégias
+      </span>
+      <p class="text-xs text-distinto-sand/60 mt-1">
+        Inteligência & Posicionamento Digital
+      </p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+      <form id="loginForm" class="space-y-5" onsubmit="handleLogin(event)">
+        
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-sand/70 mb-2">
+            E-mail de Acesso
+          </label>
+          <div class="relative">
+            <input 
+              type="email" 
+              id="email" 
+              required
+              placeholder="seuemail@exemplo.com" 
+              class="w-full px-4 py-3 rounded-xl bg-black/40 border border-distinto-border text-white text-sm placeholder-white/20 focus:outline-none focus:border-amber-400/80 focus:ring-2 focus:ring-amber-400/20 transition"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-sand/70">
+              Senha
+            </label>
+            <button type="button" onclick="openForgotModal()" class="text-xs text-amber-300/80 hover:text-amber-200 transition">
+              Esqueceu sua senha?
+            </button>
+          </div>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="password" 
+              required
+              placeholder="••••••••" 
+              class="w-full px-4 py-3 rounded-xl bg-black/40 border border-distinto-border text-white text-sm placeholder-white/20 focus:outline-none focus:border-amber-400/80 focus:ring-2 focus:ring-amber-400/20 transition"
+            />
+          </div>
+        </div>
+
+        <div id="errorMessage" class="hidden p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+          <span>⚠️</span>
+          <span id="errorText">E-mail ou senha inválidos.</span>
+        </div>
+
+        <button 
+          type="submit" 
+          id="submitBtn"
+          class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-black font-semibold text-sm tracking-wide shadow-lg shadow-amber-400/10 hover:shadow-amber-400/25 hover:scale-[1.01] active:scale-[0.99] transition duration-200 flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span>Entrar no Portal</span>
+          <span class="text-base">→</span>
+        </button>
+
+      </form>
+
+      <!-- Quick Credentials Helper for Testing -->
+      <div class="mt-6 pt-5 border-t border-white/10 text-[11px] text-white/50 space-y-1">
+        <p class="font-medium text-white/70">Acessos rápidos de demonstração:</p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="fillLogin('admin@distinto.com.br', 'admin123')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-amber-200/90 border border-white/10 transition">
+            👑 Admin
+          </button>
+          <button onclick="fillLogin('kelly@loganima.com.br', 'kelly123')" class="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-emerald-300/90 border border-white/10 transition">
+            👤 Cliente (Kelly)
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer Copyright -->
+    <p class="text-center text-[11px] text-white/30 mt-6">
+      © 2026 Agência Distinto. Todos os direitos reservados.
+    </p>
+
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: RECUPERAÇÃO DE SENHA (ESQUECI MINHA SENHA) -->
+  <!-- ============================================================== -->
+  <div id="forgotModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-4 border-b border-distinto-border">
+        <h3 class="text-lg font-display font-semibold text-white">Recuperar Senha</h3>
+        <button onclick="closeForgotModal()" class="text-distinto-sand/50 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form id="forgotForm" class="mt-6 space-y-4" onsubmit="handleForgotPassword(event)">
+        <p class="text-xs text-distinto-sand/70 leading-relaxed">
+          Digite seu e-mail cadastrado. Enviaremos um link seguro via <strong>Brevo</strong> para você redefinir sua senha.
+        </p>
+
+        <div>
+          <label class="block text-xs uppercase tracking-wider text-distinto-sand/70 mb-1">Seu E-mail *</label>
+          <input type="email" id="forgotEmail" required placeholder="seuemail@exemplo.com" class="w-full px-4 py-2.5 rounded-xl bg-black/40 border border-distinto-border text-white text-xs focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div id="forgotFeedback" class="hidden p-3 rounded-xl text-xs flex items-center gap-2"></div>
+
+        <div class="pt-4 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeForgotModal()" class="px-4 py-2 rounded-xl text-xs text-distinto-sand/70 hover:text-white">Cancelar</button>
+          <button type="submit" id="forgotSubmitBtn" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold text-xs tracking-wide">
+            Enviar Link de Recuperação
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function fillLogin(email, pass) {
+      document.getElementById('email').value = email;
+      document.getElementById('password').value = pass;
+    }
+
+    // Se já estiver logado, redireciona
+    const token = localStorage.getItem('distinto_token');
+    const userRole = localStorage.getItem('distinto_role');
+    const userSlug = localStorage.getItem('distinto_slug');
+
+    if (token) {
+      if (userRole === 'admin') {
+        window.location.href = '/admin';
+      } else if (userSlug) {
+        window.location.href = `/estrategias/${userSlug}`;
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('errorMessage');
+      const errorText = document.getElementById('errorText');
+      const submitBtn = document.getElementById('submitBtn');
+
+      errorBox.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Verificando...</span>';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Erro ao efetuar login.');
+        }
+
+        // Salvar sessão
+        localStorage.setItem('distinto_token', data.token);
+        localStorage.setItem('distinto_user', JSON.stringify(data.user));
+        localStorage.setItem('distinto_role', data.user.role);
+        if (data.redirectUrl.includes('/estrategias/')) {
+          const slug = data.redirectUrl.split('/estrategias/')[1];
+          localStorage.setItem('distinto_slug', slug);
+        }
+
+        // Redirecionamento
+        window.location.href = data.redirectUrl;
+
+      } catch (err) {
+        errorText.textContent = err.message;
+        errorBox.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Entrar no Portal</span><span class="text-base">→</span>';
+      }
+    }
+
+    // Modais de Recuperação de Senha
+    function openForgotModal() {
+      document.getElementById('forgotModal').classList.remove('hidden');
+      document.getElementById('forgotFeedback').classList.add('hidden');
+    }
+    function closeForgotModal() {
+      document.getElementById('forgotModal').classList.add('hidden');
+    }
+
+    async function handleForgotPassword(e) {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value;
+      const fb = document.getElementById('forgotFeedback');
+      const btn = document.getElementById('forgotSubmitBtn');
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      fb.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/auth/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        fb.className = 'p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2';
+        fb.innerHTML = `<span>✅ ${data.message}</span>`;
+        fb.classList.remove('hidden');
+        btn.textContent = 'E-mail Enviado!';
+
+        setTimeout(() => {
+          closeForgotModal();
+          btn.disabled = false;
+          btn.textContent = 'Enviar Link de Recuperação';
+        }, 3000);
+      } catch (err) {
+        fb.className = 'p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2';
+        fb.innerHTML = `<span>⚠️ ${err.message}</span>`;
+        fb.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = 'Enviar Link de Recuperação';
+      }
+    }
+  </script>
+</body>
+</html>

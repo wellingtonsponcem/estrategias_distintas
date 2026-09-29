@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Operacional • Criação de Estratégias | Distinto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            distinto: {
+              gold: '#D4AF37',
+              sand: '#EDE6D8',
+              dark: '#0A0E0B',
+              card: '#141A16',
+              cardLight: '#1B231E',
+              border: '#243027'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    pre { background: #0A0E0B !important; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0E0B; }
+    ::-webkit-scrollbar-thumb { background: #243027; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+  </style>
+</head>
+<body class="bg-[#0A0E0B] text-distinto-sand font-sans min-h-screen selection:bg-amber-400 selection:text-black">
+
+  <!-- NAVBAR -->
+  <header class="border-b border-distinto-border bg-black/60 backdrop-blur-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/manual" class="flex items-center gap-2.5">
+          <img src="/assets/logo-distinto-white.png" alt="Distinto" class="h-6 w-auto object-contain" />
+          <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20 font-semibold hidden sm:inline-block">Manual</span>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="/admin" class="text-xs px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-distinto-sand border border-white/10 transition">
+          ← Voltar ao Painel Admin
+        </a>
+        <a href="/" target="_blank" class="text-xs px-3.5 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/30 transition">
+          Portal de Login ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="lg:col-span-3 hidden lg:block">
+      <div class="sticky top-24 p-5 rounded-2xl bg-distinto-card border border-distinto-border space-y-4">
+        <p class="text-[11px] font-semibold uppercase tracking-wider text-amber-300">Índice do Manual</p>
+        <nav class="space-y-1.5 text-xs text-distinto-sand/70">
+          <a href="#intro" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">1. Visão Geral & Filosofia</a>
+          <a href="#prompt-novo-chat" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-amber-300 font-semibold transition">2. Prompt Inicial (Novo Chat) ⭐</a>
+          <a href="#metodologia-10p" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">3. Metodologia Estratégia 10P</a>
+          <a href="#esteira-agentes" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">4. A Esteira dos 24 Agentes</a>
+          <a href="#notion-mcp" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">5. Integração Notion (MCP)</a>
+          <a href="#slide-doc" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">6. Slide-Doc Web Interativo</a>
+          <a href="#banco-vercel" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">7. Banco de Dados & Vercel</a>
+          <a href="#entrega-cliente" class="block py-1.5 px-2.5 rounded-lg hover:bg-white/5 hover:text-white transition">8. Entrega ao Cliente & Senhas</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="lg:col-span-9 space-y-12">
+      
+      <!-- HERO SECTION -->
+      <section id="intro" class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-distinto-card via-black to-distinto-card border border-distinto-border relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-amber-400/5 blur-3xl pointer-events-none"></div>
+        <span class="text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 border border-amber-400/20">
+          Guia Oficial de Operação • Agência Distinto
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-display font-semibold text-white mt-4">
+          Manual Completo de Criação de Estratégias
+        </h1>
+        <p class="text-sm text-distinto-sand/80 mt-3 max-w-2xl leading-relaxed">
+          Este manual documenta o processo padrão para iniciar, executar e publicar uma nova estratégia digital no ecossistema da Distinto em <strong>um novo chat</strong>, sem necessidade de cadastros manuais no painel.
+        </p>
+      </section>
+
+      <!-- SEÇÃO 2: PROMPT DO NOVO CHAT -->
+      <section id="prompt-novo-chat" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-amber-400/30 space-y-6 shadow-xl relative">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold text-sm">2</span>
+            <h2 class="text-xl font-display font-semibold text-white">Como Iniciar uma Estratégia em um Novo Chat</h2>
+          </div>
+          <button onclick="copyPromptTemplate()" id="copyBtn" class="text-xs px-3.5 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold transition cursor-pointer flex items-center gap-1.5">
+            <span>📋 Copiar Prompt</span>
+          </button>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          Ao abrir um <strong>novo chat</strong> para um novo cliente, basta copiar e colar a estrutura de briefing abaixo. O agente acionará o <strong>Agente Maestro</strong> e executará toda a esteira automaticamente.
+        </p>
+
+        <!-- CODE BLOCK DO TEMPLATE -->
+        <div class="relative">
+          <pre id="promptTemplateText" class="p-5 rounded-2xl border border-distinto-border text-xs font-mono text-emerald-300 overflow-x-auto leading-relaxed"><code>Olá! Quero iniciar uma NOVA ESTRATÉGIA digital completa para um cliente.
+Por favor, assuma o papel de **Agente Maestro** e execute a esteira completa dos 10Ps, Notion, Slide-Doc, criação no banco de dados e deploy na Vercel.
+
+Aqui estão os dados do cliente para o briefing inicial:
+
+1. DADOS DO CLIENTE & MARCA:
+- Nome do Especialista / Cliente: [Ex: Dr. Rafael Wainer]
+- Nome da Marca / Clínica / Empresa: [Ex: Instituto Wainer de Longevidade]
+- E-mail do Cliente (Login): [Ex: rafael@institutowainer.com.br]
+- Slug desejado da URL: [Ex: rafael-wainer]
+
+2. POSICIONAMENTO & NEGÓCIO:
+- Nicho / Especialidade: [Ex: Medicina Integrativa e Alta Performance]
+- Território Aspiracional: [Ex: Longevidade Ativa & Medicina de Precisão]
+- Headline / Ideia Central: [Ex: A ciência de viver mais e melhor.]
+- Principal Meta de Negócio: [Ex: 15 Novos Pacientes Particulares / mês]
+
+3. PÚBLICO & PRODUTOS:
+- Público-Alvo / Personas: [Ex: Empresários e profissionais liberais 40+]
+- Principais Serviços / Ofertas: [Ex: Consulta Prime, Protocolos de Longevidade, Acompanhamento Anual]
+- Diferenciais e Tom de Voz: [Ex: Sofisticado, científico, acolhedor e exclusivo]
+
+Por favor:
+1. Conduza a elaboração dos 10Ps (com o Agente Maestro e especialistas).
+2. Valide no Agente 21 (Revisor Técnico).
+3. Publique no Notion MCP (Docs e Tarefas nas bases da agência).
+4. Gere a apresentação interativa em `public/estrategias/[slug].html`.
+5. Registre no banco Neon Postgres com senha genérica (sem enviar e-mail automático).
+6. Faça o commit/push no Git para deploy automático na Vercel.
+7. Me entregue a URL da apresentação e a senha gerada para envio manual!</code></pre>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 3: METODOLOGIA ESTRATÉGIA 10P -->
+      <section id="metodologia-10p" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">3</span>
+          <h2 class="text-xl font-display font-semibold text-white">A Metodologia Estratégia de Conteúdo 10P</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          Toda estratégia da Distinto é construída sobre 10 pilares conectados, garantindo que o conteúdo tenha propósito claro e gere conversão:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">1P • Pesquisa & Diagnóstico</span>
+            <p class="text-distinto-sand/70">Análise de mercado, concorrentes, histórico e diferenciais competitivos.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">2P • Persona & Público-Alvo</span>
+            <p class="text-distinto-sand/70">Mapeamento de dores, desejos, objeções e níveis de consciência.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">3P • Posicionamento & Território</span>
+            <p class="text-distinto-sand/70">Declaração de posicionamento, Big Idea, UVP e não-negociáveis.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">4P • Plataformas & Canais</span>
+            <p class="text-distinto-sand/70">Arquitetura de canais (Instagram, YouTube, Site, WhatsApp, E-mail).</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">5P • Pilares de Conteúdo (Pautas)</span>
+            <p class="text-distinto-sand/70">Linhas editoriais, matriz de temas e distribuição de frequência.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">6P • Produção & Formatos</span>
+            <p class="text-distinto-sand/70">Carrosséis, Reels, Lives, Artigos, rotinas e esteira de gravação.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">7P • Promoção & Mídia</span>
+            <p class="text-distinto-sand/70">Estratégia de tráfego pago, impulsionamento e distribuição omnichannel.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">8P • Propagação & Comunidade</span>
+            <p class="text-distinto-sand/70">Engajamento, rituais de relacionamento e defensores de marca.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">9P • Performance & Métricas</span>
+            <p class="text-distinto-sand/70">North Star Metric, KPIs por canal e rituais de otimização contínua.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">10P • Playbook & Governança</span>
+            <p class="text-distinto-sand/70">Manual operacional de execução para o time e para o especialista.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 4: A ESTEIRA DOS 24 AGENTES -->
+      <section id="esteira-agentes" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">4</span>
+          <h2 class="text-xl font-display font-semibold text-white">A Arquitetura Multi-Agente (24 Agentes)</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          Cada agente possui uma função estrita documentada na pasta <code class="text-amber-300 font-mono">agentes/</code>.
+        </p>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">00. Agente Maestro</strong>
+              <span class="text-distinto-sand/60">Diretor Geral de Estratégia Digital & Orquestrador da Esteira.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20 font-mono text-[10px]">Orquestrador</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">01 a 20. Agentes Especialistas dos 10Ps</strong>
+              <span class="text-distinto-sand/60">Arquiteto de Objetivos, Auditor de Mercado, Perfilador de Persona, Engenheiro de Canais, Designer de Linhas, etc.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-mono text-[10px]">Estratégicos</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">21. Agente Revisor Técnico & Qualidade</strong>
+              <span class="text-distinto-sand/60">Validação ortográfica, checagem de lógica interna e eliminação de inconsistências.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20 font-mono text-[10px]">Auditoria</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">22. Agente Publicador Notion (MCP)</strong>
+              <span class="text-distinto-sand/60">Criação automatizada de páginas de Docs, Tarefas e Estratégia nas bases oficiais da agência.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-mono text-[10px]">Notion MCP</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">23. Agente Gerador de Slide-Doc Web</strong>
+              <span class="text-distinto-sand/60">Compila a apresentação interativa em HTML/Tailwind com Glassmorphism e slides animados.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono text-[10px]">Slide-Doc</span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-black/40 border border-distinto-border flex items-center justify-between">
+            <div>
+              <strong class="text-white block font-medium">24. Pipeline Integrado de Banco & Vercel</strong>
+              <span class="text-distinto-sand/60">Inserção no Neon Postgres, geração de senha genérica e git push para deploy automático.</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 border border-rose-500/20 font-mono text-[10px]">Deploy & DB</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 5: INTEGRAÇÃO NOTION MCP -->
+      <section id="notion-mcp" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">5</span>
+          <h2 class="text-xl font-display font-semibold text-white">Integração Notion (MCP)</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          O agente conecta diretamente via protocolo MCP no workspace <strong>Distinto - Agência</strong> e popula as seguintes bases:
+        </p>
+
+        <div class="p-4 rounded-xl bg-black/40 border border-distinto-border font-mono text-xs space-y-2 text-distinto-sand/80">
+          <div class="flex justify-between border-b border-distinto-border pb-1.5">
+            <span class="text-amber-300 font-semibold">Base de Estratégias (GEST)</span>
+            <span class="text-white/40">3f3e104b-b1cb-82e4-94a6-8107af85f1a5</span>
+          </div>
+          <div class="flex justify-between border-b border-distinto-border pb-1.5">
+            <span class="text-amber-300 font-semibold">Base de Docs (GEST)</span>
+            <span class="text-white/40">a63e104b-b1cb-82c3-a000-81425a9d74e4</span>
+          </div>
+          <div class="flex justify-between border-b border-distinto-border pb-1.5">
+            <span class="text-amber-300 font-semibold">Base de Tarefas</span>
+            <span class="text-white/40">784e104b-b1cb-83fb-a8b1-01ef16f1ddc3</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-amber-300 font-semibold">Home | DJSM</span>
+            <span class="text-white/40">96be104b-b1cb-82be-b3e5-812b2bfb9acd</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 6: SLIDE-DOC WEB -->
+      <section id="slide-doc" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">6</span>
+          <h2 class="text-xl font-display font-semibold text-white">Slide-Doc Web Interativo</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          Cada estratégia gera uma aplicação web individual em <code class="text-amber-300 font-mono">public/estrategias/&lt;slug&gt;.html</code>, contendo:
+        </p>
+
+        <ul class="list-disc list-inside space-y-1.5 text-xs text-distinto-sand/80">
+          <li><strong>Dark Luxury Theme</strong> com acabamento Glassmorphism e detalhes em ouro (<code class="text-amber-300">#D4AF37</code>).</li>
+          <li><strong>Navegação Fluida</strong> por teclado (← / →), toques no mobile ou cliques na barra inferior de progresso.</li>
+          <li><strong>Cards de Personas</strong> com abas interativas (Dores, Desejos, Hábitos, Solução).</li>
+          <li><strong>Matriz de Conteúdo</strong> com abas para Topo, Meio e Fundo de Funil.</li>
+          <li><strong>Cronograma & Formatos</strong> com filtros por semana e formato de mídia.</li>
+          <li><strong>Botão de Logoff Seguro</strong> no cabeçalho e na tela inicial de boas-vindas.</li>
+        </ul>
+      </section>
+
+      <!-- SEÇÃO 7: BANCO & VERCEL -->
+      <section id="banco-vercel" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">7</span>
+          <h2 class="text-xl font-display font-semibold text-white">Banco Neon Postgres & Deploy Vercel</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-2">
+            <h3 class="font-bold text-emerald-400">🐘 Neon PostgreSQL</h3>
+            <p class="text-distinto-sand/70">Todas as estratégias e acessos ficam persistidos nas tabelas <code class="text-amber-300">users</code>, <code class="text-amber-300">strategies</code> e <code class="text-amber-300">strategy_access</code>.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-2">
+            <h3 class="font-bold text-white">▲ Vercel Deploy</h3>
+            <p class="text-distinto-sand/70">O commit no repositório GitHub dispara a compilação automática na Vercel, publicando os novos arquivos em segundos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 8: ENTREGA AO CLIENTE -->
+      <section id="entrega-cliente" class="p-6 sm:p-8 rounded-3xl bg-distinto-card border border-distinto-border space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center font-bold text-sm">8</span>
+          <h2 class="text-xl font-display font-semibold text-white">Entrega das Credenciais ao Cliente</h2>
+        </div>
+
+        <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
+          Como o envio automático de e-mail fica desativado por padrão na criação rápida, você tem <strong>duas formas</strong> de enviar as credenciais para o cliente:
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-5 rounded-2xl bg-black/40 border border-distinto-border space-y-3">
+            <h4 class="font-bold text-amber-300">Opção A • Envio Manual (WhatsApp / Mensagem)</h4>
+            <p class="text-distinto-sand/70 leading-relaxed">Copie os dados entregues pelo agente no final do chat e envie diretamente na mensagem de entrega:</p>
+            <div class="p-3 rounded-xl bg-black/60 border border-white/10 font-mono text-[11px] text-distinto-sand/90">
+              Olá, [Nome]! Sua estratégia digital está pronta.<br><br>
+              🌐 Link: https://estrategias-distinto.vercel.app/<br>
+              👤 Login: [email-do-cliente]<br>
+              🔒 Senha: [senha-gerada]
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-black/40 border border-distinto-border space-y-3">
+            <h4 class="font-bold text-emerald-400">Opção B • Envio via Brevo pelo Painel Admin</h4>
+            <p class="text-distinto-sand/70 leading-relaxed">Caso deseje que a plataforma dispare o e-mail oficial com layout escuro da Distinto:</p>
+            <ol class="list-decimal list-inside space-y-1.5 text-distinto-sand/70">
+              <li>Acesse <a href="/admin" class="text-amber-300 underline font-medium">/admin</a>.</li>
+              <li>Na tabela de clientes, clique em <strong>✏️ Editar Acesso & Senha</strong>.</li>
+              <li>Digite uma nova senha se desejar e marque a caixa <strong>✉️ Enviar novas credenciais por e-mail via Brevo</strong>.</li>
+              <li>Clique em <strong>Salvar Alterações</strong>.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-distinto-border mt-20 py-8 bg-black/40 text-center text-xs text-distinto-sand/40">
+    <p>© 2026 Agência Distinto • Todos os direitos reservados. Ecossistema Multi-Agente 10P.</p>
+  </footer>
+
+  <script>
+    function copyPromptTemplate() {
+      const text = document.getElementById('promptTemplateText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.innerHTML = '<span>✅ Copiado!</span>';
+        btn.classList.add('bg-emerald-400', 'text-black');
+        setTimeout(() => {
+          btn.innerHTML = '<span>📋 Copiar Prompt</span>';
+          btn.classList.remove('bg-emerald-400');
+          btn.classList.add('bg-amber-400');
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -42,6 +42,9 @@
         <button onclick="dismissWelcomeScreen()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition backdrop-blur-md border border-white/15">
           Pular ✕
         </button>
+        <button onclick="handleStrategyLogout()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-rose-500/25 hover:bg-rose-500/40 text-rose-300 hover:text-rose-200 transition backdrop-blur-md border border-rose-500/40 flex items-center gap-1" title="Encerrar sessão e voltar ao login">
+          <span>Sair</span> <span>⎋</span>
+        </button>
       </div>
     </header>
 
@@ -135,6 +138,9 @@
         </button>
         <span class="hidden lg:inline text-xs text-brand-teal/60">Estratégia de Conteúdos • Atualizado 23 set 2026</span>
         <button id="presentBtn" class="hidden sm:inline-flex text-xs font-medium px-3 py-1.5 rounded-full border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition">Apresentar ⛶</button>
+        <button onclick="handleStrategyLogout()" class="text-[11px] sm:text-xs font-medium px-2.5 sm:px-3 py-1.5 rounded-full bg-rose-500/10 text-rose-600 border border-rose-300/60 hover:bg-rose-500/20 transition flex items-center gap-1" title="Encerrar sessão e voltar ao login">
+          <span>Sair</span> <span>⎋</span>
+        </button>
         
         <!-- Botão Menu Drawer Mobile -->
         <button onclick="openMobileMenu()" class="lg:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-teal text-white text-xs font-medium shadow-sm hover:bg-brand-tealLight transition active:scale-95">
@@ -3707,5 +3713,13 @@
   </nav>
 
   <script type="module" src="/src/app.js"></script>
+
+  <script>
+    function handleStrategyLogout() {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = '/';
+    }
+  </script>
 </body>
 </html>
