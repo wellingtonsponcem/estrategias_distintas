@@ -206,13 +206,27 @@
       submitBtn.innerHTML = '<span>Verificando...</span>';
 
       try {
-        const res = await fetch('/api/auth/login', {
+        let res = await fetch('/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password })
         });
 
-        const data = await res.json();
+        // Fallback para rota direta caso a Vercel sirva sem prefixo
+        if (res.status === 404) {
+          res = await fetch('/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+        }
+
+        let data = {};
+        try {
+          data = await res.json();
+        } catch (jsonErr) {
+          throw new Error(`Servidor retornou resposta inválida (${res.status}). Verifique as variáveis de ambiente na Vercel.`);
+        }
 
         if (!res.ok) {
           throw new Error(data.error || 'Erro ao efetuar login.');
@@ -222,7 +236,7 @@
         localStorage.setItem('distinto_token', data.token);
         localStorage.setItem('distinto_user', JSON.stringify(data.user));
         localStorage.setItem('distinto_role', data.user.role);
-        if (data.redirectUrl.includes('/estrategias/')) {
+        if (data.redirectUrl && data.redirectUrl.includes('/estrategias/')) {
           const slug = data.redirectUrl.split('/estrategias/')[1];
           localStorage.setItem('distinto_slug', slug);
         }

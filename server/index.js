@@ -57,11 +57,12 @@ function getBaseUrl(req) {
 }
 
 // ==========================================
-// ROTAS DE AUTENTICAÇÃO
+// ROUTER DE API (Compatível com /api e sem prefixo)
 // ==========================================
+const apiRouter = express.Router();
 
-// Login
-app.post('/api/auth/login', async (req, res) => {
+// 1. ROTAS DE AUTENTICAÇÃO
+apiRouter.post('/auth/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -128,12 +129,12 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // Checar sessão atual
-app.get('/api/auth/me', authenticateToken, async (req, res) => {
+apiRouter.get('/auth/me', authenticateToken, async (req, res) => {
   res.json({ user: req.user });
 });
 
 // Solicitar recuperação de senha (Forgot Password)
-app.post('/api/auth/forgot-password', async (req, res) => {
+apiRouter.post('/auth/forgot-password', async (req, res) => {
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Informe o e-mail cadastrado.' });
@@ -142,7 +143,6 @@ app.post('/api/auth/forgot-password', async (req, res) => {
   try {
     const userQuery = await pool.query('SELECT * FROM users WHERE LOWER(email) = LOWER($1)', [email.trim()]);
     if (userQuery.rows.length === 0) {
-      // Retorna sucesso genérico por segurança
       return res.json({ message: 'Se o e-mail estiver cadastrado, você receberá um link de recuperação em instantes.' });
     }
 
@@ -155,7 +155,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
       [user.id, resetToken, expiresAt]
     );
 
-    const resetUrl = `${getBaseUrl(req)}/reset-password.html?token=${resetToken}`;
+    const resetUrl = `${getBaseUrl(req)}/reset-password?token=${resetToken}`;
     
     // Disparar e-mail via Brevo
     await brevoService.sendPasswordResetEmail({
@@ -172,7 +172,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
 });
 
 // Redefinir senha com o token
-app.post('/api/auth/reset-password', async (req, res) => {
+apiRouter.post('/auth/reset-password', async (req, res) => {
   const { token, password } = req.body;
 
   if (!token || !password) {
@@ -206,12 +206,8 @@ app.post('/api/auth/reset-password', async (req, res) => {
   }
 });
 
-// ==========================================
-// ROTAS DE ESTRATÉGIAS (ADMIN)
-// ==========================================
-
-// Listar todas as estratégias
-app.get('/api/strategies', authenticateToken, async (req, res) => {
+// 2. ROTAS DE ESTRATÉGIAS
+apiRouter.get('/strategies', authenticateToken, async (req, res) => {
   try {
     if (req.user.role === 'admin') {
       const result = await pool.query(`
@@ -231,7 +227,6 @@ app.get('/api/strategies', authenticateToken, async (req, res) => {
       `);
       return res.json(result.rows);
     } else {
-      // Cliente vê apenas a dele
       const result = await pool.query(`
         SELECT s.*
         FROM strategies s
@@ -246,8 +241,7 @@ app.get('/api/strategies', authenticateToken, async (req, res) => {
   }
 });
 
-// Criar nova estratégia (ADMIN)
-app.post('/api/strategies', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.post('/strategies', authenticateToken, requireAdmin, async (req, res) => {
   const {
     slug, title, client_name, subtitle, description,
     meta_principal, territorio, prazo, approach, logo_url, file_path
@@ -284,8 +278,7 @@ app.post('/api/strategies', authenticateToken, requireAdmin, async (req, res) =>
   }
 });
 
-// Excluir estratégia (ADMIN - com verificação de segurança)
-app.delete('/api/strategies/:id', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.delete('/strategies/:id', authenticateToken, requireAdmin, async (req, res) => {
   const { id } = req.params;
   const { confirmSlug } = req.body;
 
@@ -310,12 +303,8 @@ app.delete('/api/strategies/:id', authenticateToken, requireAdmin, async (req, r
   }
 });
 
-// ==========================================
-// ROTAS DE CLIENTES (ADMIN)
-// ==========================================
-
-// Listar todos os clientes
-app.get('/api/users/clients', authenticateToken, requireAdmin, async (req, res) => {
+// 3. ROTAS DE CLIENTES
+apiRouter.get('/users/clients', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
@@ -340,8 +329,7 @@ app.get('/api/users/clients', authenticateToken, requireAdmin, async (req, res) 
   }
 });
 
-// Criar novo usuário cliente
-app.post('/api/users/clients', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.post('/users/clients', authenticateToken, requireAdmin, async (req, res) => {
   const { name, email, password, strategyId, sendEmail } = req.body;
 
   if (!name || !email || !password) {
@@ -375,7 +363,6 @@ app.post('/api/users/clients', authenticateToken, requireAdmin, async (req, res)
       }
     }
 
-    // Disparar e-mail se solicitado
     if (sendEmail) {
       await brevoService.sendCredentialsEmail({
         name,
@@ -394,8 +381,7 @@ app.post('/api/users/clients', authenticateToken, requireAdmin, async (req, res)
   }
 });
 
-// Atualizar cliente
-app.put('/api/users/clients/:id', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.put('/users/clients/:id', authenticateToken, requireAdmin, async (req, res) => {
   const { id } = req.params;
   const { name, email, password, strategyIds, sendEmail } = req.body;
 
@@ -423,7 +409,6 @@ app.put('/api/users/clients/:id', authenticateToken, requireAdmin, async (req, r
       );
     }
 
-    // Sincronizar estratégias se enviado array
     if (Array.isArray(strategyIds)) {
       await pool.query('DELETE FROM strategy_access WHERE user_id = $1', [id]);
       for (const stratId of strategyIds) {
@@ -436,7 +421,6 @@ app.put('/api/users/clients/:id', authenticateToken, requireAdmin, async (req, r
       }
     }
 
-    // Enviar dados atualizados por e-mail se solicitado
     if (sendEmail && password && password.trim() !== '') {
       await brevoService.sendCredentialsEmail({
         name,
@@ -470,8 +454,7 @@ app.put('/api/users/clients/:id', authenticateToken, requireAdmin, async (req, r
   }
 });
 
-// Excluir usuário cliente
-app.delete('/api/users/clients/:id', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.delete('/users/clients/:id', authenticateToken, requireAdmin, async (req, res) => {
   const { id } = req.params;
   try {
     await pool.query("DELETE FROM users WHERE id = $1 AND role = 'client'", [id]);
@@ -482,12 +465,8 @@ app.delete('/api/users/clients/:id', authenticateToken, requireAdmin, async (req
   }
 });
 
-// ==========================================
-// ROTAS DE ADMINISTRADORES (ADMIN)
-// ==========================================
-
-// Listar todos os administradores
-app.get('/api/users/admins', authenticateToken, requireAdmin, async (req, res) => {
+// 4. ROTAS DE ADMINISTRADORES
+apiRouter.get('/users/admins', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT id, name, email, role, created_at
@@ -502,8 +481,7 @@ app.get('/api/users/admins', authenticateToken, requireAdmin, async (req, res) =
   }
 });
 
-// Cadastrar novo administrador
-app.post('/api/users/admins', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.post('/users/admins', authenticateToken, requireAdmin, async (req, res) => {
   const { name, email, password, sendEmail } = req.body;
 
   if (!name || !email || !password) {
@@ -525,7 +503,6 @@ app.post('/api/users/admins', authenticateToken, requireAdmin, async (req, res) 
     );
     const newAdmin = userRes.rows[0];
 
-    // Disparar e-mail se solicitado
     if (sendEmail) {
       await brevoService.sendCredentialsEmail({
         name,
@@ -543,8 +520,7 @@ app.post('/api/users/admins', authenticateToken, requireAdmin, async (req, res) 
   }
 });
 
-// Atualizar administrador (Nome, E-mail e Senha)
-app.put('/api/users/admins/:id', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.put('/users/admins/:id', authenticateToken, requireAdmin, async (req, res) => {
   const { id } = req.params;
   const { name, email, password, sendEmail } = req.body;
 
@@ -572,7 +548,6 @@ app.put('/api/users/admins/:id', authenticateToken, requireAdmin, async (req, re
       );
     }
 
-    // Enviar dados atualizados por e-mail se solicitado
     if (sendEmail && password && password.trim() !== '') {
       await brevoService.sendCredentialsEmail({
         name,
@@ -591,8 +566,7 @@ app.put('/api/users/admins/:id', authenticateToken, requireAdmin, async (req, re
   }
 });
 
-// Excluir administrador
-app.delete('/api/users/admins/:id', authenticateToken, requireAdmin, async (req, res) => {
+apiRouter.delete('/users/admins/:id', authenticateToken, requireAdmin, async (req, res) => {
   const { id } = req.params;
 
   if (parseInt(id) === req.user.id) {
@@ -608,6 +582,10 @@ app.delete('/api/users/admins/:id', authenticateToken, requireAdmin, async (req,
   }
 });
 
+// ACESSO DUPLO: Registrar rotas de API tanto em /api quanto na raiz
+app.use('/api', apiRouter);
+app.use('/', apiRouter);
+
 // ==========================================
 // ROTAS DE PÁGINAS FRONTEND
 // ==========================================
@@ -618,7 +596,7 @@ app.get('/estrategias/:slug', (req, res) => {
   const customFilePath = path.join(rootDir, 'public', 'estrategias', `${slug}.html`);
   res.sendFile(customFilePath, (err) => {
     if (err) {
-      res.sendFile(path.join(rootDir, 'index.html'));
+      res.sendFile(path.join(rootDir, 'public', 'index.html'));
     }
   });
 });
