@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Briefing Estratégico 10P • Distinto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* FONTES OFICIAIS DISTINTO (Axiforma Family) */
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-Light.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Axiforma';
+      src: url('/assets/fonts/Axiforma-Black.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    body {
+      background-color: #0A0F0F;
+      color: #E5E5E4;
+      font-family: 'Axiforma', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: #0A0F0F; }
+    ::-webkit-scrollbar-thumb { background: #2D2D2D; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7A1E3E; }
+
+    /* PALETA DISTINTO: Noir (#0A0F0F), Bordeaux (#7A1E3E), Véu (#E5E5E4), Cloud (#D3D3D3), Sombra (#2D2D2D), Metallic (#A0A0A0) */
+    .bordeaux-gradient-btn {
+      background: linear-gradient(135deg, #9B2852 0%, #7A1E3E 60%, #5E142E 100%);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bordeaux-gradient-btn:hover {
+      background: linear-gradient(135deg, #B23060 0%, #8E2348 60%, #6E1837 100%);
+      box-shadow: 0 10px 25px -5px rgba(122, 30, 62, 0.4);
+    }
+    .bordeaux-pill {
+      background: rgba(122, 30, 62, 0.15);
+      border: 1px solid rgba(122, 30, 62, 0.35);
+      color: #F0B8CB;
+    }
+    .metallic-pill {
+      background: rgba(160, 160, 160, 0.08);
+      border: 1px solid rgba(160, 160, 160, 0.2);
+      color: #D3D3D3;
+    }
+
+    /* Form Inputs Optimized for Mobile (16px to prevent iOS auto-zoom) */
+    .input-field {
+      width: 100%;
+      background: rgba(18, 24, 24, 0.9);
+      border: 1px solid #253030;
+      border-radius: 0.875rem;
+      padding: 0.875rem 1rem;
+      color: #E5E5E4;
+      font-size: 1rem; /* 16px on mobile prevents auto zoom */
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    @media (min-width: 640px) {
+      .input-field {
+        font-size: 0.875rem; /* 14px on desktop */
+        padding: 0.75rem 1rem;
+      }
+    }
+    .input-field:focus {
+      border-color: #7A1E3E;
+      box-shadow: 0 0 0 3px rgba(122, 30, 62, 0.25);
+      background: rgba(22, 29, 29, 0.98);
+    }
+
+    .step-card {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .step-card.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom touch feedback */
+    .touch-card {
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .touch-card:active {
+      transform: scale(0.98);
+    }
+    
+    /* Hide scrollbar for clean tab swipe on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Axiforma', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            distinto: {
+              noir: '#0A0F0F',
+              bordeaux: '#7A1E3E',
+              bordeauxLight: '#9B2852',
+              bordeauxDark: '#5E142E',
+              veu: '#E5E5E4',
+              cloud: '#D3D3D3',
+              metallic: '#A0A0A0',
+              sombra: '#2D2D2D',
+              card: '#121717',
+              cardLight: '#181F1F',
+              border: '#232D2D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-distinto-noir text-distinto-veu font-sans min-h-screen selection:bg-[#7A1E3E] selection:text-white antialiased flex flex-col justify-between relative overflow-x-hidden pb-24 sm:pb-0">
+
+  <!-- TOP LINEAR PROGRESS BAR (Sticky Mobile Indicator) -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-distinto-border z-50">
+    <div id="topProgressBar" class="h-full bg-gradient-to-r from-[#7A1E3E] via-[#9B2852] to-emerald-400 transition-all duration-300 ease-out" style="width: 12.5%;"></div>
+  </div>
+
+  <!-- BACKGROUND SUBTLE TEXTURE -->
+  <div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay bg-cover bg-center z-0" style="background-image: url('/assets/textures/gradient-wallpapers-PFKx7Srejek-unsplash.jpg');"></div>
+  <div class="fixed -top-40 -right-40 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-[#7A1E3E]/10 blur-3xl pointer-events-none z-0"></div>
+  <div class="fixed -bottom-40 -left-40 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-[#7A1E3E]/05 blur-3xl pointer-events-none z-0"></div>
+
+  <!-- TOP BRANDING NAVBAR -->
+  <header class="border-b border-distinto-border bg-[#0A0F0F]/90 backdrop-blur-xl sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
+      
+      <!-- LOGO DISTINTO OFICIAL -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <img src="/assets/distinto_logo.svg" alt="Distinto" class="h-5 sm:h-6 w-auto object-contain transition group-hover:opacity-90" />
+        <span class="text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bordeaux-pill font-semibold">10P</span>
+      </a>
+
+      <!-- CONTROLES DO TOPO -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Indicador de Auto-save -->
+        <div id="saveStatus" class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-distinto-cloud/70 px-2 sm:px-2.5 py-1 rounded-full bg-white/5 border border-white/5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="hidden xs:inline sm:inline">Salvamento ativo</span>
+          <span class="xs:hidden sm:hidden">Salvo</span>
+        </div>
+
+        <button onclick="confirmResetBriefing()" class="text-[11px] sm:text-xs text-distinto-metallic hover:text-rose-300 transition px-1.5 py-1 cursor-pointer" title="Reiniciar respostas">
+          Limpar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROGRESS HERO (Mobile Compact & Scrollable Stepper) -->
+  <div class="border-b border-distinto-border bg-gradient-to-b from-[#0A0F0F] via-distinto-card/80 to-[#0A0F0F] py-4 sm:py-7 px-4 sm:px-6 relative z-10">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center justify-between gap-3 sm:gap-5">
+        <div>
+          <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-md bordeaux-pill inline-block">
+            Estratégia 10P
+          </span>
+          <h1 class="text-lg sm:text-2xl md:text-3xl font-display font-semibold text-white mt-1 sm:mt-2">
+            Briefing Estratégico
+          </h1>
+        </div>
+
+        <!-- Progress Counter -->
+        <div class="bg-distinto-card border border-distinto-border rounded-xl sm:rounded-2xl px-3 py-2 sm:p-3.5 flex items-center gap-2.5 sm:gap-4 shrink-0 shadow-lg">
+          <div>
+            <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-distinto-metallic block font-medium">Progresso</span>
+            <span id="progressText" class="text-sm sm:text-lg font-bold font-mono text-distinto-veu">Etapa 1 de 8</span>
+          </div>
+          <div class="w-8 h-8 sm:w-12 sm:h-12 relative flex items-center justify-center">
+            <svg class="w-8 h-8 sm:w-12 sm:h-12 -rotate-90" viewBox="0 0 36 36">
+              <path class="text-distinto-border" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="progressCircle" class="text-[#7A1E3E] transition-all duration-500 ease-out" stroke-dasharray="100, 100" stroke-dashoffset="87.5" stroke-linecap="round" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            </svg>
+            <span id="percentText" class="absolute text-[9px] sm:text-[11px] font-mono font-bold text-white">12%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Navigation Breadcrumb (Touch Scrollable) -->
+      <div id="stepsContainer" class="mt-4 sm:mt-6 flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar text-xs">
+        <button onclick="goToStep(1)" id="stepTab1" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-[#7A1E3E]/20 text-[#F0B8CB] border-[#7A1E3E]/40 whitespace-nowrap transition cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-[#7A1E3E] text-white text-[10px] font-bold flex items-center justify-center">1</span>
+          <span>Negócio</span>
+        </button>
+        <button onclick="goToStep(2)" id="stepTab2" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">2</span>
+          <span>Objetivos</span>
+        </button>
+        <button onclick="goToStep(3)" id="stepTab3" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">3</span>
+          <span>DNA & Tom</span>
+        </button>
+        <button onclick="goToStep(4)" id="stepTab4" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">4</span>
+          <span>Personas</span>
+        </button>
+        <button onclick="goToStep(5)" id="stepTab5" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">5</span>
+          <span>Produtos</span>
+        </button>
+        <button onclick="goToStep(6)" id="stepTab6" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">6</span>
+          <span>Concorrentes</span>
+        </button>
+        <button onclick="goToStep(7)" id="stepTab7" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">7</span>
+          <span>Canais</span>
+        </button>
+        <button onclick="goToStep(8)" id="stepTab8" class="step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95">
+          <span class="w-4 h-4 rounded-full bg-white/10 text-distinto-veu text-[10px] font-bold flex items-center justify-center">8</span>
+          <span>Revisão</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN FORM CONTAINER -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-8 flex-1 w-full relative z-10">
+    
+    <form id="briefingForm" onsubmit="event.preventDefault();" class="space-y-6">
+      
+      <!-- ======================================================== -->
+      <!-- STEP 1: IDENTIFICAÇÃO DA EMPRESA / MARCA -->
+      <!-- ======================================================== -->
+      <div id="step1" class="step-card active bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 01 de 08 • Identificação</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Identificação da Marca & Contato</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">Dados essenciais para a abertura do seu projeto estratégico.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Nome da Empresa / Marca <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="company_name" name="company_name" required placeholder="Ex: Instituto Longânima" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Nome do Responsável / Especialista <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="client_name" name="client_name" required placeholder="Ex: Dra. Kelly Bruzeguini" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Cargo / Função</label>
+            <input type="text" id="client_role" name="client_role" placeholder="Ex: Médica & Fundadora" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">WhatsApp para Contato <span class="text-[#F0B8CB]">*</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" required inputmode="tel" placeholder="(11) 99999-9999" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">E-mail Principal <span class="text-[#F0B8CB]">*</span></label>
+            <input type="email" id="email" name="email" required inputmode="email" placeholder="contato@loganima.com.br" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Segmento / Nicho de Atuação <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="niche" name="niche" required placeholder="Ex: Medicina Preventiva, Longevidade e Saúde 50+" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Tempo de Mercado</label>
+            <select id="market_time" name="market_time" class="input-field">
+              <option value="">Selecione...</option>
+              <option value="Menos de 1 ano">Menos de 1 ano (Novo lançamento)</option>
+              <option value="1 a 3 anos">1 a 3 anos (Em crescimento)</option>
+              <option value="3 a 5 anos">3 a 5 anos (Estabelecida)</option>
+              <option value="Mais de 5 anos">Mais de 5 anos (Consolidada)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Site Oficial / Linktree</label>
+            <input type="url" id="website_url" name="website_url" inputmode="url" placeholder="https://instituto.com.br" class="input-field" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Redes Sociais Principais (Instagram, YouTube, etc.)</label>
+          <textarea id="social_links" name="social_links" rows="2" placeholder="Ex: @dra.kellybruzeguini (Instagram), youtube.com/@loganima" class="input-field"></textarea>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 2: OBJETIVOS ESTRATÉGICOS & METAS SMART -->
+      <!-- ======================================================== -->
+      <div id="step2" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 02 de 08 • Objetivos de Negócio</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Objetivos & Metas SMART</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">
+            <em>"Conteúdo não é o objetivo final. Conteúdo é o meio para gerar faturamento e autoridade."</em>
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-2">Qual o seu Objetivo Primordial de Negócio? <span class="text-[#F0B8CB]">*</span></label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mt-1.5" id="primaryGoalOptions">
+            <label class="touch-card flex items-start gap-3 p-3.5 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer">
+              <input type="radio" name="primary_goal" value="Aumentar Faturamento e Vendas Diretas" class="mt-1 accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <div>
+                <span class="text-xs sm:text-sm font-semibold text-white block">Aumentar Faturamento & Vendas</span>
+                <span class="text-[11px] text-distinto-cloud/60">Escalar conversões de produtos ou serviços de alto ticket.</span>
+              </div>
+            </label>
+
+            <label class="touch-card flex items-start gap-3 p-3.5 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer">
+              <input type="radio" name="primary_goal" value="Construir Autoridade e Reputação de Referência" class="mt-1 accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <div>
+                <span class="text-xs sm:text-sm font-semibold text-white block">Posicionamento de Autoridade</span>
+                <span class="text-[11px] text-distinto-cloud/60">Tornar-se a principal referência no seu nicho de atuação.</span>
+              </div>
+            </label>
+
+            <label class="touch-card flex items-start gap-3 p-3.5 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer">
+              <input type="radio" name="primary_goal" value="Lançamento de Novo Produto ou Serviço" class="mt-1 accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <div>
+                <span class="text-xs sm:text-sm font-semibold text-white block">Lançamento de Novo Produto/Método</span>
+                <span class="text-[11px] text-distinto-cloud/60">Criar antecipação, demanda reprimida e novas esteiras.</span>
+              </div>
+            </label>
+
+            <label class="touch-card flex items-start gap-3 p-3.5 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer">
+              <input type="radio" name="primary_goal" value="Escalar Captação Contínua de Leads e Pacientes" class="mt-1 accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <div>
+                <span class="text-xs sm:text-sm font-semibold text-white block">Funil Perpétuo de Captação</span>
+                <span class="text-[11px] text-distinto-cloud/60">Preencher agenda comercial mês a mês no automático.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Volume / Faturamento Atual Mensal</label>
+            <input type="text" id="current_revenue" name="current_revenue" placeholder="Ex: R$ 40.000/mês ou 10 pacientes novos" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Meta Numérica ou Financeira Desejada <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="target_goal" name="target_goal" required placeholder="Ex: R$ 120.000/mês ou 25 pacientes/mês" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Prazo Limite para Atingir a Meta <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="deadline" name="deadline" required placeholder="Ex: 6 meses (até Dezembro/2026)" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Principal Gargalo Comercial Atual</label>
+            <input type="text" id="main_bottleneck" name="main_bottleneck" placeholder="Ex: Poucos leads qualificados no WhatsApp" class="input-field" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">O que você já tentou que NÃO funcionou?</label>
+          <textarea id="past_failures" name="past_failures" rows="2" placeholder="Ex: Posts estáticos sem estratégia de conversão; anúncios avulsos sem funil." class="input-field"></textarea>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 3: DNA ESTRATÉGICO, POSICIONAMENTO & TOM DE VOZ -->
+      <!-- ======================================================== -->
+      <div id="step3" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 03 de 08 • Posicionamento</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">DNA da Marca & Tom de Voz</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">
+            <em>"Branding não é criação, é descoberta. Clareza não é estética, é estratégia."</em>
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Proposta Única de Valor (UVP) / Big Idea <span class="text-[#F0B8CB]">*</span></label>
+          <p class="text-[11px] text-distinto-cloud/60 mb-1.5">Por que o cliente deve escolher a sua marca e não qualquer outra?</p>
+          <textarea id="uvp_description" name="uvp_description" required rows="2" placeholder="Ex: Ajudamos pessoas 50+ a viverem sua fase mais saudável e potente com medicina preventiva individualizada." class="input-field"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">História de Origem ou Método Proprietário</label>
+          <textarea id="brand_story" name="brand_story" rows="3" placeholder="Conte brevemente o motivo pelo qual a empresa nasceu ou qual método proprietário você desenvolveu..." class="input-field"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Tom de Voz Desejado (Selecione até 3 atributos)</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-1.5" id="toneBadges">
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Sofisticado & Exclusivo" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>✨ Sofisticado & Exclusivo</span>
+            </label>
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Técnico, Científico & Confiável" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🔬 Técnico & Confiável</span>
+            </label>
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Acolhedor, Empático & Humano" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🤝 Acolhedor & Empático</span>
+            </label>
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Direto, Enérgico & Assertivo" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>⚡ Direto & Assertivo</span>
+            </label>
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Didático, Educativo & Claro" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>📚 Didático & Educativo</span>
+            </label>
+            <label class="touch-card flex items-center gap-2.5 p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="tone_traits" value="Provocativo & Disruptivo" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🔥 Provocativo & Disruptivo</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Não-Negociáveis da Marca (O que NUNCA fazer ou dizer) <span class="text-[#F0B8CB]">*</span></label>
+          <textarea id="non_negotiables" name="non_negotiables" required rows="2" placeholder="Ex: Não fazemos vídeos de dancinha, nunca prometemos resultados mágicos, não usamos termos corporativos vazios." class="input-field"></textarea>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 4: PÚBLICO-ALVO, PERSONAS & DORES -->
+      <!-- ======================================================== -->
+      <div id="step4" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 04 de 08 • Público & Dores</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Público-Alvo, Personas & Dores</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">A psicologia, as motivações secretas e os medos de quem contrata você.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Perfil do Cliente Ideal (ICP) <span class="text-[#F0B8CB]">*</span></label>
+            <textarea id="icp_profile" name="icp_profile" required rows="3" placeholder="Ex: Mulheres de 48 a 65 anos, classe A/B, profissionais liberais ou empresárias, valorizam saúde preventiva e alto padrão." class="input-field"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Dores & Frustrações Mais Urgentes <span class="text-[#F0B8CB]">*</span></label>
+            <textarea id="persona_pains" name="persona_pains" required rows="3" placeholder="Ex: Cansaço extremo, perda de memória recente, receio de perder a autonomia no futuro, consultas médicas rápidas de 10 minutos." class="input-field"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Maiores Sonhos & Desejos (Terra Prometida)</label>
+            <textarea id="persona_desires" name="persona_desires" rows="3" placeholder="Ex: Ter energia plena para viajar, viver até os 90+ anos ativa, recuperar a autoestima e vitalidade." class="input-field"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Principais Objeções Antes de Comprar <span class="text-[#F0B8CB]">*</span></label>
+            <textarea id="persona_objections" name="persona_objections" required rows="3" placeholder="Ex: 'Será que funciona para mim?', 'O valor é alto', 'Não tenho tempo para seguir o protocolo'." class="input-field"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 5: ESTEIRA DE PRODUTOS & MODELO COMERCIAL -->
+      <!-- ======================================================== -->
+      <div id="step5" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 05 de 08 • Produtos & Vendas</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Esteira de Produtos & Modelo Comercial</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">Mapeamento das ofertas, tickets médios e canais de conversão comercial.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2 sm:mb-3">
+            <label class="text-xs font-semibold uppercase tracking-wider text-distinto-veu/90">Produtos / Serviços Oferecidos</label>
+            <button type="button" onclick="addProductRow()" class="text-xs px-2.5 py-1.5 rounded-lg bordeaux-pill hover:bg-[#7A1E3E]/30 transition flex items-center gap-1 cursor-pointer active:scale-95">
+              <span>+ Adicionar Produto</span>
+            </button>
+          </div>
+
+          <div id="productsContainer" class="space-y-3">
+            <!-- Dynamic Product Row 1 -->
+            <div class="product-row grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3 p-3.5 rounded-2xl bg-black/40 border border-distinto-border items-center">
+              <div class="sm:col-span-6">
+                <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Nome do Produto</label>
+                <input type="text" placeholder="Nome do Produto / Serviço" class="input-field text-xs product-name" />
+              </div>
+              <div class="sm:col-span-3">
+                <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Formato</label>
+                <input type="text" placeholder="Formato (Ex: Consulta/Mentoria)" class="input-field text-xs product-format" />
+              </div>
+              <div class="sm:col-span-3">
+                <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Preço Médio</label>
+                <input type="text" placeholder="Preço (Ex: R$ 3.500)" class="input-field text-xs product-price" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pt-2">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Qual é o Produto Carro-Chefe (Core Offer)? <span class="text-[#F0B8CB]">*</span></label>
+            <input type="text" id="core_product" name="core_product" required placeholder="Ex: Protocolo de Longevidade Ativa 50+" class="input-field" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Onde a Venda é Fechada? <span class="text-[#F0B8CB]">*</span></label>
+            <select id="sales_channel" name="sales_channel" required class="input-field">
+              <option value="">Selecione o canal principal...</option>
+              <option value="WhatsApp Comercial / Atendimento">WhatsApp Comercial / Atendimento</option>
+              <option value="Reunião Comercial / Call de Diagnóstico">Reunião / Call Comercial (Zoom/Meet)</option>
+              <option value="Direct do Instagram">Direct do Instagram</option>
+              <option value="Página de Vendas Direta com Checkout">Página de Vendas com Checkout</option>
+              <option value="Balcão Físico / Clínica">Presencial no Estabelecimento / Clínica</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 6: CONCORRENTES & BENCHMARKS -->
+      <!-- ======================================================== -->
+      <div id="step6" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 06 de 08 • Concorrência</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Concorrentes & Referências</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">
+            <em>"Não criamos para agradar. Criamos para posicionar. Porque quem é distinto, não compete, lidera."</em>
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Principais Concorrentes Diretos (Cite até 3 players e links) <span class="text-[#F0B8CB]">*</span></label>
+          <textarea id="competitors" name="competitors" required rows="3" placeholder="Ex: 
+1. Clínica Alpha (@clinicaalpha) - Forte em tráfego pago, mas comunicação genérica.
+2. Dr. Fulano (@drfulano) - Muitos seguidores, foco apenas em estética jovem." class="input-field"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Referências e Inspirações de Conteúdo</label>
+          <p class="text-[11px] text-distinto-cloud/60 mb-1.5">Quais marcas ou perfis você admira e o que você mais gosta neles?</p>
+          <textarea id="benchmarks" name="benchmarks" rows="3" placeholder="Ex: 
+- @drpeterattia: Adoro a profundidade científica com clareza nos gráficos.
+- @apple: Inspiração em elegância minimalista." class="input-field"></textarea>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 7: CANAIS, CONTEÚDOS & IDENTIDADE VISUAL -->
+      <!-- ======================================================== -->
+      <div id="step7" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 07 de 08 • Canais & Visual</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Canais Digitais & Identidade Visual</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">Formatos de alta performance e os ativos visuais disponíveis da sua marca.</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Canais onde deseja concentrar esforços (Selecione os principais)</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1.5" id="channelsSelection">
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="Instagram (Reels, Carrosséis, Stories)" checked class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>📸 Instagram</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="YouTube (Vídeos Longos e Shorts)" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🎥 YouTube</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="LinkedIn (Artigos e Posts B2B)" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>💼 LinkedIn</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="TikTok" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🎵 TikTok</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="Podcast / Spotify" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>🎙️ Podcast</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="Blog / Artigos SEO" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>📝 Blog / SEO</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="E-mail Marketing / Newsletter" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>✉️ E-mail</span>
+            </label>
+            <label class="touch-card flex items-center gap-2 p-2.5 sm:p-3 rounded-xl border border-distinto-border bg-black/40 hover:border-[#7A1E3E]/60 cursor-pointer text-xs">
+              <input type="checkbox" name="focus_channels" value="WhatsApp Broadcast" class="accent-[#7A1E3E] w-4 h-4 shrink-0" />
+              <span>💬 WhatsApp</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Formatos com Maior Afinidade</label>
+            <select id="preferred_formats" name="preferred_formats" class="input-field">
+              <option value="Vídeos gravados pelo especialista para câmera (Reels/YouTube)">Vídeos gravados pelo especialista</option>
+              <option value="Carrosséis educativos e visuais de alto design">Carrosséis educativos e visuais</option>
+              <option value="Vídeos em formato Podcast / Entrevista / Bastidores">Formato Podcast / Entrevistas</option>
+              <option value="Vídeos com locução + animações e banco de imagens (sem aparecer)">Animações / Sem aparecer</option>
+              <option value="Posts de texto e artigos de reflexão profunda">Posts de texto e artigos profundos</option>
+              <option value="Mix equilibrado de todos os formatos">Mix equilibrado de formatos</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Paleta de Cores e Identidade Visual</label>
+            <input type="text" id="brand_colors" name="brand_colors" placeholder="Ex: #0A0F0F, #7A1E3E, #E5E5E4" class="input-field" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Link da Pasta no Google Drive / Dropbox com Fotos e Logos</label>
+          <input type="url" id="drive_link" name="drive_link" inputmode="url" placeholder="https://drive.google.com/drive/folders/..." class="input-field" />
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- STEP 8: CAPACIDADE OPERACIONAL, REVISÃO & ENVIO -->
+      <!-- ======================================================== -->
+      <div id="step8" class="step-card bg-distinto-card p-4 sm:p-8 rounded-2xl sm:rounded-3xl border border-distinto-border space-y-4 sm:space-y-6 shadow-xl">
+        <div class="border-b border-distinto-border/80 pb-3 sm:pb-4">
+          <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#F0B8CB]">Etapa 08 de 08 • Finalização</span>
+          <h2 class="text-lg sm:text-2xl font-display font-semibold text-white mt-1">Capacidade Operacional & Revisão</h2>
+          <p class="text-xs sm:text-sm text-distinto-cloud/70 mt-0.5 sm:mt-1">Defina a viabilidade de execução do plano e revise suas respostas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Quem será responsável pela execução e gravação?</label>
+            <select id="team_structure" name="team_structure" class="input-field">
+              <option value="O próprio especialista grava e a equipe cuida da edição">O próprio especialista grava; edição por equipe/agência</option>
+              <option value="Equipe interna completa de marketing">Equipe interna de marketing da empresa</option>
+              <option value="Eu mesmo faço 100% da criação, gravação e publicação">Eu mesmo faço tudo (Especialista solo)</option>
+              <option value="Desejo suporte completo da Distinto na operação">Desejo suporte completo da Distinto na operação</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Verba Mensal Prevista para Tráfego Pago / Ads</label>
+            <select id="ads_budget" name="ads_budget" class="input-field">
+              <option value="Sem verba inicial (100% Orgânico)">Sem verba inicial (100% Orgânico)</option>
+              <option value="Até R$ 2.000 / mês">Até R$ 2.000 / mês</option>
+              <option value="R$ 2.000 a R$ 5.000 / mês">R$ 2.000 a R$ 5.000 / mês</option>
+              <option value="R$ 5.000 a R$ 15.000 / mês">R$ 5.000 a R$ 15.000 / mês</option>
+              <option value="Acima de R$ 15.000 / mês">Acima de R$ 15.000 / mês</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-distinto-veu/90 mb-1.5">Observações Adicionais</label>
+          <textarea id="additional_notes" name="additional_notes" rows="2" placeholder="Algum detalhe estratégico crucial que não foi abordado nas perguntas anteriores?" class="input-field"></textarea>
+        </div>
+
+        <!-- Summary Preview Box (Auto-Updated in Real Time) -->
+        <div class="p-3.5 sm:p-5 rounded-2xl bg-black/40 border border-distinto-border space-y-2.5 sm:space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <span>📋 Resumo Executivo</span>
+            </span>
+            <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] text-[#F0B8CB] font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Atualizado em tempo real</span>
+            </div>
+          </div>
+          <div id="summaryPreviewBox" class="text-xs text-distinto-cloud/90 max-h-56 sm:max-h-64 overflow-y-auto p-3 sm:p-4 bg-distinto-noir/90 rounded-xl font-mono border border-distinto-border/60 leading-relaxed whitespace-pre-wrap selection:bg-[#7A1E3E]"></div>
+        </div>
+      </div>
+
+      <!-- DESKTOP INLINE BUTTONS (Hidden on mobile) -->
+      <div class="hidden sm:flex items-center justify-between pt-4 border-t border-distinto-border/80">
+        <button type="button" id="prevBtn" onclick="prevStep()" class="px-5 py-2.5 rounded-xl border border-distinto-border bg-white/5 hover:bg-white/10 text-distinto-veu text-xs font-semibold tracking-wide transition flex items-center gap-2 cursor-pointer opacity-50 pointer-events-none">
+          ← Voltar
+        </button>
+
+        <div class="flex items-center gap-3">
+          <button type="button" id="nextBtn" onclick="nextStep()" class="px-6 py-2.5 rounded-xl bordeaux-gradient-btn text-white text-xs font-bold tracking-wide shadow-lg hover:scale-[1.02] active:scale-[0.98] transition flex items-center gap-2 cursor-pointer">
+            <span>Próximo Passo →</span>
+          </button>
+
+          <button type="button" id="submitBtn" onclick="submitBriefing()" class="hidden px-7 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-white text-xs font-bold tracking-wide shadow-lg shadow-emerald-500/20 hover:scale-[1.02] active:scale-[0.98] transition flex items-center gap-2 cursor-pointer">
+            <span>🚀 Finalizar e Enviar Briefing</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- SUCCESS SCREEN (Shown after submission) -->
+    <div id="successCard" class="hidden bg-distinto-card p-6 sm:p-12 rounded-3xl border border-distinto-border text-center space-y-6 shadow-2xl">
+      <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#7A1E3E]/20 border border-[#7A1E3E]/40 text-[#F0B8CB] flex items-center justify-center text-2xl sm:text-3xl mx-auto shadow-xl shadow-[#7A1E3E]/20">
+        ✓
+      </div>
+      
+      <div>
+        <span class="text-[10px] sm:text-xs uppercase tracking-widest text-[#F0B8CB] font-bold px-3 py-1 rounded-full bordeaux-pill">Briefing Enviado com Sucesso!</span>
+        <h2 class="text-xl sm:text-3xl font-display font-semibold text-white mt-3">Sua Estratégia Está Sendo Arquitetada</h2>
+        <p class="text-xs sm:text-sm text-distinto-cloud/80 max-w-lg mx-auto mt-2 leading-relaxed">
+          Recebemos todas as suas informações estratégicas. Nossos estrategistas e a esteira dos 24 Agentes Especialistas de IA já estão processando os insumos para gerar o Master Strategy Doc e sua apresentação executiva.
+        </p>
+      </div>
+
+      <!-- Post Submit Action -->
+      <div class="flex items-center justify-center pt-2">
+        <a id="whatsappContactBtn" href="https://wa.me/5527988586935?text=Ol%C3%A1%21%20Acabei%20de%20preencher%20o%20Briefing%20Estrat%C3%A9gico%20da%20Distinto." target="_blank" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-2xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold tracking-wide transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/10 hover:scale-[1.02] active:scale-[0.98]">
+          <span>💬 Avisar Estrategista no WhatsApp (+55 27 98858-6935)</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <div class="pt-4 sm:pt-6 border-t border-distinto-border/60">
+        <a href="/" class="text-xs text-distinto-metallic hover:text-white transition">← Voltar à página inicial</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MOBILE FIXED BOTTOM DOCK (Thumb-friendly Navigation) -->
+  <div id="mobileBottomDock" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0A0F0F]/95 backdrop-blur-xl border-t border-distinto-border p-3 flex items-center gap-2.5">
+    <button type="button" id="prevBtnMobile" onclick="prevStep()" class="w-1/3 py-3 rounded-xl border border-distinto-border bg-white/5 text-distinto-veu text-xs font-semibold text-center transition active:scale-95 opacity-50 pointer-events-none">
+      ← Voltar
+    </button>
+    <button type="button" id="nextBtnMobile" onclick="nextStep()" class="flex-1 py-3 rounded-xl bordeaux-gradient-btn text-white text-xs font-bold text-center tracking-wide shadow-lg active:scale-95 transition">
+      Próximo Passo →
+    </button>
+    <button type="button" id="submitBtnMobile" onclick="submitBriefing()" class="hidden flex-1 py-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-white text-xs font-bold text-center tracking-wide shadow-lg shadow-emerald-500/20 active:scale-95 transition">
+      🚀 Finalizar Envio
+    </button>
+  </div>
+
+  <!-- FOOTER OFICIAL DISTINTO -->
+  <footer class="border-t border-distinto-border bg-[#0A0F0F] py-5 sm:py-7 px-4 text-center text-xs text-distinto-metallic relative z-10 hidden sm:block">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+      <div class="flex items-center gap-3">
+        <img src="/assets/distinto_logo.svg" alt="Distinto" class="h-4 w-auto opacity-70" />
+        <span class="text-[11px] text-distinto-cloud/60">• Estratégia de Conteúdo 10P</span>
+      </div>
+      <p class="text-[11px] text-distinto-cloud/50">
+        <em>"Porque quem é distinto, não compete, lidera."</em> — © 2026 Distinto.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    let currentStep = 1;
+    const totalSteps = 8;
+    const STORAGE_KEY = 'distinto_briefing_draft_v2';
+
+    // Initialize Page
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDraft();
+      updateProgress();
+      setupAutoSave();
+    });
+
+    // Navigation Logic
+    function updateProgress() {
+      // Hide all steps
+      for (let i = 1; i <= totalSteps; i++) {
+        const stepEl = document.getElementById(`step${i}`);
+        const tabEl = document.getElementById(`stepTab${i}`);
+        if (stepEl) stepEl.classList.remove('active');
+        if (tabEl) {
+          if (i === currentStep) {
+            tabEl.className = 'step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-[#7A1E3E]/20 text-[#F0B8CB] border-[#7A1E3E]/50 whitespace-nowrap transition cursor-pointer active:scale-95';
+            // Scroll active tab into view on mobile
+            try {
+              tabEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            } catch(e) {}
+          } else if (i < currentStep) {
+            tabEl.className = 'step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/10 text-emerald-300 border-emerald-500/20 whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95';
+          } else {
+            tabEl.className = 'step-tab shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-xl font-medium border bg-white/5 text-distinto-cloud/60 border-distinto-border whitespace-nowrap transition hover:text-white cursor-pointer active:scale-95';
+          }
+        }
+      }
+
+      // Show current step
+      const currentStepEl = document.getElementById(`step${currentStep}`);
+      if (currentStepEl) currentStepEl.classList.add('active');
+
+      // Update text and circle
+      document.getElementById('progressText').innerText = `Etapa ${currentStep} de ${totalSteps}`;
+      const percent = Math.round((currentStep / totalSteps) * 100);
+      document.getElementById('percentText').innerText = `${percent}%`;
+      
+      const topBar = document.getElementById('topProgressBar');
+      if (topBar) {
+        topBar.style.width = `${percent}%`;
+      }
+
+      const circle = document.getElementById('progressCircle');
+      if (circle) {
+        const offset = 100 - percent;
+        circle.setAttribute('stroke-dashoffset', offset);
+      }
+
+      // Desktop & Mobile Buttons visibility
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+
+      const prevBtnMobile = document.getElementById('prevBtnMobile');
+      const nextBtnMobile = document.getElementById('nextBtnMobile');
+      const submitBtnMobile = document.getElementById('submitBtnMobile');
+
+      if (currentStep === 1) {
+        if (prevBtn) prevBtn.classList.add('opacity-50', 'pointer-events-none');
+        if (prevBtnMobile) prevBtnMobile.classList.add('opacity-50', 'pointer-events-none');
+      } else {
+        if (prevBtn) prevBtn.classList.remove('opacity-50', 'pointer-events-none');
+        if (prevBtnMobile) prevBtnMobile.classList.remove('opacity-50', 'pointer-events-none');
+      }
+
+      if (currentStep === totalSteps) {
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (submitBtn) submitBtn.classList.remove('hidden');
+
+        if (nextBtnMobile) nextBtnMobile.classList.add('hidden');
+        if (submitBtnMobile) submitBtnMobile.classList.remove('hidden');
+      } else {
+        if (nextBtn) nextBtn.classList.remove('hidden');
+        if (submitBtn) submitBtn.classList.add('hidden');
+
+        if (nextBtnMobile) nextBtnMobile.classList.remove('hidden');
+        if (submitBtnMobile) submitBtnMobile.classList.add('hidden');
+      }
+
+      updateSummaryPreview();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToStep(step) {
+      if (step >= 1 && step <= totalSteps) {
+        currentStep = step;
+        updateProgress();
+      }
+    }
+
+    function nextStep() {
+      if (validateCurrentStep()) {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateProgress();
+          saveDraft();
+        }
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateProgress();
+      }
+    }
+
+    // Dynamic Product Rows
+    function addProductRow(name = '', format = '', price = '') {
+      const container = document.getElementById('productsContainer');
+      const row = document.createElement('div');
+      row.className = 'product-row grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3 p-3.5 rounded-2xl bg-black/40 border border-distinto-border items-center';
+      row.innerHTML = `
+        <div class="sm:col-span-5">
+          <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Nome do Produto</label>
+          <input type="text" value="${escapeHtml(name)}" placeholder="Nome do Produto / Serviço" class="input-field text-xs product-name" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Formato</label>
+          <input type="text" value="${escapeHtml(format)}" placeholder="Formato (Ex: Consulta)" class="input-field text-xs product-format" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="text-[10px] text-distinto-cloud/60 sm:hidden block mb-1">Preço Médio</label>
+          <input type="text" value="${escapeHtml(price)}" placeholder="Preço (Ex: R$ 3.500)" class="input-field text-xs product-price" />
+        </div>
+        <div class="sm:col-span-1 flex justify-end">
+          <button type="button" onclick="this.closest('.product-row').remove(); saveDraft(); updateSummaryPreview();" class="text-rose-400 hover:text-rose-300 text-xs p-1 cursor-pointer">✕</button>
+        </div>
+      `;
+      container.appendChild(row);
+
+      // Eventos nos novos inputs
+      row.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+          saveDraft();
+          updateSummaryPreview();
+        });
+      });
+      
+      saveDraft();
+      updateSummaryPreview();
+    }
+
+    // Step Validation
+    function validateCurrentStep() {
+      const currentStepEl = document.getElementById(`step${currentStep}`);
+      const requiredInputs = currentStepEl.querySelectorAll('[required]');
+      
+      for (const input of requiredInputs) {
+        if (!input.value || input.value.trim() === '') {
+          input.focus();
+          input.classList.add('border-rose-500');
+          setTimeout(() => input.classList.remove('border-rose-500'), 2500);
+          showToast(`Por favor, preencha: ${input.labels?.[0]?.innerText?.replace('*', '').trim() || 'Campo obrigatório'}`);
+          return false;
+        }
+      }
+      return true;
+    }
+
+    // Collect all data from form
+    function getFormData() {
+      const form = document.getElementById('briefingForm');
+      if (!form) return {};
+      const formData = new FormData(form);
+      const data = {};
+
+      for (let [key, val] of formData.entries()) {
+        if (data[key]) {
+          if (Array.isArray(data[key])) {
+            data[key].push(val);
+          } else {
+            data[key] = [data[key], val];
+          }
+        } else {
+          data[key] = val;
+        }
+      }
+
+      // Collect Tone Traits checkboxes
+      data.tone_traits = Array.from(document.querySelectorAll('input[name="tone_traits"]:checked')).map(cb => cb.value);
+      
+      // Collect Focus Channels checkboxes
+      data.focus_channels = Array.from(document.querySelectorAll('input[name="focus_channels"]:checked')).map(cb => cb.value);
+
+      // Collect Products
+      const productRows = document.querySelectorAll('.product-row');
+      data.products = [];
+      productRows.forEach(row => {
+        const name = row.querySelector('.product-name')?.value?.trim();
+        const format = row.querySelector('.product-format')?.value?.trim();
+        const price = row.querySelector('.product-price')?.value?.trim();
+        if (name) {
+          data.products.push({ name, format, price });
+        }
+      });
+
+      return data;
+    }
+
+    // Auto-save to localStorage & Real-time Live Summary Sync
+    function setupAutoSave() {
+      const form = document.getElementById('briefingForm');
+      if (form) {
+        form.addEventListener('input', debounce(() => {
+          saveDraft();
+          updateSummaryPreview();
+        }, 300));
+
+        form.addEventListener('change', () => {
+          saveDraft();
+          updateSummaryPreview();
+        });
+      }
+    }
+
+    function saveDraft() {
+      try {
+        const data = getFormData();
+        data._currentStep = currentStep;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        const status = document.getElementById('saveStatus');
+        if (status) {
+          status.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span><span class="hidden xs:inline sm:inline">Salvo às ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span><span class="xs:hidden sm:hidden">Salvo</span>`;
+        }
+      } catch (err) {
+        console.warn('Erro ao salvar rascunho local:', err);
+      }
+    }
+
+    function loadDraft() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          updateSummaryPreview();
+          return;
+        }
+        const data = JSON.parse(raw);
+
+        for (const [key, val] of Object.entries(data)) {
+          if (key === 'tone_traits' && Array.isArray(val)) {
+            document.querySelectorAll('input[name="tone_traits"]').forEach(cb => {
+              cb.checked = val.includes(cb.value);
+            });
+          } else if (key === 'focus_channels' && Array.isArray(val)) {
+            document.querySelectorAll('input[name="focus_channels"]').forEach(cb => {
+              cb.checked = val.includes(cb.value);
+            });
+          } else if (key === 'primary_goal') {
+            const radio = document.querySelector(`input[name="primary_goal"][value="${val}"]`);
+            if (radio) radio.checked = true;
+          } else if (key === 'products' && Array.isArray(val) && val.length > 0) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            val.forEach(p => addProductRow(p.name, p.format, p.price));
+          } else {
+            const el = document.getElementById(key);
+            if (el) el.value = val;
+          }
+        }
+
+        if (data._currentStep && data._currentStep > 1) {
+          currentStep = data._currentStep;
+        }
+
+        updateSummaryPreview();
+      } catch (err) {
+        console.warn('Erro ao carregar rascunho local:', err);
+      }
+    }
+
+    function confirmResetBriefing() {
+      if (confirm('Tem certeza que deseja limpar todas as respostas salvas e reiniciar o briefing?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        window.location.reload();
+      }
+    }
+
+    // Markdown Prompt Generator
+    function generateMarkdownPrompt(d) {
+      const productsText = (d.products && d.products.length > 0)
+        ? d.products.map(p => `- **${p.name}** | Formato: ${p.format || 'N/A'} | Valor: ${p.price || 'N/A'}`).join('\n')
+        : 'Nenhum produto cadastrado detalhadamente.';
+
+      const tonesText = (d.tone_traits && d.tone_traits.length > 0) ? d.tone_traits.join(', ') : 'Não informado';
+      const channelsText = (d.focus_channels && d.focus_channels.length > 0) ? d.focus_channels.join(', ') : 'Não informado';
+
+      return `# INSUMO DE BRIEFING ESTRATÉGICO 10P - ${d.company_name || 'EMPRESA'}
+
+## 1. DADOS DE IDENTIFICAÇÃO (Agente Maestro 00)
+- **Empresa / Marca:** ${d.company_name || ''}
+- **Especialista / Responsável:** ${d.client_name || ''} (${d.client_role || 'Responsável'})
+- **WhatsApp:** ${d.whatsapp || ''}
+- **E-mail:** ${d.email || ''}
+- **Segmento / Nicho:** ${d.niche || ''}
+- **Tempo de Mercado:** ${d.market_time || 'Não informado'}
+- **Site / Links:** ${d.website_url || 'N/A'}
+- **Redes Sociais:** ${d.social_links || 'N/A'}
+
+---
+
+## 2. OBJETIVOS ESTRATÉGICOS & METAS SMART (Agente 01)
+- **Objetivo Principal:** ${d.primary_goal || 'Não especificado'}
+- **Volume / Faturamento Atual:** ${d.current_revenue || 'Não informado'}
+- **Meta Desejada:** ${d.target_goal || 'Não informada'}
+- **Prazo Limite:** ${d.deadline || 'Não informado'}
+- **Principal Gargalo Comercial:** ${d.main_bottleneck || 'Nenhum informado'}
+- **Histórico de Tentativas Passadas:** ${d.past_failures || 'Nenhum informado'}
+
+---
+
+## 3. DNA DA MARCA & TOM DE VOZ (Agentes 02 e 03)
+- **Proposta Única de Valor (UVP / Big Idea):** ${d.uvp_description || ''}
+- **História & Propósito Central:** ${d.brand_story || 'Não informada'}
+- **Atributos de Tom de Voz:** ${tonesText}
+- **Não-Negociáveis da Marca:** ${d.non_negotiables || ''}
+
+---
+
+## 4. PÚBLICO-ALVO, PERSONAS & DORES (Agente 09)
+- **Perfil do Cliente Ideal (ICP):** ${d.icp_profile || ''}
+- **Dores & Frustrações Mais Urgentes:** ${d.persona_pains || ''}
+- **Maiores Sonhos & Desejos:** ${d.persona_desires || 'Não informado'}
+- **Principais Objeções de Compra:** ${d.persona_objections || ''}
+
+---
+
+## 5. ESTEIRA DE PRODUTOS & VENDAS (Agente 11)
+- **Produto Carro-Chefe (Core Offer):** ${d.core_product || ''}
+- **Canal de Fechamento de Vendas:** ${d.sales_channel || 'Não informado'}
+- **Produtos Cadastrados:**
+${productsText}
+
+---
+
+## 6. CONCORRENTES & REFERÊNCIAS (Agentes 05, 06 e 07)
+- **Concorrentes Diretos:**
+${d.competitors || 'Não informados'}
+- **Referências / Inspirações de Conteúdo:**
+${d.benchmarks || 'Não informadas'}
+
+---
+
+## 7. CANAIS & IDENTIDADE VISUAL (Agentes 12, 14, 15 e 17)
+- **Canais Prioritários:** ${channelsText}
+- **Formatos com Maior Afinidade:** ${d.preferred_formats || 'Não informado'}
+- **Paleta de Cores da Marca:** ${d.brand_colors || 'Não informada'}
+- **Link da Pasta na Nuvem (Drive):** ${d.drive_link || 'Nenhum link anexado'}
+
+---
+
+## 8. OPERAÇÃO & RECURSOS (Agente 20)
+- **Estrutura Operacional:** ${d.team_structure || 'Não informado'}
+- **Verba Prevista para Tráfego Pago:** ${d.ads_budget || 'Não informada'}
+- **Observações Adicionais:** ${d.additional_notes || 'Nenhuma'}
+`;
+    }
+
+    function updateSummaryPreview() {
+      const data = getFormData();
+      const preview = document.getElementById('summaryPreviewBox');
+      if (preview) {
+        preview.innerText = generateMarkdownPrompt(data);
+      }
+    }
+
+    // Submit to Backend API
+    async function submitBriefing() {
+      if (!validateCurrentStep()) return;
+
+      const submitBtn = document.getElementById('submitBtn');
+      const submitBtnMobile = document.getElementById('submitBtnMobile');
+      
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>⏳ Enviando...</span>`;
+      }
+      if (submitBtnMobile) {
+        submitBtnMobile.disabled = true;
+        submitBtnMobile.innerHTML = `<span>⏳ Enviando...</span>`;
+      }
+
+      const data = getFormData();
+
+      try {
+        const response = await fetch('/api/briefings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            client_name: data.client_name,
+            company_name: data.company_name,
+            email: data.email,
+            whatsapp: data.whatsapp,
+            niche: data.niche,
+            data: data
+          })
+        });
+
+        const resData = await response.json();
+
+        if (!response.ok) {
+          throw new Error(resData.error || 'Erro ao enviar o briefing.');
+        }
+
+        // Show Success & Hide Mobile Dock
+        document.getElementById('briefingForm').classList.add('hidden');
+        document.getElementById('successCard').classList.remove('hidden');
+        const dock = document.getElementById('mobileBottomDock');
+        if (dock) dock.classList.add('hidden');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Trigger Confetti
+        try {
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        } catch(e){}
+
+      } catch (err) {
+        alert(err.message || 'Ocorreu um erro ao enviar seu briefing.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `<span>🚀 Finalizar e Enviar Briefing</span>`;
+        }
+        if (submitBtnMobile) {
+          submitBtnMobile.disabled = false;
+          submitBtnMobile.innerHTML = `<span>🚀 Finalizar Envio</span>`;
+        }
+      }
+    }
+
+    // Helpers
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-20 sm:bottom-6 left-4 right-4 sm:left-auto sm:right-6 z-50 px-4 py-3 rounded-xl bg-[#7A1E3E] text-white text-xs font-bold shadow-2xl shadow-[#7A1E3E]/40 border border-[#9B2852] transition-all duration-300 transform translate-y-2 opacity-0 text-center sm:text-left';
+      toast.innerText = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

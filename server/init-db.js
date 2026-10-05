@@ -55,6 +55,34 @@ async function initDB() {
       );
     `);
 
+    // 4. Tabela de Recuperação de Senhas
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS password_resets (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        token VARCHAR(255) NOT NULL UNIQUE,
+        expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+        used BOOLEAN DEFAULT false,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `);
+
+    // 5. Tabela de Briefings Estratégicos dos Clientes
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS briefings (
+        id SERIAL PRIMARY KEY,
+        client_name VARCHAR(255) NOT NULL,
+        company_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        whatsapp VARCHAR(100),
+        niche VARCHAR(255),
+        status VARCHAR(50) DEFAULT 'novo',
+        data JSONB NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `);
+
     // Inserir Admin inicial se não existir
     const adminEmail = 'admin@distinto.com.br';
     const adminCheck = await client.query('SELECT id FROM users WHERE email = $1', [adminEmail]);

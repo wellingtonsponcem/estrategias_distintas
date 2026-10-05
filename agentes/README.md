@@ -1,6 +1,16 @@
 # ECOSSISTEMA DE AGENTES ESTRATÉGICOS 10P (METODOLOGIA DO INSTITUTO)
 
-Este repositório contém a arquitetura completa dos **22 Agentes Especialistas + Agente Maestro + Integrador Notion**, projetados para construir estratégias digitais de ponta a ponta com alto rigor analítico e execução ágil.
+Este repositório contém a arquitetura completa dos **23 Agentes Especialistas + Agente Maestro + Integrador Notion + Pipeline Vercel**, projetados para construir estratégias digitais de ponta a ponta com alto rigor analítico e execução ágil.
+
+---
+
+## 👥 Hierarquia de Papéis & Comunicação
+
+| Papel | Quem é | Como se comunica |
+| :--- | :--- | :--- |
+| **O Estrategista (Você)** | O profissional/diretor da **Agência Distinto** que pilota o sistema, valida os dados e toma as decisões estratégicas. | É o líder a quem todos os agentes se reportam. Tratado como parceiro sênior de estratégia (*"Estrategista"*). |
+| **O Cliente / Marca** | O cliente final atendido pela Distinto (médico, especialista, clínica ou empresa). | **Sempre tratado em 3ª pessoa** (*"o cliente"*, *"a clínica da Dra. Kelly"*, *"o projeto do Dr. Rafael"*). O agente **nunca** confunde o estrategista com o cliente. |
+| **Agente Maestro & Especialistas** | A esteira de inteligência artificial da Distinto (copilotos e consultores analíticos). | Trabalham como braço direito do Estrategista para estruturar, auditar e formatar o plano. |
 
 ---
 

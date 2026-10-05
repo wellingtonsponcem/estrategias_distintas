@@ -14,7 +14,23 @@ async function updateSchema() {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
       );
     `);
-    console.log('✅ Tabela password_resets criada com sucesso!');
+    console.log('✅ Tabela password_resets verificada/criada com sucesso!');
+
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS briefings (
+        id SERIAL PRIMARY KEY,
+        client_name VARCHAR(255) NOT NULL,
+        company_name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        whatsapp VARCHAR(100),
+        niche VARCHAR(255),
+        status VARCHAR(50) DEFAULT 'novo',
+        data JSONB NOT NULL,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `);
+    console.log('✅ Tabela briefings criada com sucesso!');
   } catch (err) {
     console.error('❌ Erro ao atualizar schema:', err);
   } finally {

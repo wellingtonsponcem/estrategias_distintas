@@ -73,6 +73,12 @@
       </div>
 
       <div class="flex items-center flex-wrap gap-2.5">
+        <a href="/briefing" target="_blank" class="px-3.5 py-2.5 rounded-xl bg-[#7A1E3E]/20 hover:bg-[#7A1E3E]/35 border border-[#7A1E3E]/40 text-[#F0B8CB] text-xs font-semibold tracking-wide transition flex items-center gap-1.5 cursor-pointer">
+          <span>📋 Abrir Briefing ↗</span>
+        </a>
+        <button onclick="copyBriefingLink()" class="px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold tracking-wide transition flex items-center gap-1.5 cursor-pointer">
+          <span>🔗 Copiar Link</span>
+        </button>
         <button onclick="openAdminModal()" class="px-3.5 py-2.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-semibold tracking-wide transition flex items-center gap-2 cursor-pointer">
           <span>👑 + Administrador</span>
         </button>
@@ -86,10 +92,17 @@
     </div>
 
     <!-- Stats Bar -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
       <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
         <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Total de Estratégias</span>
         <p id="totalStrategies" class="text-2xl font-bold text-white mt-1">0</p>
+      </div>
+      <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
+        <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Briefings Recebidos</span>
+        <div class="flex items-center gap-2 mt-1">
+          <p id="totalBriefings" class="text-2xl font-bold text-[#F0B8CB]">0</p>
+          <span id="badgeNewBriefings" class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#7A1E3E]/30 text-[#F0B8CB] border border-[#7A1E3E]/40 font-bold hidden">0 Novos</span>
+        </div>
       </div>
       <div class="p-5 rounded-2xl bg-distinto-card border border-distinto-border">
         <span class="text-[11px] uppercase tracking-wider text-distinto-sand/50 font-semibold">Clientes Ativos</span>
@@ -111,6 +124,46 @@
       <div id="strategiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="p-8 text-center text-distinto-sand/40 col-span-full border border-dashed border-distinto-border rounded-2xl">
           Carregando estratégias...
+        </div>
+      </div>
+    </div>
+
+    <!-- Briefings Management Section (10P) -->
+    <div class="mt-14 pt-10 border-t border-distinto-border">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div>
+          <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <span>📋 Briefings Recebidos dos Clientes (10P)</span>
+            <span id="briefingBadgeCount" class="text-xs px-2.5 py-0.5 rounded-full bg-[#7A1E3E]/30 text-[#F0B8CB] border border-[#7A1E3E]/50 font-bold">0</span>
+          </h2>
+          <p class="text-xs text-distinto-sand/60">Insumos preenchidos pelos clientes prontos para alimentar o Agente Maestro e o Documento Mestre.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/briefing" target="_blank" class="text-xs px-3 py-1.5 rounded-lg bg-[#7A1E3E]/20 hover:bg-[#7A1E3E]/35 border border-[#7A1E3E]/40 text-[#F0B8CB] font-semibold transition cursor-pointer">
+            + Abrir Formulário de Briefing ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-distinto-card border border-distinto-border rounded-2xl overflow-hidden shadow-lg">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-black/40 border-b border-distinto-border text-distinto-sand/60 uppercase tracking-wider">
+              <tr>
+                <th class="px-5 py-3.5">Data</th>
+                <th class="px-5 py-3.5">Empresa / Marca</th>
+                <th class="px-5 py-3.5">Cliente & Contato</th>
+                <th class="px-5 py-3.5">Nicho</th>
+                <th class="px-5 py-3.5">Status</th>
+                <th class="px-5 py-3.5 text-right">Ações Estratégicas</th>
+              </tr>
+            </thead>
+            <tbody id="briefingsTableBody" class="divide-y divide-distinto-border/50">
+              <tr>
+                <td colspan="6" class="px-5 py-6 text-center text-distinto-sand/40">Carregando briefings...</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -543,6 +596,70 @@
           </button>
         </div>
       </div>
+  <!-- ============================================================== -->
+  <!-- MODAL: DETALHES DO BRIEFING ESTRATÉGICO (10P) -->
+  <!-- ============================================================== -->
+  <div id="briefingDetailModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-distinto-card border border-distinto-border rounded-3xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-distinto-border flex items-center justify-between bg-black/40">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#7A1E3E]/20 border border-[#7A1E3E]/40 text-[#F0B8CB] flex items-center justify-center text-lg font-bold">
+            📋
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 id="modalBriefingCompany" class="text-xl font-display font-semibold text-white">Nome da Empresa</h3>
+              <span id="modalBriefingStatusBadge" class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">Novo</span>
+            </div>
+            <p id="modalBriefingClient" class="text-xs text-distinto-sand/70 mt-0.5">Responsável • Data de Envio</p>
+          </div>
+        </div>
+
+        <button onclick="closeBriefingDetailModal()" class="text-distinto-sand/50 hover:text-white text-xl p-1 cursor-pointer">✕</button>
+      </div>
+
+      <!-- Modal Actions Bar -->
+      <div class="px-6 py-3 bg-white/5 border-b border-distinto-border flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-distinto-sand/60">Status do Projeto:</span>
+          <select id="modalBriefingStatusSelect" onchange="updateBriefingStatusFromModal()" class="text-xs px-2.5 py-1 rounded-lg bg-black/60 border border-distinto-border text-white focus:outline-none focus:border-[#7A1E3E] cursor-pointer">
+            <option value="novo">🔵 Novo</option>
+            <option value="em_analise">🟣 Em Análise</option>
+            <option value="em_producao">🟠 Em Produção</option>
+            <option value="concluido">🟢 Concluído</option>
+          </select>
+        </div>
+
+        <div class="flex items-center flex-wrap gap-2">
+          <button onclick="copyCurrentBriefingPrompt()" id="modalCopyPromptBtn" class="px-3 py-1.5 rounded-lg bg-[#7A1E3E]/20 hover:bg-[#7A1E3E]/35 border border-[#7A1E3E]/40 text-[#F0B8CB] text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer">
+            <span>✦ Copiar Prompt do Maestro</span>
+          </button>
+          <button onclick="createStrategyFromCurrentBriefing()" class="px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+            <span>🚀 Criar Estratégia</span>
+          </button>
+          <button onclick="downloadCurrentBriefingMarkdown()" class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition cursor-pointer" title="Baixar Markdown">
+            <span>📥 .md</span>
+          </button>
+          <button onclick="deleteCurrentBriefingFromModal()" class="p-1.5 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir briefing">
+            🗑️
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Structured Content) -->
+      <div id="modalBriefingContent" class="p-6 overflow-y-auto space-y-6 text-xs text-distinto-sand leading-relaxed flex-1">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-distinto-border bg-black/40 flex items-center justify-end">
+        <button type="button" onclick="closeBriefingDetailModal()" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition cursor-pointer">
+          Fechar Visualização
+        </button>
+      </div>
+
     </div>
   </div>
 
@@ -563,6 +680,8 @@
     let allStrategies = [];
     let allClients = [];
     let allAdmins = [];
+    let allBriefings = [];
+    let activeBriefing = null;
     let currentDeleteId = null;
     let currentDeleteSlug = null;
 
@@ -579,13 +698,21 @@
       window.location.href = '/';
     }
 
+    function copyBriefingLink() {
+      const url = `${window.location.origin}/briefing`;
+      navigator.clipboard.writeText(url).then(() => {
+        alert(`📋 Link do Briefing copiado:\n${url}\n\nEnvie este link para seu cliente preencher.`);
+      });
+    }
+
     // Carregar dados
     async function loadData() {
       try {
-        const [stratRes, clientRes, adminRes] = await Promise.all([
+        const [stratRes, clientRes, adminRes, briefRes] = await Promise.all([
           fetch('/api/strategies', { headers: getAuthHeaders() }),
           fetch('/api/users/clients', { headers: getAuthHeaders() }),
-          fetch('/api/users/admins', { headers: getAuthHeaders() })
+          fetch('/api/users/admins', { headers: getAuthHeaders() }),
+          fetch('/api/briefings', { headers: getAuthHeaders() })
         ]);
 
         if (stratRes.status === 401 || stratRes.status === 403) {
@@ -596,6 +723,7 @@
         allStrategies = await stratRes.json();
         allClients = await clientRes.json();
         allAdmins = await adminRes.json();
+        allBriefings = briefRes.ok ? await briefRes.json() : [];
 
         renderDashboard();
       } catch (err) {
@@ -609,6 +737,22 @@
       document.getElementById('totalClients').textContent = allClients.length;
       document.getElementById('totalAdmins').textContent = allAdmins.length;
       document.getElementById('badgeCount').textContent = allStrategies.length;
+
+      // Briefings
+      document.getElementById('totalBriefings').textContent = allBriefings.length;
+      document.getElementById('briefingBadgeCount').textContent = allBriefings.length;
+      
+      const newBriefingsCount = allBriefings.filter(b => b.status === 'novo').length;
+      const badgeNew = document.getElementById('badgeNewBriefings');
+      if (newBriefingsCount > 0) {
+        badgeNew.textContent = `${newBriefingsCount} Novo${newBriefingsCount > 1 ? 's' : ''}`;
+        badgeNew.classList.remove('hidden');
+      } else {
+        badgeNew.classList.add('hidden');
+      }
+
+      // Renderizar Tabela de Briefings
+      renderBriefingsTable();
 
       // Renderizar Grid de Estratégias
       const grid = document.getElementById('strategiesGrid');
@@ -1077,6 +1221,422 @@
       const name = document.getElementById('editAdminName').value;
       closeEditAdminModal();
       handleDeleteAdmin(id, name);
+    }
+
+    // ==========================================
+    // FUNÇÕES DE GESTÃO DE BRIEFINGS (10P)
+    // ==========================================
+    function getStatusBadge(status) {
+      switch(status) {
+        case 'novo':
+          return '<span class="inline-block px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold text-[10px]">🔵 Novo</span>';
+        case 'em_analise':
+          return '<span class="inline-block px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold text-[10px]">🟣 Em Análise</span>';
+        case 'em_producao':
+          return '<span class="inline-block px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold text-[10px]">🟠 Em Produção</span>';
+        case 'concluido':
+          return '<span class="inline-block px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[10px]">🟢 Concluído</span>';
+        default:
+          return `<span class="inline-block px-2.5 py-1 rounded-full bg-white/10 text-white/70 border border-white/20 font-semibold text-[10px]">${status || 'Pendente'}</span>`;
+      }
+    }
+
+    function renderBriefingsTable() {
+      const tbody = document.getElementById('briefingsTableBody');
+      if (!tbody) return;
+
+      if (allBriefings.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="px-5 py-8 text-center text-distinto-sand/40">
+              Nenhum briefing recebido ainda. Envie o link <a href="/briefing" target="_blank" class="text-amber-300 underline">/briefing</a> para seus clientes.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = allBriefings.map(b => `
+        <tr class="hover:bg-white/5 transition">
+          <td class="px-5 py-3.5 text-distinto-sand/60 font-mono text-[11px] whitespace-nowrap">
+            ${new Date(b.created_at).toLocaleDateString('pt-BR')} ${new Date(b.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+          </td>
+          <td class="px-5 py-3.5 font-semibold text-white">
+            ${escapeHtml(b.company_name)}
+          </td>
+          <td class="px-5 py-3.5 text-distinto-sand/80">
+            <span class="block font-medium text-white">${escapeHtml(b.client_name)}</span>
+            <span class="block text-[11px] text-distinto-sand/50">${escapeHtml(b.email)}</span>
+          </td>
+          <td class="px-5 py-3.5 text-distinto-sand/70 text-xs">
+            ${escapeHtml(b.niche || 'N/A')}
+          </td>
+          <td class="px-5 py-3.5">
+            ${getStatusBadge(b.status)}
+          </td>
+          <td class="px-5 py-3.5 text-right space-x-1.5 whitespace-nowrap">
+            <button onclick="openBriefingDetailModal(${b.id})" class="px-2.5 py-1 rounded-lg bg-[#7A1E3E]/20 hover:bg-[#7A1E3E]/40 text-[#F0B8CB] text-[11px] font-semibold transition cursor-pointer" title="Ver respostas completas">
+              👁️ Ver Respostas
+            </button>
+            <button onclick="copyBriefingPromptById(${b.id})" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold transition cursor-pointer" title="Copiar Prompt Markdown para Agente Maestro">
+              📋 Prompt
+            </button>
+            <button onclick="createStrategyFromBriefing(${b.id})" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-300 text-black text-[11px] font-bold transition cursor-pointer" title="Criar Estratégia a partir deste briefing">
+              ✦ Estratégia
+            </button>
+            <button onclick="handleDeleteBriefing(${b.id}, '${escapeHtml(b.company_name)}')" class="p-1 rounded-lg text-rose-400 hover:bg-rose-500/20 transition cursor-pointer" title="Excluir briefing">
+              🗑️
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    async function openBriefingDetailModal(id) {
+      try {
+        const res = await fetch(`/api/briefings/${id}`, { headers: getAuthHeaders() });
+        if (!res.ok) throw new Error('Erro ao carregar detalhes do briefing');
+        
+        activeBriefing = await res.json();
+        const d = parseBriefingData(activeBriefing.data);
+
+        document.getElementById('modalBriefingCompany').textContent = activeBriefing.company_name;
+        document.getElementById('modalBriefingClient').textContent = `${activeBriefing.client_name} • ${new Date(activeBriefing.created_at).toLocaleDateString('pt-BR')} às ${new Date(activeBriefing.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+        document.getElementById('modalBriefingStatusBadge').innerHTML = getStatusBadge(activeBriefing.status);
+        document.getElementById('modalBriefingStatusSelect').value = activeBriefing.status;
+
+        const productsHtml = (d.products && d.products.length > 0)
+          ? d.products.map(p => `
+              <li class="p-2.5 rounded-xl bg-black/40 border border-distinto-border/50 flex items-center justify-between">
+                <span class="font-bold text-white">${escapeHtml(p.name)}</span>
+                <span class="text-distinto-sand/60">Formato: ${escapeHtml(p.format || 'N/A')}</span>
+                <span class="text-amber-300 font-mono font-semibold">${escapeHtml(p.price || 'N/A')}</span>
+              </li>
+            `).join('')
+          : '<li class="text-distinto-sand/40 italic">Nenhum produto cadastrado na lista.</li>';
+
+        const tonesHtml = (d.tone_traits && d.tone_traits.length > 0)
+          ? d.tone_traits.map(t => `<span class="px-2.5 py-1 rounded-lg bg-[#7A1E3E]/20 text-[#F0B8CB] border border-[#7A1E3E]/40 font-semibold text-[11px]">${escapeHtml(t)}</span>`).join('')
+          : '<span class="text-distinto-sand/40 italic">Nenhum atributo selecionado.</span>';
+
+        const channelsHtml = (d.focus_channels && d.focus_channels.length > 0)
+          ? d.focus_channels.map(c => `<span class="px-2.5 py-1 rounded-lg bg-white/10 text-white border border-white/15 text-[11px]">${escapeHtml(c)}</span>`).join('')
+          : '<span class="text-distinto-sand/40 italic">Nenhum canal selecionado.</span>';
+
+        document.getElementById('modalBriefingContent').innerHTML = `
+          <!-- 1. IDENTIFICAÇÃO -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-[#F0B8CB] block">1. Identificação & Contato (Agente Maestro 00)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div><span class="text-distinto-sand/50 block">Empresa:</span><strong class="text-white">${escapeHtml(d.company_name || activeBriefing.company_name)}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Responsável:</span><strong class="text-white">${escapeHtml(d.client_name || activeBriefing.client_name)} (${escapeHtml(d.client_role || 'N/A')})</strong></div>
+              <div><span class="text-distinto-sand/50 block">WhatsApp:</span><strong class="text-emerald-300 font-mono">${escapeHtml(d.whatsapp || activeBriefing.whatsapp)}</strong></div>
+              <div><span class="text-distinto-sand/50 block">E-mail:</span><strong class="text-white font-mono">${escapeHtml(d.email || activeBriefing.email)}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Nicho:</span><strong class="text-white">${escapeHtml(d.niche || activeBriefing.niche)}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Tempo de Mercado:</span><strong class="text-white">${escapeHtml(d.market_time || 'N/A')}</strong></div>
+            </div>
+            ${d.website_url ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Site Oficial:</span><a href="${escapeHtml(d.website_url)}" target="_blank" class="text-amber-300 underline font-mono">${escapeHtml(d.website_url)} ↗</a></div>` : ''}
+            ${d.social_links ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Redes Sociais:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.social_links)}</p></div>` : ''}
+          </div>
+
+          <!-- 2. OBJETIVOS SMART -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-amber-300 block">2. Objetivos de Negócio & Metas SMART (Agente 01)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div><span class="text-distinto-sand/50 block">Objetivo Primordial:</span><strong class="text-white">${escapeHtml(d.primary_goal || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Faturamento / Volume Atual:</span><strong class="text-white">${escapeHtml(d.current_revenue || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Meta Desejada:</span><strong class="text-amber-300 font-bold text-sm">${escapeHtml(d.target_goal || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Prazo Limite:</span><strong class="text-white">${escapeHtml(d.deadline || 'N/A')}</strong></div>
+            </div>
+            ${d.main_bottleneck ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Principal Gargalo Comercial:</span><p class="text-white">${escapeHtml(d.main_bottleneck)}</p></div>` : ''}
+            ${d.past_failures ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Tentativas Passadas Frustradas:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.past_failures)}</p></div>` : ''}
+          </div>
+
+          <!-- 3. DNA E TOM DE VOZ -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-purple-300 block">3. DNA da Marca & Tom de Voz (Agentes 02 e 03)</span>
+            <div><span class="text-distinto-sand/50 block">Proposta Única de Valor (UVP / Big Idea):</span><p class="text-white font-medium text-sm leading-relaxed">${escapeHtml(d.uvp_description || 'N/A')}</p></div>
+            ${d.brand_story ? `<div><span class="text-distinto-sand/50 block">História de Origem & Metodologia:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.brand_story)}</p></div>` : ''}
+            <div><span class="text-distinto-sand/50 block mb-1">Tom de Voz Desejado:</span><div class="flex flex-wrap gap-1.5">${tonesHtml}</div></div>
+            <div><span class="text-distinto-sand/50 block">Não-Negociáveis da Marca (O que NUNCA fazer):</span><p class="text-rose-300 bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/20">${escapeHtml(d.non_negotiables || 'N/A')}</p></div>
+          </div>
+
+          <!-- 4. PERSONAS E DORES -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-teal-300 block">4. Público-Alvo, Personas & Dores (Agente 09)</span>
+            <div><span class="text-distinto-sand/50 block">Perfil do Cliente Ideal (ICP):</span><p class="text-white">${escapeHtml(d.icp_profile || 'N/A')}</p></div>
+            <div><span class="text-distinto-sand/50 block">Dores & Frustrações Mais Profundas:</span><p class="text-white">${escapeHtml(d.persona_pains || 'N/A')}</p></div>
+            <div><span class="text-distinto-sand/50 block">Maiores Sonhos & Desejos (Terra Prometida):</span><p class="text-white">${escapeHtml(d.persona_desires || 'N/A')}</p></div>
+            <div><span class="text-distinto-sand/50 block">Principais Objeções de Compra:</span><p class="text-white">${escapeHtml(d.persona_objections || 'N/A')}</p></div>
+          </div>
+
+          <!-- 5. ESTEIRA DE PRODUTOS -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-300 block">5. Esteira de Produtos & Modelo de Vendas (Agente 11)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-2">
+              <div><span class="text-distinto-sand/50 block">Produto Carro-Chefe (Core Offer):</span><strong class="text-white text-sm">${escapeHtml(d.core_product || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Canal de Fechamento de Vendas:</span><strong class="text-white">${escapeHtml(d.sales_channel || 'N/A')}</strong></div>
+            </div>
+            <div><span class="text-distinto-sand/50 block mb-1">Produtos Cadastrados:</span><ul class="space-y-1.5">${productsHtml}</ul></div>
+          </div>
+
+          <!-- 6. CONCORRENTES & BENCHMARKS -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-rose-300 block">6. Concorrentes & Benchmarks (Agentes 05, 06 e 07)</span>
+            <div><span class="text-distinto-sand/50 block">Concorrentes Diretos:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.competitors || 'N/A')}</p></div>
+            <div><span class="text-distinto-sand/50 block">Referências / Inspirações:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.benchmarks || 'N/A')}</p></div>
+          </div>
+
+          <!-- 7. CANAIS E VISUAL -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-cyan-300 block">7. Canais Digitais & Identidade Visual (Agentes 12, 14, 15 e 17)</span>
+            <div><span class="text-distinto-sand/50 block mb-1">Canais Prioritários:</span><div class="flex flex-wrap gap-1.5">${channelsHtml}</div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div><span class="text-distinto-sand/50 block">Formatos Preferidos:</span><strong class="text-white">${escapeHtml(d.preferred_formats || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Paleta de Cores:</span><strong class="text-white">${escapeHtml(d.brand_colors || 'N/A')}</strong></div>
+            </div>
+            ${d.drive_link ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Pasta na Nuvem (Drive/Logos/Fotos):</span><a href="${escapeHtml(d.drive_link)}" target="_blank" class="text-[#F0B8CB] underline font-mono text-xs">${escapeHtml(d.drive_link)} ↗</a></div>` : ''}
+          </div>
+
+          <!-- 8. OPERAÇÃO -->
+          <div class="p-4 rounded-2xl bg-black/30 border border-distinto-border space-y-2">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-blue-300 block">8. Capacidade Operacional & Recursos (Agente 20)</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div><span class="text-distinto-sand/50 block">Estrutura de Execução:</span><strong class="text-white">${escapeHtml(d.team_structure || 'N/A')}</strong></div>
+              <div><span class="text-distinto-sand/50 block">Verba para Tráfego / Ads:</span><strong class="text-white">${escapeHtml(d.ads_budget || 'N/A')}</strong></div>
+            </div>
+            ${d.additional_notes ? `<div class="pt-2 border-t border-distinto-border/40"><span class="text-distinto-sand/50 block">Observações Adicionais:</span><p class="text-white whitespace-pre-wrap">${escapeHtml(d.additional_notes)}</p></div>` : ''}
+          </div>
+        `;
+
+        document.getElementById('briefingDetailModal').classList.remove('hidden');
+      } catch (err) {
+        alert(err.message || 'Erro ao carregar detalhes');
+      }
+    }
+
+    function closeBriefingDetailModal() {
+      document.getElementById('briefingDetailModal').classList.add('hidden');
+      activeBriefing = null;
+    }
+
+    async function updateBriefingStatusFromModal() {
+      if (!activeBriefing) return;
+      const newStatus = document.getElementById('modalBriefingStatusSelect').value;
+      try {
+        const res = await fetch(`/api/briefings/${activeBriefing.id}/status`, {
+          method: 'PATCH',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (!res.ok) throw new Error('Erro ao atualizar status');
+        
+        activeBriefing.status = newStatus;
+        document.getElementById('modalBriefingStatusBadge').innerHTML = getStatusBadge(newStatus);
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function parseBriefingData(raw) {
+      if (!raw) return {};
+      if (typeof raw === 'string') {
+        try {
+          return JSON.parse(raw);
+        } catch(e) {
+          return {};
+        }
+      }
+      return raw;
+    }
+
+    function generateBriefingMarkdownPrompt(b) {
+      const d = parseBriefingData(b.data);
+      const productsText = (d.products && d.products.length > 0)
+        ? d.products.map(p => `- **${p.name}** | Formato: ${p.format || 'N/A'} | Valor: ${p.price || 'N/A'}`).join('\n')
+        : 'Nenhum produto detalhado.';
+
+      const tonesText = (d.tone_traits && d.tone_traits.length > 0) ? d.tone_traits.join(', ') : 'Não informado';
+      const channelsText = (d.focus_channels && d.focus_channels.length > 0) ? d.focus_channels.join(', ') : 'Não informado';
+
+      return `# INSUMO DE BRIEFING ESTRATÉGICO 10P - ${d.company_name || b.company_name || 'EMPRESA'}
+
+## 1. DADOS DE IDENTIFICAÇÃO (Agente Maestro 00)
+- **Empresa / Marca:** ${d.company_name || b.company_name || ''}
+- **Especialista / Responsável:** ${d.client_name || b.client_name || ''} (${d.client_role || 'Responsável'})
+- **WhatsApp:** ${d.whatsapp || b.whatsapp || ''}
+- **E-mail:** ${d.email || b.email || ''}
+- **Segmento / Nicho:** ${d.niche || b.niche || ''}
+- **Tempo de Mercado:** ${d.market_time || 'Não informado'}
+- **Site Oficial:** ${d.website_url || 'N/A'}
+- **Redes Sociais:** ${d.social_links || 'N/A'}
+
+---
+
+## 2. OBJETIVOS ESTRATÉGICOS & METAS SMART (Agente 01)
+- **Objetivo Principal:** ${d.primary_goal || 'Não especificado'}
+- **Volume / Faturamento Atual:** ${d.current_revenue || 'Não informado'}
+- **Meta Desejada:** ${d.target_goal || 'Não informada'}
+- **Prazo Limite:** ${d.deadline || 'Não informado'}
+- **Principal Gargalo Comercial:** ${d.main_bottleneck || 'Nenhum informado'}
+- **Histórico de Tentativas Passadas:** ${d.past_failures || 'Nenhum informado'}
+
+---
+
+## 3. DNA DA MARCA & TOM DE VOZ (Agentes 02 e 03)
+- **Proposta Única de Valor (UVP / Big Idea):** ${d.uvp_description || 'Não informada'}
+- **História & Propósito Central:** ${d.brand_story || 'Não informada'}
+- **Atributos de Tom de Voz:** ${tonesText}
+- **Não-Negociáveis da Marca:** ${d.non_negotiables || 'Nenhum informado'}
+
+---
+
+## 4. PÚBLICO-ALVO, PERSONAS & DORES (Agente 09)
+- **Perfil do Cliente Ideal (ICP):** ${d.icp_profile || 'Não informado'}
+- **Dores & Frustrações Mais Profundas:** ${d.persona_pains || 'Não informadas'}
+- **Maiores Sonhos & Desejos:** ${d.persona_desires || 'Não informado'}
+- **Principais Objeções de Compra:** ${d.persona_objections || 'Não informadas'}
+
+---
+
+## 5. ESTEIRA DE PRODUTOS & VENDAS (Agente 11)
+- **Produto Carro-Chefe (Core Offer):** ${d.core_product || 'Não informado'}
+- **Canal de Fechamento de Vendas:** ${d.sales_channel || 'Não informado'}
+- **Produtos Cadastrados:**
+${productsText}
+
+---
+
+## 6. CONCORRENTES & REFERÊNCIAS (Agentes 05, 06 e 07)
+- **Concorrentes Diretos:**
+${d.competitors || 'Não informados'}
+- **Referências / Inspirações de Conteúdo:**
+${d.benchmarks || 'Não informadas'}
+
+---
+
+## 7. CANAIS & IDENTIDADE VISUAL (Agentes 12, 14, 15 e 17)
+- **Canais Prioritários:** ${channelsText}
+- **Formatos com Maior Afinidade:** ${d.preferred_formats || 'Não informado'}
+- **Paleta de Cores da Marca:** ${d.brand_colors || 'Não informada'}
+- **Link da Pasta na Nuvem (Drive):** ${d.drive_link || 'Nenhum link anexado'}
+
+---
+
+## 8. OPERAÇÃO & RECURSOS (Agente 20)
+- **Estrutura Operacional:** ${d.team_structure || 'Não informado'}
+- **Verba Prevista para Tráfego Pago:** ${d.ads_budget || 'Não informada'}
+- **Observações Adicionais:** ${d.additional_notes || 'Nenhuma'}
+`;
+    }
+
+    function copyCurrentBriefingPrompt() {
+      if (!activeBriefing) return;
+      const md = generateBriefingMarkdownPrompt(activeBriefing);
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById('modalCopyPromptBtn');
+        btn.innerHTML = '<span>✅ Prompt Copiado!</span>';
+        setTimeout(() => {
+          btn.innerHTML = '<span>✦ Copiar Prompt do Maestro</span>';
+        }, 2500);
+      });
+    }
+
+    async function copyBriefingPromptById(id) {
+      let b = allBriefings.find(item => item.id === id);
+      if (!b || !b.data) {
+        try {
+          const res = await fetch(`/api/briefings/${id}`, { headers: getAuthHeaders() });
+          if (res.ok) b = await res.json();
+        } catch(e) {}
+      }
+      if (!b) return;
+      const md = generateBriefingMarkdownPrompt(b);
+      navigator.clipboard.writeText(md).then(() => {
+        alert(`✦ Prompt do Agente Maestro gerado e copiado para "${b.company_name}"!\n\nAgora você pode abrir um novo chat ou enviar para o Agente Maestro.`);
+      });
+    }
+
+    function downloadCurrentBriefingMarkdown() {
+      if (!activeBriefing) return;
+      const md = generateBriefingMarkdownPrompt(activeBriefing);
+      const blob = new Blob([md], { type: 'text/markdown;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `Briefing-${activeBriefing.company_name.replace(/[^a-zA-Z0-9]/g, '-')}.md`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function createStrategyFromCurrentBriefing() {
+      if (!activeBriefing) return;
+      const b = activeBriefing;
+      closeBriefingDetailModal();
+      createStrategyFromBriefingData(b);
+    }
+
+    async function createStrategyFromBriefing(id) {
+      let b = allBriefings.find(item => item.id === id);
+      if (!b || !b.data) {
+        try {
+          const res = await fetch(`/api/briefings/${id}`, { headers: getAuthHeaders() });
+          if (res.ok) b = await res.json();
+        } catch(e) {}
+      }
+      if (!b) return;
+      createStrategyFromBriefingData(b);
+    }
+
+    function createStrategyFromBriefingData(b) {
+      const d = parseBriefingData(b.data);
+      openStrategyModal();
+      
+      const slug = (d.company_name || b.company_name || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+      document.getElementById('stratTitle').value = d.company_name || b.company_name || '';
+      document.getElementById('stratSlug').value = slug;
+      document.getElementById('stratClientName').value = d.client_name || b.client_name || '';
+      document.getElementById('stratMetaPrincipal').value = d.target_goal || '';
+      document.getElementById('stratTerritorio').value = d.niche || b.niche || '';
+      document.getElementById('stratPrazo').value = d.deadline || '';
+      document.getElementById('stratSubtitle').value = d.uvp_description ? `"${d.uvp_description.slice(0, 100)}..."` : '';
+    }
+
+    async function handleDeleteBriefing(id, companyName) {
+      if (!confirm(`Tem certeza que deseja excluir o briefing da empresa "${companyName}"?`)) return;
+      try {
+        const res = await fetch(`/api/briefings/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders()
+        });
+        if (!res.ok) throw new Error('Erro ao excluir briefing');
+        await loadData();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    function deleteCurrentBriefingFromModal() {
+      if (!activeBriefing) return;
+      const id = activeBriefing.id;
+      const company = activeBriefing.company_name;
+      closeBriefingDetailModal();
+      handleDeleteBriefing(id, company);
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
     }
 
     // ==========================================

@@ -11,6 +11,10 @@
       "destination": "/public/admin.html"
     },
     {
+      "source": "/briefing",
+      "destination": "/public/briefing.html"
+    },
+    {
       "source": "/manual",
       "destination": "/public/manual.html"
     },

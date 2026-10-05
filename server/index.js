@@ -600,6 +600,99 @@ apiRouter.delete('/users/admins/:id', authenticateToken, requireAdmin, async (re
   }
 });
 
+// 5. ROTAS DE BRIEFINGS
+apiRouter.post('/briefings', async (req, res) => {
+  const { client_name, company_name, email, whatsapp, niche, data } = req.body;
+
+  if (!client_name || !company_name || !email || !data) {
+    return res.status(400).json({ error: 'Nome do cliente, empresa, e-mail e dados do briefing são obrigatórios.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO briefings (client_name, company_name, email, whatsapp, niche, status, data)
+       VALUES ($1, $2, $3, $4, $5, 'novo', $6)
+       RETURNING id, client_name, company_name, email, whatsapp, niche, status, created_at`,
+      [client_name.trim(), company_name.trim(), email.trim(), whatsapp || '', niche || '', JSON.stringify(data)]
+    );
+
+    res.status(201).json({
+      success: true,
+      message: 'Briefing enviado com sucesso! Nossa equipe entrará em contato.',
+      briefing: result.rows[0]
+    });
+  } catch (err) {
+    console.error('Erro ao salvar briefing:', err);
+    res.status(500).json({ error: 'Erro ao processar e salvar o briefing.' });
+  }
+});
+
+apiRouter.get('/briefings', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT id, client_name, company_name, email, whatsapp, niche, status, data, created_at, updated_at
+      FROM briefings
+      ORDER BY created_at DESC
+    `);
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Erro ao listar briefings:', err);
+    res.status(500).json({ error: 'Erro ao listar briefings.' });
+  }
+});
+
+apiRouter.get('/briefings/:id', authenticateToken, requireAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query(`SELECT * FROM briefings WHERE id = $1`, [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Briefing não encontrado.' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Erro ao buscar briefing:', err);
+    res.status(500).json({ error: 'Erro ao buscar dados do briefing.' });
+  }
+});
+
+apiRouter.patch('/briefings/:id/status', authenticateToken, requireAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  const validStatuses = ['novo', 'em_analise', 'em_producao', 'concluido'];
+  if (!status || !validStatuses.includes(status)) {
+    return res.status(400).json({ error: 'Status inválido. Use: novo, em_analise, em_producao ou concluido.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE briefings SET status = $1, updated_at = NOW() WHERE id = $2 RETURNING *`,
+      [status, id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Briefing não encontrado.' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Erro ao atualizar status do briefing:', err);
+    res.status(500).json({ error: 'Erro ao atualizar status do briefing.' });
+  }
+});
+
+apiRouter.delete('/briefings/:id', authenticateToken, requireAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query(`DELETE FROM briefings WHERE id = $1 RETURNING id`, [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Briefing não encontrado.' });
+    }
+    res.json({ message: 'Briefing excluído com sucesso.' });
+  } catch (err) {
+    console.error('Erro ao excluir briefing:', err);
+    res.status(500).json({ error: 'Erro ao excluir briefing.' });
+  }
+});
+
 // ACESSO DUPLO: Registrar rotas de API tanto em /api quanto na raiz
 app.use('/api', apiRouter);
 app.use('/', apiRouter);
@@ -627,6 +720,11 @@ app.get('/admin', (req, res) => {
 // Rota Principal (Login / Portal)
 app.get('/', (req, res) => {
   res.sendFile(path.join(rootDir, 'public', 'login.html'));
+});
+
+// Rota do Briefing para Clientes
+app.get('/briefing', (req, res) => {
+  res.sendFile(path.join(rootDir, 'public', 'briefing.html'));
 });
 
 // Rota do Manual de Criação de Estratégias
