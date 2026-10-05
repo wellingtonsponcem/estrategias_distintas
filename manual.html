@@ -97,8 +97,20 @@
           Manual Completo de Criação de Estratégias
         </h1>
         <p class="text-sm text-distinto-sand/80 mt-3 max-w-2xl leading-relaxed">
-          Este manual documenta o processo padrão para iniciar, executar e publicar uma nova estratégia digital no ecossistema da Distinto em <strong>um novo chat</strong>, sem necessidade de cadastros manuais no painel.
+          Este manual documenta o processo padrão para você (**o Estrategista da Distinto**) pilotar os agentes de IA, gerando estratégias digitais completas para os clientes da agência em <strong>um novo chat</strong>, sem retrabalho manual.
         </p>
+
+        <!-- Banner de Hierarquia -->
+        <div class="mt-6 p-4 rounded-2xl bg-amber-400/5 border border-amber-400/20 text-xs grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <strong class="text-amber-300 block font-semibold mb-0.5">👤 Você (No Chat):</strong>
+            <span class="text-distinto-sand/70">O <strong>Estrategista da Distinto</strong> que comanda a IA, valida os pontos e toma as decisões estratégicas.</span>
+          </div>
+          <div>
+            <strong class="text-emerald-300 block font-semibold mb-0.5">🏢 O Cliente (3ª Pessoa):</strong>
+            <span class="text-distinto-sand/70">O especialista, médico ou empresa para quem a estratégia está sendo construída (ex: Dr. Rafael, Dra. Kelly).</span>
+          </div>
+        </div>
       </section>
 
       <!-- SEÇÃO 2: PROMPT DO NOVO CHAT -->
@@ -114,13 +126,13 @@
         </div>
 
         <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
-          Ao abrir um <strong>novo chat</strong> para um novo cliente, basta copiar e colar a estrutura de briefing abaixo. O agente acionará o <strong>Agente Maestro</strong> e executará toda a esteira automaticamente.
+          Ao abrir um <strong>novo chat</strong> para um novo cliente, copie e cole a estrutura abaixo. O agente saberá imediatamente que está trabalhando com você (o Estrategista) para montar o plano do cliente em 3ª pessoa.
         </p>
 
         <!-- CODE BLOCK DO TEMPLATE -->
         <div class="relative">
-          <pre id="promptTemplateText" class="p-5 rounded-2xl border border-distinto-border text-xs font-mono text-emerald-300 overflow-x-auto leading-relaxed"><code>Olá! Quero iniciar uma NOVA ESTRATÉGIA digital completa para um cliente.
-Por favor, assuma o papel de **Agente Maestro** e execute a esteira completa dos 10Ps, Notion, Slide-Doc, criação no banco de dados e deploy na Vercel.
+          <pre id="promptTemplateText" class="p-5 rounded-2xl border border-distinto-border text-xs font-mono text-emerald-300 overflow-x-auto leading-relaxed"><code>Olá, Agente Maestro! Eu sou o Estrategista da Distinto e vamos trabalhar juntos no desenvolvimento da nova estratégia digital para o nosso cliente.
+Lembre-se: trate-me como o Estrategista (seu parceiro técnico de agência) e o cliente sempre em terceira pessoa.
 
 Aqui estão os dados do cliente para o briefing inicial:
 
@@ -142,13 +154,13 @@ Aqui estão os dados do cliente para o briefing inicial:
 - Diferenciais e Tom de Voz: [Ex: Sofisticado, científico, acolhedor e exclusivo]
 
 Por favor:
-1. Conduza a elaboração dos 10Ps (com o Agente Maestro e especialistas).
-2. Valide no Agente 21 (Revisor Técnico).
+1. Conduza comigo a elaboração dos 10Ps (com você como Maestro e especialistas).
+2. Valide com o Agente 21 (Revisor Técnico).
 3. Publique no Notion MCP (Docs e Tarefas nas bases da agência).
 4. Gere a apresentação interativa em `public/estrategias/[slug].html`.
 5. Registre no banco Neon Postgres com senha genérica (sem enviar e-mail automático).
 6. Faça o commit/push no Git para deploy automático na Vercel.
-7. Me entregue a URL da apresentação e a senha gerada para envio manual!</code></pre>
+7. Me entregue a URL da apresentação e a senha gerada para envio manual ao cliente!</code></pre>
         </div>
       </section>
 
