@@ -668,9 +668,9 @@ apiRouter.patch('/briefings/:id/status', authenticateToken, requireAdmin, async 
   const { id } = req.params;
   const { status } = req.body;
 
-  const validStatuses = ['novo', 'em_analise', 'em_producao', 'concluido'];
+  const validStatuses = ['novo', 'em_analise', 'aguardando_correcao', 'em_producao', 'concluido'];
   if (!status || !validStatuses.includes(status)) {
-    return res.status(400).json({ error: 'Status inválido. Use: novo, em_analise, em_producao ou concluido.' });
+    return res.status(400).json({ error: 'Status inválido. Use: novo, em_analise, aguardando_correcao, em_producao ou concluido.' });
   }
 
   try {
@@ -685,6 +685,91 @@ apiRouter.patch('/briefings/:id/status', authenticateToken, requireAdmin, async 
   } catch (err) {
     console.error('Erro ao atualizar status do briefing:', err);
     res.status(500).json({ error: 'Erro ao atualizar status do briefing.' });
+  }
+});
+
+// Liberar o briefing para o cliente corrigir: gera um link exclusivo de edição
+apiRouter.post('/briefings/:id/request-edit', authenticateToken, requireAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { email, note, sendEmail } = req.body;
+
+  try {
+    const editToken = crypto.randomBytes(24).toString('hex');
+    const result = await pool.query(
+      `UPDATE briefings SET edit_token = $1, status = 'aguardando_correcao', updated_at = NOW()
+       WHERE id = $2 RETURNING id, client_name, company_name, email, status`,
+      [editToken, id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Briefing não encontrado.' });
+    }
+
+    const briefing = result.rows[0];
+    const editUrl = `${getBaseUrl(req)}/briefing?editar=${editToken}`;
+
+    let emailResult = null;
+    if (sendEmail) {
+      const targetEmail = (email || briefing.email || '').trim();
+      if (!targetEmail) {
+        return res.status(400).json({ error: 'Informe o e-mail para envio.', editUrl });
+      }
+      emailResult = await brevoService.sendBriefingEditEmail({
+        name: briefing.client_name,
+        email: targetEmail,
+        companyName: briefing.company_name,
+        editUrl,
+        note
+      });
+    }
+
+    res.json({ editUrl, briefing, emailResult });
+  } catch (err) {
+    console.error('Erro ao liberar edição do briefing:', err);
+    res.status(500).json({ error: 'Erro ao gerar link de correção do briefing.' });
+  }
+});
+
+// Cliente carrega o briefing pelo link de correção
+apiRouter.get('/briefings/edit/:token', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT id, company_name, data FROM briefings WHERE edit_token = $1`,
+      [req.params.token]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Link de correção inválido ou já utilizado.' });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Erro ao carregar briefing para correção:', err);
+    res.status(500).json({ error: 'Erro ao carregar o briefing.' });
+  }
+});
+
+// Cliente reenvia o briefing corrigido (o link deixa de valer)
+apiRouter.put('/briefings/edit/:token', async (req, res) => {
+  const { client_name, company_name, email, whatsapp, niche, data } = req.body;
+
+  if (!client_name || !company_name || !email || !data) {
+    return res.status(400).json({ error: 'Nome do cliente, empresa, e-mail e dados do briefing são obrigatórios.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE briefings
+       SET client_name = $1, company_name = $2, email = $3, whatsapp = $4, niche = $5, data = $6,
+           status = 'novo', edit_token = NULL, updated_at = NOW()
+       WHERE edit_token = $7
+       RETURNING id`,
+      [client_name.trim(), company_name.trim(), email.trim(), whatsapp || '', niche || '', JSON.stringify(data), req.params.token]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Link de correção inválido ou já utilizado.' });
+    }
+    res.json({ success: true, message: 'Briefing atualizado com sucesso! Obrigado pelas correções.' });
+  } catch (err) {
+    console.error('Erro ao salvar correção do briefing:', err);
+    res.status(500).json({ error: 'Erro ao salvar as correções do briefing.' });
   }
 });
 

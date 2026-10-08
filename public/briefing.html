@@ -276,6 +276,11 @@
   <!-- MAIN FORM CONTAINER -->
   <main class="max-w-4xl mx-auto px-3 sm:px-6 py-5 sm:py-8 flex-1 w-full relative z-10">
     
+    <div id="editModeBanner" class="hidden mb-5 p-4 rounded-2xl bg-amber-400/10 border border-amber-400/30 text-amber-200 text-xs sm:text-sm leading-relaxed">
+      <strong class="block text-amber-300 mb-1">✏️ Modo de correção</strong>
+      Suas respostas anteriores já estão preenchidas. Revise as etapas, corrija o que for necessário e clique em <strong>Finalizar</strong> na última etapa para reenviar.
+    </div>
+
     <form id="briefingForm" onsubmit="event.preventDefault();" class="space-y-6">
       
       <!-- ======================================================== -->
@@ -799,14 +804,40 @@
   <script>
     let currentStep = 1;
     const totalSteps = 8;
-    const STORAGE_KEY = 'distinto_briefing_draft_v2';
+    const EDIT_TOKEN = new URLSearchParams(window.location.search).get('editar');
+    const STORAGE_KEY = EDIT_TOKEN ? `distinto_briefing_edit_${EDIT_TOKEN}` : 'distinto_briefing_draft_v2';
 
     // Initialize Page
-    document.addEventListener('DOMContentLoaded', () => {
-      loadDraft();
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (EDIT_TOKEN) {
+        await loadBriefingForEdit();
+      } else {
+        loadDraft();
+      }
       updateProgress();
       setupAutoSave();
     });
+
+    async function loadBriefingForEdit() {
+      document.getElementById('editModeBanner').classList.remove('hidden');
+      // Se o cliente já começou a corrigir neste aparelho, mantém o rascunho local
+      if (localStorage.getItem(STORAGE_KEY)) {
+        loadDraft();
+        return;
+      }
+      try {
+        const res = await fetch(`/api/briefings/edit/${encodeURIComponent(EDIT_TOKEN)}`);
+        const resData = await res.json();
+        if (!res.ok) throw new Error(resData.error || 'Não foi possível carregar o briefing.');
+        const data = typeof resData.data === 'string' ? JSON.parse(resData.data) : resData.data;
+        delete data._currentStep;
+        fillForm(data);
+      } catch (err) {
+        alert(`${err.message}
+
+Fale com a equipe Distinto para receber um novo link.`);
+      }
+    }
 
     // Navigation Logic
     function updateProgress() {
@@ -1040,37 +1071,40 @@
           return;
         }
         const data = JSON.parse(raw);
-
-        for (const [key, val] of Object.entries(data)) {
-          if (key === 'tone_traits' && Array.isArray(val)) {
-            document.querySelectorAll('input[name="tone_traits"]').forEach(cb => {
-              cb.checked = val.includes(cb.value);
-            });
-          } else if (key === 'focus_channels' && Array.isArray(val)) {
-            document.querySelectorAll('input[name="focus_channels"]').forEach(cb => {
-              cb.checked = val.includes(cb.value);
-            });
-          } else if (key === 'primary_goal') {
-            const radio = document.querySelector(`input[name="primary_goal"][value="${val}"]`);
-            if (radio) radio.checked = true;
-          } else if (key === 'products' && Array.isArray(val) && val.length > 0) {
-            const container = document.getElementById('productsContainer');
-            container.innerHTML = '';
-            val.forEach(p => addProductRow(p.name, p.format, p.price));
-          } else {
-            const el = document.getElementById(key);
-            if (el) el.value = val;
-          }
-        }
-
-        if (data._currentStep && data._currentStep > 1) {
-          currentStep = data._currentStep;
-        }
-
-        updateSummaryPreview();
+        fillForm(data);
       } catch (err) {
         console.warn('Erro ao carregar rascunho local:', err);
       }
+    }
+
+    function fillForm(data) {
+      for (const [key, val] of Object.entries(data)) {
+        if (key === 'tone_traits' && Array.isArray(val)) {
+          document.querySelectorAll('input[name="tone_traits"]').forEach(cb => {
+            cb.checked = val.includes(cb.value);
+          });
+        } else if (key === 'focus_channels' && Array.isArray(val)) {
+          document.querySelectorAll('input[name="focus_channels"]').forEach(cb => {
+            cb.checked = val.includes(cb.value);
+          });
+        } else if (key === 'primary_goal') {
+          const radio = document.querySelector(`input[name="primary_goal"][value="${val}"]`);
+          if (radio) radio.checked = true;
+        } else if (key === 'products' && Array.isArray(val) && val.length > 0) {
+          const container = document.getElementById('productsContainer');
+          container.innerHTML = '';
+          val.forEach(p => addProductRow(p.name, p.format, p.price));
+        } else {
+          const el = document.getElementById(key);
+          if (el) el.value = val;
+        }
+      }
+
+      if (data._currentStep && data._currentStep > 1) {
+        currentStep = data._currentStep;
+      }
+
+      updateSummaryPreview();
     }
 
     function confirmResetBriefing() {
@@ -1187,8 +1221,8 @@ ${d.benchmarks || 'Não informadas'}
       const data = getFormData();
 
       try {
-        const response = await fetch('/api/briefings', {
-          method: 'POST',
+        const response = await fetch(EDIT_TOKEN ? `/api/briefings/edit/${encodeURIComponent(EDIT_TOKEN)}` : '/api/briefings', {
+          method: EDIT_TOKEN ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             client_name: data.client_name,
@@ -1205,6 +1239,8 @@ ${d.benchmarks || 'Não informadas'}
         if (!response.ok) {
           throw new Error(resData.error || 'Erro ao enviar o briefing.');
         }
+
+        if (EDIT_TOKEN) localStorage.removeItem(STORAGE_KEY);
 
         // Show Success & Hide Mobile Dock
         document.getElementById('briefingForm').classList.add('hidden');

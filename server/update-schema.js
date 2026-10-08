@@ -31,6 +31,9 @@ async function updateSchema() {
       );
     `);
     console.log('✅ Tabela briefings criada com sucesso!');
+
+    await client.query(`ALTER TABLE briefings ADD COLUMN IF NOT EXISTS edit_token VARCHAR(64) UNIQUE;`);
+    console.log('✅ Coluna briefings.edit_token verificada/criada com sucesso!');
   } catch (err) {
     console.error('❌ Erro ao atualizar schema:', err);
   } finally {
