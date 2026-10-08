@@ -259,6 +259,7 @@
           body: JSON.stringify({ email })
         });
         const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Erro ao enviar e-mail de recuperação.");
 
         fb.className = 'p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2';
         fb.innerHTML = `<span>✅ ${data.message}</span>`;

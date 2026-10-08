@@ -158,11 +158,20 @@ apiRouter.post('/auth/forgot-password', async (req, res) => {
     const resetUrl = `${getBaseUrl(req)}/reset-password?token=${resetToken}`;
     
     // Disparar e-mail via Brevo
-    await brevoService.sendPasswordResetEmail({
+    const emailResult = await brevoService.sendPasswordResetEmail({
       name: user.name,
       email: user.email,
       resetUrl
     });
+
+    if (!emailResult.ok || emailResult.simulated) {
+      console.error('[Forgot Password] Falha no envio via Brevo:', emailResult);
+      return res.status(502).json({
+        error: emailResult.simulated
+          ? 'Serviço de e-mail não configurado no servidor (BREVO_API_KEY ausente).'
+          : `Não foi possível enviar o e-mail: ${emailResult.error}`
+      });
+    }
 
     res.json({ message: 'E-mail de recuperação enviado com sucesso!' });
   } catch (err) {
@@ -197,7 +206,7 @@ apiRouter.post('/auth/reset-password', async (req, res) => {
     const passwordHash = await bcrypt.hash(password.trim(), salt);
 
     await pool.query('UPDATE users SET password_hash = $1 WHERE id = $2', [passwordHash, reset.user_id]);
-    await pool.query('UPDATE password_resets SET used = true WHERE id = $3', [true, reset.id]);
+    await pool.query('UPDATE password_resets SET used = true WHERE id = $1', [reset.id]);
 
     res.json({ message: 'Senha redefinida com sucesso! Você já pode fazer login.' });
   } catch (err) {
