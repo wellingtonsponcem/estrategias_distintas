@@ -5,3 +5,8 @@ dist
 .env.local
 .vercel
 .tmp.driveupload/
+
+# Dados de trabalho das estratégias (briefings, etapas, fontes) — sensíveis, ficam só na máquina do Estrategista
+clientes/
+.claude/
+*.ogg

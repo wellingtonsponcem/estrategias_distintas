@@ -118,7 +118,7 @@ async function initDB() {
       `, [
         kellySlug,
         'Instituto Longânima',
-        'Dra. Kelly Bruzeguini Eira',
+        'Kelly Bruzeguini Eira',
         'Um novo olhar sobre o envelhecer.',
         'Estratégia de conteúdos do Instituto Longânima, posicionar Kelly como referência para o público 50+ e gerar 20 novos pacientes/mês até dez/2026.',
         '20 Pacientes / mês',
@@ -145,7 +145,7 @@ async function initDB() {
       const kellyHash = await bcrypt.hash('kelly123', salt);
       const resKelly = await client.query(
         `INSERT INTO users (name, email, password_hash, role) VALUES ($1, $2, $3, $4) RETURNING id`,
-        ['Dra. Kelly Bruzeguini Eira', kellyEmail, kellyHash, 'client']
+        ['Kelly Bruzeguini Eira', kellyEmail, kellyHash, 'client']
       );
       kellyUserId = resKelly.rows[0].id;
       console.log('✅ Usuário da Kelly criado: kelly@loganima.com.br (Senha: kelly123)');

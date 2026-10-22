@@ -14,6 +14,31 @@ Este repositório contém a arquitetura completa dos **23 Agentes Especialistas 
 
 ---
 
+## ⚙️ Como Rodar (Claude Code)
+
+```
+/nova-estrategia <slug-do-cliente> [id-ou-email-do-briefing]
+```
+
+- **Nova estratégia:** o Maestro puxa o briefing do Neon (`npm run briefing -- <id|email> <slug>`), cria `clientes/<slug>/` e conduz as 23 etapas.
+- **Retomada:** rode o mesmo comando em qualquer chat novo. O Maestro lê `clientes/<slug>/estado.json` e continua de onde parou.
+
+### Arquitetura
+
+| Peça | Arquivo | Papel |
+| :--- | :--- | :--- |
+| **Maestro executável** | `.claude/skills/nova-estrategia/SKILL.md` | Tabela de roteamento, ondas em paralelo, portão de qualidade, fechamento |
+| **Especialistas executáveis** | `.claude/agents/distinto-NN-*.md` | Subagentes em contexto limpo. Cada um lê só os seus insumos e grava a entrega em arquivo |
+| **Metodologias** | `agentes/NN_*.md` | Como cada especialista pensa e o template de entrega (fonte única, lida pelos subagentes) |
+| **Contrato comum** | `agentes/_contrato_comum.md` | Hierarquia de papéis, regra de evidência, padrão anti-genérico, formato de saída, modos |
+| **Rubricas** | `agentes/_rubricas.md` | Critérios de 0 a 5 por etapa. Nota abaixo de 4 volta para revisão automática |
+| **Exemplos padrão ouro** | `agentes/exemplos/` | Entregas de referência que calibram a profundidade |
+| **Memória do cliente** | `clientes/<slug>/` | Briefing, etapas, `master.md`, `fontes.md`, `estado.json` (fora do git) |
+
+> Para editar o comportamento de um especialista, altere `agentes/NN_*.md`. O arquivo em `.claude/agents/` só define as ferramentas, os insumos e o protocolo.
+
+---
+
 ## 🗺️ Mapa Completo do Pipeline
 
 | # | Agente | Função Central | Arquivo |

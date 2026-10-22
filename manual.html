@@ -125,8 +125,16 @@
           </button>
         </div>
 
+        <div class="p-4 rounded-2xl bg-emerald-400/5 border border-emerald-400/20 text-xs sm:text-sm text-distinto-sand/80 leading-relaxed space-y-2">
+          <strong class="text-emerald-300 block">⚡ Forma recomendada (Claude Code)</strong>
+          <p>Se o cliente já preencheu o <strong>/briefing</strong>, rode no Claude Code, dentro deste repositório:</p>
+          <pre class="p-3 rounded-xl bg-black/50 font-mono text-emerald-300 overflow-x-auto"><code>/nova-estrategia [slug-do-cliente] [e-mail ou ID do briefing]</code></pre>
+          <p>O Maestro puxa o briefing do banco e cria a memória do cliente em <code>clientes/[slug]/</code>. Em seguida, aciona os 23 especialistas como subagentes: cada um trabalha em contexto limpo, os independentes rodam em paralelo e toda entrega passa por uma rubrica de qualidade antes de chegar até você.</p>
+          <p><strong>Para retomar</strong> uma estratégia em outro chat, rode o mesmo comando com o slug: o Maestro continua de onde parou.</p>
+        </div>
+
         <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
-          Ao abrir um <strong>novo chat</strong> para um novo cliente, copie e cole a estrutura abaixo. O agente saberá imediatamente que está trabalhando com você (o Estrategista) para montar o plano do cliente em 3ª pessoa.
+          <strong>Alternativa:</strong> se não houver briefing no banco, abra um <strong>novo chat</strong> e cole a estrutura abaixo. O agente saberá imediatamente que está trabalhando com você (o Estrategista) para montar o plano do cliente em 3ª pessoa.
         </p>
 
         <!-- CODE BLOCK DO TEMPLATE -->
@@ -154,7 +162,7 @@ Aqui estão os dados do cliente para o briefing inicial:
 - Diferenciais e Tom de Voz: [Ex: Sofisticado, científico, acolhedor e exclusivo]
 
 Por favor:
-1. Conduza comigo a elaboração dos 10Ps (com você como Maestro e especialistas).
+1. Conduza comigo a elaboração dos 10Ps pela skill /nova-estrategia (memória em clientes/[slug]/, subagentes distinto-NN e portão de qualidade).
 2. Valide com o Agente 21 (Revisor Técnico).
 3. Publique no Notion MCP (Docs e Tarefas nas bases da agência).
 4. Gere a apresentação interativa em `public/estrategias/[slug].html`.
@@ -172,49 +180,53 @@ Por favor:
         </div>
 
         <p class="text-xs sm:text-sm text-distinto-sand/80 leading-relaxed">
-          Toda estratégia da Distinto é construída sobre 10 pilares conectados, garantindo que o conteúdo tenha propósito claro e gere conversão:
+          Toda estratégia da Distinto segue os Passos da metodologia 10P (mais os Extras), com a mesma divisão usada no Notion (GEST). Cada passo agrupa os agentes responsáveis:
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">1P • Pesquisa & Diagnóstico</span>
-            <p class="text-distinto-sand/70">Análise de mercado, concorrentes, histórico e diferenciais competitivos.</p>
+            <span class="font-bold text-amber-300">1P • Objetivos</span>
+            <p class="text-distinto-sand/70">Agente 01 — metas de negócio no formato Resultado + Meta + Prazo.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">2P • Persona & Público-Alvo</span>
-            <p class="text-distinto-sand/70">Mapeamento de dores, desejos, objeções e níveis de consciência.</p>
+            <span class="font-bold text-amber-300">2P • DNA</span>
+            <p class="text-distinto-sand/70">Agentes 02–03 — DNA do Especialista, da Empresa e do Conteúdo (UVP, Big Idea) + Manual do Tom de Voz.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">3P • Posicionamento & Território</span>
-            <p class="text-distinto-sand/70">Declaração de posicionamento, Big Idea, UVP e não-negociáveis.</p>
+            <span class="font-bold text-amber-300">3P • Concorrência</span>
+            <p class="text-distinto-sand/70">Agentes 04–08 — termos do projeto, critérios, 30–50 concorrentes, análise de concorrentes e do cliente, SWOT.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">4P • Plataformas & Canais</span>
-            <p class="text-distinto-sand/70">Arquitetura de canais (Instagram, YouTube, Site, WhatsApp, E-mail).</p>
+            <span class="font-bold text-amber-300">4P • Personas</span>
+            <p class="text-distinto-sand/70">Agente 09 — personas com dores, desejos e objeções baseadas em pesquisa real.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">5P • Pilares de Conteúdo (Pautas)</span>
-            <p class="text-distinto-sand/70">Linhas editoriais, matriz de temas e distribuição de frequência.</p>
+            <span class="font-bold text-amber-300">5P • Jornada</span>
+            <p class="text-distinto-sand/70">Agentes 10–11 — funis dos concorrentes e jornada de compra própria por persona.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">6P • Produção & Formatos</span>
-            <p class="text-distinto-sand/70">Carrosséis, Reels, Lives, Artigos, rotinas e esteira de gravação.</p>
+            <span class="font-bold text-amber-300">6P • Canais</span>
+            <p class="text-distinto-sand/70">Agentes 12–13 — ecossistema de canais e estratégias digitais complementares.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">7P • Promoção & Mídia</span>
-            <p class="text-distinto-sand/70">Estratégia de tráfego pago, impulsionamento e distribuição omnichannel.</p>
+            <span class="font-bold text-amber-300">7P • Editoriais</span>
+            <p class="text-distinto-sand/70">Agentes 14–15 — padrões de conteúdo viral e linhas editoriais com assuntos e tópicos.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">8P • Propagação & Comunidade</span>
-            <p class="text-distinto-sand/70">Engajamento, rituais de relacionamento e defensores de marca.</p>
+            <span class="font-bold text-amber-300">8P • Funil</span>
+            <p class="text-distinto-sand/70">Agente 16 — distribuição dos tópicos em TOFU, MOFU, FOFU, COFU e REFU.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">9P • Performance & Métricas</span>
-            <p class="text-distinto-sand/70">North Star Metric, KPIs por canal e rituais de otimização contínua.</p>
+            <span class="font-bold text-amber-300">9P • Linguagem</span>
+            <p class="text-distinto-sand/70">Agente 17 — identidade e linguagem visual do projeto.</p>
           </div>
           <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
-            <span class="font-bold text-amber-300">10P • Playbook & Governança</span>
-            <p class="text-distinto-sand/70">Manual operacional de execução para o time e para o especialista.</p>
+            <span class="font-bold text-amber-300">10P • Análise</span>
+            <p class="text-distinto-sand/70">Agente 18 — análise de resultados e fórmulas de conteúdo (quando há métricas).</p>
+          </div>
+          <div class="p-4 rounded-xl bg-black/40 border border-distinto-border space-y-1">
+            <span class="font-bold text-amber-300">11P • Extras</span>
+            <p class="text-distinto-sand/70">Agentes 19–21 — calendário de conteúdo, linha do tempo e revisão da estratégia.</p>
           </div>
         </div>
       </section>
